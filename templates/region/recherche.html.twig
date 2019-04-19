@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% if error %}
+        <span class="error">{{ error }}</span>
+    {% endif %}
+
+    {% if result %}
+        <table>
+            <tr>
+                <th>Id</th><th>Lib</th>
+            </tr>
+            {% for item in result %}
+
+                <tr>
+                    <td>{{ item.id }}</td><td>{{ item.libele }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+    {{ dump() }}
+{% endblock %}

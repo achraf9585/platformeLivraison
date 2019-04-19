@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Condi index{% endblock %}
+
+{% block body %}
+<main class="app-content">
+    <div class="app-title">
+
+        <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item"><i class="fa fa-building fa-lg"></i></li>
+            <li class="breadcrumb-item"><a href="#">Région</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="table-wrapper" style="width:800px;margin-left:100px;">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2>Gérer <b>Condition</b></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="table-title" >
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="container">
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+
+
+
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>{{ knp_pagination_sortable(properties, 'id','id') }}</th>
+                    <th></th>
+                    <th>{{ knp_pagination_sortable(properties, 'libele','libele') }}</th>
+                    <th></th>
+
+                    <th></th>
+                    <th>Action</th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for condi in condis %}
+            <tr>
+                <td>{{ condi.id }}</td>
+                <td></td>
+                <td>{{ condi.libele }}</td>
+                <td></td>
+                <td></td>
+                <td>
+                    <a href="{{ path('condi_edit', {'id': condi.id}) }}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Modifier">&#xE254;</i></a>
+
+                    <a  href="{{ path('condi_show', {'id': condi.id}) }}"  ><i title="Voir" class="material-icons">&#xE8F4;</i></a>
+                </td>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+            <div class="clearfix">
+
+                <ul class="pagination">
+                    {{ knp_pagination_render(properties) }}
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+</main>
+
+
+{% endblock %}

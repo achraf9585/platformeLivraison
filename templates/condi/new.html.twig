@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Condi{% endblock %}
+
+{% block body %}
+    <h1>Create new Condi</h1>
+
+    {{ include('condi/_form.html.twig') }}
+
+    <a href="{{ path('condi_index') }}">back to list</a>
+{% endblock %}

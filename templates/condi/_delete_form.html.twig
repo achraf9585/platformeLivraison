@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('condi_delete', {'id': condi.id}) }}" onsubmit="return confirm('Vous êtes sure de supprimer cette condition?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ condi.id) }}">
+    <button class="btn btn-danger" style="width: 50%;margin-left: 380px;margin-top: -100px">Supprimer</button>
+</form>

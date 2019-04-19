@@ -1,0 +1,9 @@
+{{ form_start(form) }}
+
+    {{ form_row(form.libele,{'attr':{'class':'form-control'}}) }}
+    {{ form_row(form.region,{'attr':{'class':'ennos'}}) }}
+<div>
+    <button class="btn btn-success" style="width: 50%; margin-top: 30px;">{{ button_label|default('Save') }}</button>
+
+</div>
+{{ form_end(form) }}

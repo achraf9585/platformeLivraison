@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block title %}Ville{% endblock %}
+
+{% block body %}
+<main class="app-content">
+    <div class="app-title">
+
+        <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item"><i class="fa fa-building fa-lg"></i></li>
+            <li class="breadcrumb-item"><a href="#">Région</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="table-wrapper" style="width:800px;margin-left:100px;">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2>Gérer <b>Ville</b></h2>
+                    </div>
+
+                </div>
+            </div>
+            <h1>Ville  <a href="{{ path('ville_index') }}"><i class="material-icons">&#xE5C4;</i></a></h1>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ ville.id }}</td>
+                </tr>
+                <tr>
+                    <th>Libele</th>
+                    <td>{{ ville.libele }}</td>
+                </tr>
+
+                <tr>
+                    <th>Region</th>
+                    <td>{{ ville.region.getLibele() }}</td>
+                </tr>
+                </tbody>
+            </table>
+
+
+
+{% endblock %}

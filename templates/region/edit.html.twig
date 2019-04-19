@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Region{% endblock %}
+
+{% block body %}
+<main class="app-content">
+    <div class="app-title">
+
+        <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item"><i class="fa fa-building fa-lg"></i></li>
+            <li class="breadcrumb-item"><a href="#">Région</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="table-wrapper" style="width:800px;margin-left:100px;">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2>Gérer <b>Région</b></h2>
+                    </div>
+
+                </div>
+            </div>
+ <h1>Modifier Region  <a href="{{ path('region_index') }}"><i class="material-icons">&#xE5C4;</i></a></h1>
+<br>
+    {{ include('region/_form.html.twig', {'button_label': 'Modifier'}) }}
+<br>
+
+
+    {{ include('region/_delete_form.html.twig') }}
+{% endblock %}

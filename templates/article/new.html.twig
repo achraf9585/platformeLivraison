@@ -1,0 +1,14 @@
+{% extends 'baseres.html.twig' %}
+
+{% block title %}Nouveau Plat{% endblock %}
+
+{% block body %}
+<a href="{{ path('plat_index')}}" class="btn"> <i class="material-icons">&#xE317;</i></a> 
+   
+   <center>
+    
+            
+    {{ include('article/_form.html.twig') }}
+ 
+    </center>
+{% endblock %}
