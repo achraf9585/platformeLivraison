@@ -27,18 +27,36 @@ class Livreur implements UserInterface
     private $email;
     /**
      * @ORM\Column(type="string", length=180)
+     * @Assert\Regex(
+     *        pattern  = "/[^a-z A-Z À-þ]+/",
+     *     match=false,
+     *     message="le nom ne doit pas contenir des chiffres"
+     * )
      */
     private $nom;
     /**
      * @ORM\Column(type="string", length=180)
+     * @Assert\Regex(
+     *        pattern  = "/[^a-z A-Z À-þ]+/",
+     *     match=false,
+     *     message="le prenom ne doit pas contenir des chiffres"
+     * )
      */
     private $prenom;
     /**
      * @ORM\Column(type="string", length=8)
+     * @Assert\Type(type="integer",
+     * message="le numero telephone doit etre de chiffres"
+     * )
+     * @assert\Length(min=8 ,max=8, minMessage="Votre numero n est pas compatible !")
      */
     private $numtel1;
     /**
      * @ORM\Column(type="string", length=8)
+      * @Assert\Type(type="integer",
+     * message="le numero telephone doit etre de chiffres"
+     * )
+     * @assert\Length(min=8 ,max=8, minMessage="Votre numero n est pas compatible !")
      */
     private $numtel2;
 
@@ -61,6 +79,9 @@ class Livreur implements UserInterface
     private $typepapier;
     /**
      * @ORM\Column(type="string", length=180)
+     * @Assert\Type(type="integer",
+     * message="le numero papier doit etre de chiffres"
+     * )
      */
     private $numpapier;
     /**

@@ -24,18 +24,18 @@ class AdminController extends AbstractController
             'controller_name' => 'AdminController',
         ]);
     }
-    /*
+
     /**
      * @Route("/client", name="admin")
      */
-  /*
+
     public function cli()
     {
         return $this->render('client/index.html.twig', [
             'controller_name' => 'AdminController',
         ]);
     }
-  */
+
     /**
      * @Route("/",name="home")
      */
