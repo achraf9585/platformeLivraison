@@ -4,7 +4,9 @@ namespace App\Form;
 
 use App\Entity\Region;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class RegionType extends AbstractType
@@ -13,6 +15,13 @@ class RegionType extends AbstractType
     {
         $builder
             ->add('libele')
+
+            ->add('statut', ChoiceType::class, [
+                'choices' => [
+                    'Disponibilité' => [
+                        'Disponible' => 'Disponible',
+                        'Indisponible' => 'Indisponible',
+                    ]]])
         ;
     }
 

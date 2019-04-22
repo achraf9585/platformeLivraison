@@ -33,6 +33,11 @@ class Ville
      */
     private $region;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $statut;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -58,6 +63,18 @@ class Ville
     public function setRegion(?Region $region): self
     {
         $this->region = $region;
+
+        return $this;
+    }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(string $statut): self
+    {
+        $this->statut = $statut;
 
         return $this;
     }

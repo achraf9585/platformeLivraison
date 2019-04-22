@@ -49,6 +49,11 @@ class Region
      */
     private $villes;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $statut;
+
     public function __construct()
     {
         $this->villes = new ArrayCollection();
@@ -98,6 +103,18 @@ class Region
                 $ville->setRegion(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(string $statut): self
+    {
+        $this->statut = $statut;
 
         return $this;
     }

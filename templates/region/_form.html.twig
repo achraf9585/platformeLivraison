@@ -1,5 +1,12 @@
+<br>
+<h1 style="margin-left: 10px;">Ajouter une nouvelle région</h1>
+<br>
 {{ form_start(form) }}
     {{ form_row(form.libele,{'attr':{'class':'form-control'}}) }}
+    {{ form_row(form.statut,{'attr':{'class':'ennos'}}) }}
+
+
 <br>
-<button class="btn btn-success" style="width: 50%;">{{ button_label|default('Ajouter') }}</button>
+<button class="btn btn-success" style="width: 70%; margin-left: 70px; margin-right: 10px; margin-bottom: 10px;">{{ button_label|default('Ajouter') }}</button>
+
 {{ form_end(form) }}

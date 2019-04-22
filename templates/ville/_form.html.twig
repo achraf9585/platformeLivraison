@@ -1,9 +1,19 @@
+<div class="container" style="height: 380px;">
+<br>
+
 {{ form_start(form) }}
 
     {{ form_row(form.libele,{'attr':{'class':'form-control'}}) }}
+    <br>
     {{ form_row(form.region,{'attr':{'class':'ennos'}}) }}
-<div>
-    <button class="btn btn-success" style="width: 50%; margin-top: 30px;">{{ button_label|default('Save') }}</button>
+    <br>
+    <label>Existence</label>
+    {{ form_widget(form.statut,{'attr':{'class':'ennos'}}) }}
+   <br>
 
+<div>
+    <button class="btn btn-success" style="width: 70%; margin-left: 70px; margin-right: 10px; margin-bottom: 10px;">{{ button_label|default('Enregistrer') }}</button>
+<br>
 </div>
 {{ form_end(form) }}
+</div>

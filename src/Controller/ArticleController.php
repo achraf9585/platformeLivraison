@@ -7,6 +7,7 @@ use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -50,20 +51,23 @@ class ArticleController extends AbstractController
         $form = $this->createForm(ArticleType::class, $plat);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($plat);
-            $entityManager->flush();
 
-            return $this->redirectToRoute('plat_index');
+          if ($form->isSubmitted() && $form->isValid()) {
+              $entityManager = $this->getDoctrine()->getManager();
+              $entityManager->persist($plat);
+              $entityManager->flush();
+
+              return $this->redirectToRoute('plat_index');
 
 
-        }
+          }
+
+
 
         return $this->render('article/new.html.twig', [
             'plat' => $plat,
             'form' => $form->createView(),
-            'editMode'=>$plat->getId() !== null,
+            'testStatut'=>$plat->getId() !== null ,
 
         ]);
     }

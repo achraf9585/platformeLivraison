@@ -20,7 +20,7 @@
 
                 </div>
             </div>
-            <h1>Ville  <a href="{{ path('ville_index') }}"><i class="material-icons">&#xE5C4;</i></a></h1>
+            <h1>Ville n° {{ ville.id }}  <a href="{{ path('ville_index') }}"><i class="material-icons">&#xE5C4;</i></a></h1>
             <table class="table">
                 <tbody>
                 <tr>
@@ -36,9 +36,15 @@
                     <th>Region</th>
                     <td>{{ ville.region.getLibele() }}</td>
                 </tr>
+                <tr>
+                    <th>Statut</th>
+                    <td>{{ ville.statut }}</td>
+                </tr>
                 </tbody>
             </table>
-
+        </div>
+    </div>
+</main>
 
 
 {% endblock %}

@@ -48,6 +48,7 @@
                             <th></th>
                             <th>{{ knp_pagination_sortable(properties, 'libele','libele') }}</th>
                             <th></th>
+                            <th>{{ knp_pagination_sortable(properties, 'statut','statut') }}</th>
                             <th>Action</th>
 
                         </tr>
@@ -63,7 +64,8 @@
 <td></td>
 <td></td>
                                     <td>{{ region.libele }}</td>
-                                    <td></td>
+                                    <td> </td>
+                                    <td> {{ region.statut }}</td>
                                     <td>
 
                                         <a href="{{ path('region_edit', {'id': region.id}) }}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Modifier">&#xE254;</i></a>
