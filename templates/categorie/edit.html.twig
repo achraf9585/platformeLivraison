@@ -1,0 +1,13 @@
+{% extends 'baseres.html.twig' %}
+
+{% block title %}Modifier Categorie{% endblock %}
+
+{% block body %}
+    <a href="{{ path('plat_index')}}" class="btn"> <i class="material-icons">&#xE317;</i></a>
+
+    <center>
+        <h1></h1>
+        {{ include('categorie/_form.html.twig', {'button_label': 'Sauvergarder la modification'}) }}
+
+    </center>
+{% endblock %}

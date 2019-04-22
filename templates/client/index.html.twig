@@ -1,0 +1,537 @@
+{% extends 'base3.html.twig' %}
+{% block title %}Home{% endblock %}
+{% block body %}
+
+    <section id="slider" class="slider">
+        <div class="slider_overlay">
+            <div class="container">
+                <div class="row">
+                    <div class="main_slider text-center">
+                        <div class="col-md-12">
+                            <div class="main_slider_content wow zoomIn" data-wow-duration="1s">
+                                <h1>Food Restaurant</h1>
+                                <div class="single_abouts_text wow slideInRight" data-wow-duration="1s">
+                                    <h4 style="color:#C24830;">Découvrer les restaurants  qui livre prés de vous</h4>
+                                </div>
+                                <input type="text" placeholder="Region" name="city" class="form-control" list="city">
+                                <datalist id="city">
+
+                                    <option value="Megrine">
+                                    <option value="Cité Ennasr">
+                                    <option value="Mnezah 1">
+                                    <option value="Mnezah 6">
+                                    <option value="Mnezah 7">
+                                    <option value="Mnezah 9">
+                                    <option value="Rades">
+
+                                </datalist>
+                                <!-- <select class="form-control" >  -->
+                                <!-- <div class="opa"> -->
+                                <!-- <option value="" disabled selected>Region</option>  -->
+                                <!-- <option class="opa" >Megrine </option>  -->
+                                <!-- <option >Cité Ennasr </option>  -->
+                                <!-- <option >Mnezah 6 </option>  -->
+                                <!-- <option >Menzah 9 </option>  -->
+                                <!-- <option >Rades </option>  -->
+                                <!-- <option >Ezzahra </option>  -->
+                                <!-- </div> -->
+                                <!-- </select>  -->
+
+                                <button href="" class="btn-lg" >Chercher</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="abouts" class="abouts">
+        <div class="container">
+            <div class="row">
+                <div class="abouts_content">
+                    <div class="col-md-6">
+                        <div class="single_abouts_text text-center wow slideInLeft" data-wow-duration="1s">
+                            <img src="assets/images/ab.png" alt="" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="single_abouts_text wow slideInRight" data-wow-duration="1s">
+                            <h4>à propos de nous</h4>
+                            <h3>Nous sommes savoureux</h3>
+                            <p> Food Restaurant, faites-vous plaisir avec la livraison de votre repas à domicile ou au bureau. Commander à manger auprès des meilleurs restaurants près de chez vous, les stars de votre quartier comme les perles cachées, c’est simple et rapide, en commandant sur notre site web .
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="footer_widget" class="footer_widget">
+        <div class="container">
+            <div class="row">
+                <div class="footer_widget_content text-center">
+                    <div class="col-md-4">
+                        <div class="single_widget wow fadeIn" data-wow-duration="2s">
+                            <h3>Adresse</h3>
+
+                            <div class="single_widget_info">
+                                <p>112-Avenue Liberté Tunis
+
+                                    <span class="phone_email">phone: 22 222 222</span>
+                                    <span>Email: foodrestaurant@gmail.com</span></p>
+                            </div>
+
+                            <div class="footer_socail_icon">
+                                <a href=""><i class="fa fa-facebook"></i></a>
+                                <a href=""><i class="fa fa-google-plus"></i></a>
+                                <a href=""><i class="fa fa-twitter"></i></a>
+                                <a href=""><i class="fa fa-linkedin"></i></a>
+                                <a href=""><i class="fa fa-pinterest-p"></i></a>
+                                <a href=""><i class="fa fa-youtube"></i></a>
+                                <a href=""><i class="fa fa-phone"></i></a>
+                                <a href=""><i class="fa fa-camera"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="single_widget wow fadeIn" data-wow-duration="4s">
+                            <h3>Horaires</h3>
+
+                            <div class="single_widget_info">
+                                <p><span class="date_day">Lundi à Vendredi</span>
+                                    <span>10:00 à 23:00</span>
+
+                                    <span class="date_day">Samedi et Dimanche</span>
+                                    <span>10:00 à 00:00</span>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="single_widget wow fadeIn" data-wow-duration="5s">
+                            <h3>Take it easy with location</h3>
+
+                            <div class="single_widget_form text-left">
+                                <form action="#" id="formid">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="name" placeholder="first name" required="">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" name="email" placeholder="Email" required="">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Subject">
+                                    </div> <!-- end of form-group -->
+
+                                    <div class="form-group">
+                                        <textarea class="form-control" name="message" rows="3" placeholder="Message"></textarea>
+                                    </div>
+
+                                    <input type="submit" value="click here" class="btn btn-primary">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!--Footer-->
+    <footer id="footer" class="footer">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="copyright wow zoomIn" data-wow-duration="3s">
+                        <p>Developpé avec <i class="fa fa-heart"></i> par MediaNet Consulting 2019. tout droits sont résérvés ©</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="scrollup">
+        <a href="#"><i class="fa fa-chevron-up"></i></a>
+    </div>
+
+
+
+
+
+
+
+
+    <!-- modal inscription  -->
+    <!-- Modal -->
+    <div class="modal fade" id="inscC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Inscription</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Form modal  -->
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa  fa-users"></i>
+                                </div>
+
+                                <input type="text" class="inp-form" required placeholder="Nom" />
+
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-xs-6">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa  fa-user"></i>
+                                </div>
+                                <input type="text" class="inp-form " required placeholder="Prenom" >
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <br>
+                    <div class="form-group">
+
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-phone"></i>
+                            </div>
+                            <input type="text" class="inp-form " required placeholder="Numero de Telephone" >
+                        </div>
+                        <!-- /.input group -->
+                    </div>
+                    <!-- <div class="form-group has-feedback">
+
+                     <span  class="glyphicon glyphicon-envelope form-control-feedback"> </span>
+                    <input type="mail" required class="inp-form "  placeholder="E-mail">
+                    </input> </div>
+                     -->
+                    <div class="form-group">
+
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-at"></i>
+                            </div>
+                            <input type="mail" class="inp-form " required placeholder="E-mail" />
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-home"></i>
+                            </div>
+                            <input type="mail" class="inp-form " required placeholder="Adresse" />
+                        </div>
+                        <!-- /.input group -->
+                        <br>
+                        <label>Date de naissance:</label>
+
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input type="date" class="inp-form " data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa   fa-lock"></i>
+                                </div>
+
+                                <input type="password" class="inp-form" required placeholder="Mot de passe" />
+
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-xs-6">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa   fa-lock"></i>
+                                </div>
+                                <input type="text" class="inp-form " required placeholder="Confirmer mot de passe" >
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <div class="checkbox icheck">
+                        <label>
+                            <input type="checkbox" > J'ai lu et accepté les <a href="#" >Termes et conditions </a> et <a href="#"> la Politique de confidentialité
+                            </a>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-aa btn-block btn-flat">S'inscrire</button>
+                </div>
+
+            </div>
+
+            <!--
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+            -->
+        </div>
+    </div>
+
+    <!-- modal Livreur inscription  -->
+    <!-- Modal -->
+    <div class="modal fade" id="inscL" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content-liv">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Demande Livreur</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Form modal  -->
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa  fa-users"></i>
+                                </div>
+
+                                <input type="text" class="inp-form" required placeholder="Nom" />
+
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-xs-6">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa  fa-user"></i>
+                                </div>
+                                <input type="text" class="inp-form " required placeholder="Prenom" >
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <br>
+                    <div class="form-group">
+
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-phone"></i>
+                            </div>
+                            <input type="text" class="inp-form " required placeholder="Numero de Telephone" >
+                        </div>
+                        <!-- /.input group -->
+                    </div>
+                    <!-- <div class="form-group has-feedback">
+
+                     <span  class="glyphicon glyphicon-envelope form-control-feedback"> </span>
+                    <input type="mail" required class="inp-form "  placeholder="E-mail">
+                    </input> </div>
+                     -->
+                    <div class="form-group">
+
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-at"></i>
+                            </div>
+                            <input type="mail" class="inp-form " required placeholder="E-mail" >
+                        </div>
+                        <br>
+
+
+
+
+                        <div class="row">
+                            <div class="col-xs-6">
+
+
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-credit-card"></i>
+                                    </div>
+                                    <input type="text" placeholder="Type papier" name="city" class="inp-form " list="papier">
+                                    <datalist id="papier">
+                                        <option value="Carte identité national">
+                                        <option value="Passeport">
+                                        <option value="Carte sejour">
+                                    </datalist>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa  fa-credit-card"></i>
+                                    </div>
+                                    <input type="text" class="inp-form " required placeholder="Numero de papier" >
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+
+                        <br>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-home"></i>
+                            </div>
+                            <input type="mail" class="inp-form " required placeholder="Adresse" />
+                        </div>
+                    </div>
+                    <!-- /.input group -->
+
+                    <br>
+                    <label>Date de naissance:</label>
+
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <input type="date" class="inp-form " data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="input-group">
+
+
+
+                            <!-- radio -->
+                            <div class="form-group" style="margin-left:15px;">
+
+                                <label> Type de vehicule </label>
+                                <div class="input-group-addon">
+
+                                    <label >
+                                        <i class="fa fa-car"></i>
+                                        <input type="radio" name="r1" class="minimal"/>
+                                        Voiture
+                                    </label>
+
+                                    <label style="margin-left:10px;">
+                                        <i class="fa  fa-motorcycle	"></i>
+                                        <input type="radio" name="r1"  class="minimal"/>
+                                        Moto
+                                    </label>
+
+                                    <label>
+                                        <i class="fa fa-bicycle" style="margin-left:10px;"></i>
+                                        <input type="radio" name="r1"  class="minimal"/>
+                                        Velo
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>
+                <div class="checkbox icheck" style="margin-left:15px;">
+                    <label>
+                        <input type="checkbox" > J'ai lu et accepté les <a href="#" >Termes et conditions </a> et <a href="#"> la Politique de confidentialité
+                        </a>
+                    </label>
+                </div>
+                <center><button type="submit" class="btn btn-aa btn-block btn-flat" style="width:400px;" >S'inscrire</button>		</center>
+            </div>
+
+        </div>
+
+        <!--
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+        -->
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Se connecter</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Form modal  -->
+                    <div >
+
+                        <div class="form-group has-feedback">
+                            <input type="mail" required class="inp-form "  placeholder="E-mail">
+
+                            <span  class="glyphicon glyphicon-envelope form-control-feedback"> </span></input> </div>
+
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="password" required class="inp-form " placeholder="Mot de passe">
+                        <span class="glyphicon glyphicon-lock form-control-feedback"> </span> </div>
+
+                    </input>
+                </div>
+                <div class= "form-group">
+                    <div class="row">
+                        <div class="col-xs-8">
+                            <div class="checkbox icheck" style="margin-left:10px;">
+                                <label>
+                                    <input type="checkbox" > Remember Me
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-xs-4" style="margin-left:-10px;">
+                            <button type="submit" class="btn btn-aa btn-block btn-flat">Se connecter</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!--
+                                  <a href="index.html" class="btn btn-google btn-user btn-block">
+                                    <i class="fa fa-google"></i> Login with Google
+                                  </a>
+                                  <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                                    <i class="fa fa-facebook-f"></i> Login with Facebook
+                                  </a>
+
+              -->
+                    <br>
+                    <div class="text-center">
+                        <a class="small" href="forgot-password.html">Mot de passe oublié </a>
+                    </div>
+                    <div class="text-center">
+                        <a class="small" href="register.html">Créer un compte</a>
+                    </div>
+
+                </div>
+                <!--
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
