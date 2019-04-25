@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
+
 /**
  * @Route("/article")
  */
@@ -21,21 +22,22 @@ class ArticleController extends AbstractController
     /**
      * @Route("/", name="plat_index", methods={"GET"})
      */
-    public function index(ArticleRepository $platRepository, Request $request,PaginatorInterface $paginator): Response
+    public function index(ArticleRepository $platRepository, Request $request, PaginatorInterface $paginator): Response
     {
 
-        $plat=$platRepository->findAll();
-        foreach ($plat as $key=>$value){
-            $value->setImag(base64_encode(stream_get_contents($value->getImag())));
-        }
-        $properties=$paginator->paginate($plat,
+        $article=$platRepository->findAll();
+     /*  foreach ($article as $key=>$value){
+            $value->setImage(base64_encode(stream_get_contents($value->getImage())));
+        }*/
+        $properties=$paginator->paginate($article,
             $request->query->getInt('page',1),
             4
         );
 
         return $this->render('article/index.html.twig', [
-            'plat' => $plat,
+            'article' => $article,
             'properties'=>$properties,
+
         ]);
     }
 
@@ -44,17 +46,17 @@ class ArticleController extends AbstractController
      */
     public function new(Request $request)
     {
-        $plat = new Article();
-        foreach ($plat as $key=>$value){
-            $value->setImag(base64_encode(stream_get_contents($value->getImag())));
-        }
-        $form = $this->createForm(ArticleType::class, $plat);
+        $article = new Article();
+        $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
-
+        /*foreach ($article as $key=>$value){
+            $value->setImage(base64_encode(stream_get_contents($value->getImage())));
+        }*/
 
           if ($form->isSubmitted() && $form->isValid()) {
+
               $entityManager = $this->getDoctrine()->getManager();
-              $entityManager->persist($plat);
+              $entityManager->persist($article);
               $entityManager->flush();
 
               return $this->redirectToRoute('plat_index');
@@ -65,9 +67,9 @@ class ArticleController extends AbstractController
 
 
         return $this->render('article/new.html.twig', [
-            'plat' => $plat,
+            'article' => $article,
             'form' => $form->createView(),
-            'testStatut'=>$plat->getId() !== null ,
+            'editMode'=>$article->getId() !== null
 
         ]);
     }
@@ -77,10 +79,10 @@ class ArticleController extends AbstractController
     /**
      * @Route("/{id}", name="plat_show", methods={"GET"})
      */
-    public function show(Article $plat): Response
+    public function show(Article $article): Response
     {
         return $this->render('article/show.html.twig', [
-            'plat' => $plat,
+            'article' => $article,
 
         ]);
     }
@@ -88,24 +90,24 @@ class ArticleController extends AbstractController
     /**
      * @Route("/{id}/edit", name="plat_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Article $plat): Response
+    public function edit(Request $request, Article $article): Response
     {
-        $form = $this->createForm(ArticleType::class, $plat);
+        $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('plat_index', [
-                'id' => $plat->getId(),
+                'id' => $article->getId(),
 
             ]);
         }
 
         return $this->render('article/edit.html.twig', [
-            'plat' => $plat,
+            'article' => $article,
             'form' => $form->createView(),
-            'editMode'=>$plat->getId() !== null
+            'editMode'=>$article->getId() !== null
         ]);
     }
 

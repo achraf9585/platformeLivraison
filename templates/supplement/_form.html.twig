@@ -1,3 +1,6 @@
+
+
+
 {% block stylesheets %}
     <style>
         html,body{
@@ -12,7 +15,7 @@
         .container{
             height: 100%;
             align-content: center;
-            margin-top: 50px;
+            margin-top: 30px;
             margin-right: -100px;
         }
 
@@ -100,22 +103,30 @@
         <div class="d-flex justify-content-center h-100">
             <div>
 
-                <h1 class="h3 mb-3 font-weight-normal" style="color:#FFFFFF">
+            <center>  <h1 class="h3 mb-3 font-weight-normal" style="color:#FFFFFF">
                     {% if editMode %}
-                        Modifier la catégorie n° {{ categorie.id }}
-                        {% else %}
-                         Créer une nouvelle catégorie
-                     {% endif %}
+                        Modifier le supplément n° {{ supplement.id }}
+                    {% else %}
+                        Créer un nouveau supplément
+                    {% endif %}
                 </h1>
-
+            </center>
                 <div class="card-body">
                     {{ form_start(form) }}
 
-                     <label style="margin-right: 300px; color: #FFFFFF">Nom de la catégorie</label>
+                    <label style="margin-right: 300px; color: #FFFFFF">Nom du supplément</label>
                     <br>
-                    {{ form_widget(form.libele, {'attr':{'class':'form-control','placeholder':'Nom de la nouvelle catégorie...'}}) }}
-                    <br> <br> <br> <br>
-                    <button style="width: 200px; margin-top: -97px; align:center;" class="btn btn-success"> {{ button_label|default('Enregistrer') }}</button>
+                    {{ form_widget(form.libele, {'attr':{'class':'form-control','placeholder':'Nom du nouveau supplément...'}}) }}
+                    <br>
+                    <label style="margin-right: 300px; color: #FFFFFF">Prix du supplément</label>
+                    <br>
+                    {{ form_widget(form.prix, {'attr':{'class':'form-control','placeholder':'Prix du nouveau supplément...'}}) }}
+                    <br>
+                    <label style="margin-right: 300px; color: #FFFFFF">Articles</label>
+                    <br>
+                    {{ form_widget(form.articles, {'attr':{'class':'form-control'}}) }}
+                    <br> <br> <br><br>
+                  <center>  <button style="width: 250px; margin-top: -97px; align:center;" class="btn btn-success"> {{ button_label|default('Enregistrer') }}</button></center>
                     {{ form_end(form) }}
                 </div>
             </div>

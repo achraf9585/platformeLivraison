@@ -3,12 +3,22 @@
 {% block title %}Nouveau Plat{% endblock %}
 
 {% block body %}
-<a href="{{ path('plat_index')}}" class="btn"> <i class="material-icons">&#xE317;</i></a> 
-   
+
    <center>
     
             
     {{ include('article/_form.html.twig') }}
  
     </center>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css"/>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js">
+
+
+    </script>
 {% endblock %}

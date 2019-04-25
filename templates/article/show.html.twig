@@ -105,31 +105,26 @@ margin-left: 4px;
       
     <div class="card-body">      
       
-      <h1>Plat n°{{plat.id}}</h1>
+      <h1>Plat n°{{article.id}}</h1>
 
     <table class="table">
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ plat.id }}</td>
+                <td>{{ article.id }}</td>
             </tr>
             <tr>
                 <th>Nom du plat</th>
-                <td>{{ plat.lib }}</td>
-            </tr>
-            <tr>
-                <th>Image du plat</th>
-                <td>{{ plat.img }}</td>
+                <td>{{ article.libele }}</td>
             </tr>
             <tr>
                 <th>Prix du plat</th>
-                <td>{{ plat.prix }}</td>
+                <td>{{ article.prix }}dt</td>
             </tr>
+
         </tbody>
     </table>
-
-     {{ include('article/_delete_form.html.twig') }}
-</div>
+    </div>
 </div>
 </div>
 </div>

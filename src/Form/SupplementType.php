@@ -2,27 +2,32 @@
 
 namespace App\Form;
 
-use App\Entity\Region;
+use App\Entity\Article;
+use App\Entity\Supplement;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class RegionType extends AbstractType
+class SupplementType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('libele')
-
+            ->add('prix')
+            ->add('articles', EntityType::class,[
+                'class'=> Article::class,
+                'choice_label'=>'libele',
+                'multiple'=>true
+            ])
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Region::class,
+            'data_class' => Supplement::class,
         ]);
     }
 }

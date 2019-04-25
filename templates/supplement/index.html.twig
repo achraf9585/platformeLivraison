@@ -1,10 +1,8 @@
 {% extends 'baseres.html.twig' %}
 
-{% block title %}Categorie index{% endblock %}
-{% block stylesheets %}
-{% endblock %}
-{% block body %}
+{% block title %}Supplement index{% endblock %}
 
+{% block body %}
     <section class="container">
 
         <div class="container" style="margin-top:30px;">
@@ -12,55 +10,45 @@
                 <div class="table-title"   style="background-color:#E95420;">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2 style="color:#ffffff;textSize:7px;margin-left:11px;"> Liste des<b> Catégories</b></h2>
+                            <h2 style="color:#ffffff;textSize:7px;margin-left:11px;"> Liste des<b> Suppléments</b></h2>
                         </div>
 
                     </div>
                     <div class="col-sm-6">
 
-                        <a style="width:150px;height:37px;margin-top:-80px;margin-left:670px;color:white;" class="btn btn-success"  href="{{ path('categorie_new') }}">Créer une catégorie</a>
-
-
-
-
+                        <a style="width:150px;height:37px;margin-top:-80px;margin-left:670px;color:white;" class="btn btn-success"  href="{{ path('supplement_new') }}">Créer un supplément</a>
                     </div>
                 </div>
                 <div class="table-title" style="background-color:#E95420;">
-
                 </div>
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
-                        <th>
-
-                        </th>
                         <th>Id</th>
                         <th></th>
                         <th></th>
-                        <th></th><th></th>
-                        <th>{{ knp_pagination_sortable (properties,'nom','nom')}}</th>
+                        <th>{{ knp_pagination_sortable (properties,'libele','libele')}}</th>
+                        <th>Prix</th>
                         <th></th>
-                        <th></th><th></th>
-                        <th>Actions</th>
+                        <th></th>
+                        <th>actions</th>
+
                     </tr>
                     </thead>
                     <tbody>
-                    {% for categorie in properties %}
+                    {% for supplement in properties %}
                         <tr>
-                        <td></td>
-                        <td> {{ categorie.id }} </td>
-                        <td></td>
+                        <td>{{ supplement.id }}</td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td> {{ categorie.libele }} </td>
-                        <td></td>
+                        <td>{{ supplement.libele }}</td>
+                        <td>{{ supplement.prix }}</td>
                         <td></td>
                         <td></td>
                         <td>
-                            <a href="{{ path('categorie_edit', {'id': categorie.id}) }}" style="color:#E4A11D;"><i class="material-icons" data-toggle="tooltip" title="Modifier" >&#xE254;</i></a>
+                            <a href="{{ path('supplement_edit', {'id': supplement.id}) }}" style="color:#E4A11D;"><i class="material-icons" data-toggle="tooltip" title="Modifier" >&#xE254;</i></a>
 
-                            <a href="{{ path('categorie_show', {'id': categorie.id}) }}" ><i class="material-icons" title="voir">&#xE417;</i></a>
+                            <a href="{{ path('supplement_show', {'id': supplement.id}) }}"><i class="material-icons" title="voir">&#xE417;</i></a>
                         </td>
                     {% else %}
                         <tr>
@@ -98,3 +86,5 @@
 
 
 {% endblock %}
+
+

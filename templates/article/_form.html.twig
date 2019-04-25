@@ -1,8 +1,4 @@
-{% block javascripts %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
-{% block stylesheets %}
+
 <style>
 html,body{
 background: white;
@@ -10,11 +6,14 @@ background-size: cover;
 background-repeat: no-repeat;
 height: 100%;
 font-family: 'Numans', sans-serif;
+    background-image: url("https://img.freepik.com/fotos-kostenlos/geschmackvolle-pepperonipizza-auf-einem-schwarzen-konkreten-hintergrund_79782-103.jpg?size=626&ext=jpg")
+
 }
 
 .container{
 height: 100%;
-align-content: center;
+    margin-top: 3px;
+    margin-right: -100px;
 }
 
 .card{
@@ -90,39 +89,41 @@ color: white;
 margin-left: 4px;
 }
 </style>
-{% endblock %}
 
-{% endblock %}
+
 
 <div class="container">
   <div class="d-flex justify-content-center h-100">
-    <div class="card">
+    <div>
      
-        <h1 class="h3 mb-3 font-weight-normal" style="color:black">
+        <h1 class="h3 mb-3 font-weight-normal" style="color:#FFFFFF">
           {% if editMode %}
-                Modifier un plat
+              Modifier les données de l'Article n°{{article.id}}
               {% else %}
-                Ajouter un plat
+                Ajouter un Article
           {% endif %}
           
         </h1>
       
     <div class="card-body">      
      {{ form_start(form) }}
-    {{ form_widget(form.libele, {'attr':{'class':'form-control','placeholder':'Nom du nouveau plat...'}}) }}
-    <br>
-    
-     {{ form_widget(form.imag, {'attr':{'class':'form-control'}}) }}
-    <br>
-    {{ form_widget(form.categorie,{'attr':{'class':'form-control'}}) }}
-   
+        <label style="color:#FFFFFF; float: left"> Article </label>
+    {{ form_widget(form.libele, {'attr':{'class':'form-control','placeholder':'Nom du nouveau Article...'}}) }}
+        <br>
 
-        
- 
-
-    
-    {{ form_widget(form.prix , {'attr':{'class':'form-control','placeholder':'Prix du nouveau plat...'}}) }}
-    <br>
+        <label style="color:#FFFFFF ; float: left"> Image de l'Article </label>
+        {{ form_widget (form.image ,{'attr':  {'class':'form-control'}   }) }}
+  <br>
+        <label style="color:#FFFFFF ; float: left"> Catégorie </label>
+      {{ form_widget(form.categorie,{'attr':{'class':'form-control'}}) }}
+ <br>
+        <label style="color:#FFFFFF ; float: left"> Prix </label>
+    {{ form_widget(form.prix , {'attr':{'class':'form-control','placeholder':'Prix du nouveau Article...'}}) }}
+<br>
+        <label style="color:#FFFFFF ; float: left"> Supplements </label>
+<br>
+        {{ form_widget(form.supplements, {'attr':{'class':'form-control'}}) }}
+        <br>
     <button style="width:210px;" class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}
 </div>
@@ -131,5 +132,13 @@ margin-left: 4px;
 </div>
 
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css"/>
+{% endblock %}
 
+{% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js">
+        $('select').select2();
+    </script>
+{% endblock %}
 

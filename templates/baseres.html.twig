@@ -9,13 +9,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 
-    {% block stylesheets %}
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css"/>
+
         <link rel="stylesheet" href="css/fonts/fontawesome/css/fontawesome-all.css">
 
         <link rel="stylesheet" href="css/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
         <link rel="stylesheet" href="css/fonts/flag-icon-css/flag-icon.min.css">
 
-    {% endblock %}
+    {% block stylesheets %} {% endblock %}
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -34,13 +36,13 @@
                 <a class="nav-link"> | </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ path('plat_index')}}"> Plats <span class="sr-only"></span></a>
+                <a class="nav-link" href="{{ path('plat_index')}}"> Articles <span class="sr-only"></span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link"> | </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href=""> Suppléments <span class="sr-only"></span></a>
+                <a class="nav-link" href=" {{ path ('supplement_index') }}"> Suppléments <span class="sr-only"></span></a>
             </li>
             <li class="nav-item dropdown" style="margin-left:830px; width:200px;">
                 <a  class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i style="width:0px;" class="material-icons">&#xE8B8;</i></a>
@@ -51,13 +53,14 @@
                 </div>
             </li>
 
+        </ul>
     </div>
 </nav>
 <div class="container">
     {% block body %}{% endblock %}
 </div>
 
-{% block javascripts %}
+
     <script src="{{ asset('js/jquery-3.2.1.min.js')}}"></script>
     <script src="{{ asset('js/bootstrap.min.js')}}"></script>
     <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
@@ -66,8 +69,7 @@
     <!-- slimscroll js -->
     <script src="assets/vendor/slimscroll/jquery.slimscroll.js"></script>
 
-{% endblock %}
-
+{% block javascripts %}{% endblock %}
 </body>
 
 </html>

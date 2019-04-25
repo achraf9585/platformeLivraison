@@ -3,8 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Article;
+use App\Entity\Supplement;
+use function Sodium\add;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,12 +18,21 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add('libele')
-            ->add('imag')
             ->add('prix')
             ->add('categorie',EntityType::class,array(
                 // query choices from this entity
                 'class' => 'App:Categorie',
                 'choice_label' => 'libele'))
+
+           ->add('image', FileType::class ,[
+                    'mapped'=>false,
+                    'label'=> 'choisir image'
+           ])
+           ->add('supplements', EntityType::class,
+               ['class'=> Supplement::class,
+                 'choice_label'=>'libele',
+                   'multiple'=>true
+               ])
         ;
     }
 

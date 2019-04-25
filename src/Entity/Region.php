@@ -33,9 +33,9 @@ class Region
     /**
      * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\Regex(
-     *        pattern  = "/[^a-z A-Z À-þ]+/",
+     *        pattern  = "/[^a-z A-Z À-þ 0-9]+/",
      *     match=false,
-     *     message="le libele ne doit pas contenir des chiffres"
+     *
      * )
      *
      */
@@ -49,10 +49,7 @@ class Region
      */
     private $villes;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $statut;
+
 
     public function __construct()
     {
@@ -107,16 +104,6 @@ class Region
         return $this;
     }
 
-    public function getStatut(): ?string
-    {
-        return $this->statut;
-    }
 
-    public function setStatut(string $statut): self
-    {
-        $this->statut = $statut;
-
-        return $this;
-    }
 
 }

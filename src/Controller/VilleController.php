@@ -45,6 +45,7 @@ class VilleController extends AbstractController
             'properties' => $properties,
             'ville' => $ville,
             'form' => $form->createView(),
+
         ]);
     }
 /*

@@ -46,9 +46,12 @@
                             <th>{{ knp_pagination_sortable(properties, 'id','id') }}</th>
                             <th></th>
                             <th></th>
-                            <th>{{ knp_pagination_sortable(properties, 'libele','libele') }}</th>
                             <th></th>
-                            <th>{{ knp_pagination_sortable(properties, 'statut','statut') }}</th>
+                            <th></th>
+                            <th></th>
+                            <th>{{ knp_pagination_sortable(properties, 'libele','libele') }}</th>
+                            <th></th><th></th><th></th>
+
                             <th>Action</th>
 
                         </tr>
@@ -58,14 +61,19 @@
 
 
                         {% for region in properties %}
+
                             <tr>
                                 <region>
                                     <td>{{ region.id }}</td>
-<td></td>
-<td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     <td>{{ region.libele }}</td>
                                     <td> </td>
-                                    <td> {{ region.statut }}</td>
+                                    <td> </td>
+                                    <td> </td>
                                     <td>
 
                                         <a href="{{ path('region_edit', {'id': region.id}) }}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Modifier">&#xE254;</i></a>

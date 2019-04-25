@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Region;
 use App\Entity\Ville;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -19,13 +20,20 @@ class VilleType extends AbstractType
             ->add('libele')
             ->add('region',EntityType::class,array(
                 'class' => Region::class,
-                'choice_label' =>'libele'
+
+                /*'query_builder'=> function (EntityRepository $er)
+                {
+                    return $er->createQueryBuilder('u')
+                        ->where("u.statut = 'oui' ");
+                },*/
+               'choice_label' =>'libele',
             ))
             ->add('statut', ChoiceType::class, [
                 'choices' => [
-                    'Existence' => [
-                        'Existante' => 'Existante',
-                        'Inexistante' => 'Inexistante',
+                    'Disponibilité' => [
+                        'Oui' => 'Oui',
+                        'Non' => 'Non'
+
                     ]]])
         ;
     }

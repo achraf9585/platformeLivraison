@@ -36,9 +36,6 @@ $properties= $paginator->paginate(
     5
 
 );
-
-
-
         $region = new Region();
         $form = $this->createForm(RegionType::class, $region);
         $form->handleRequest($request);
@@ -56,6 +53,7 @@ $properties= $paginator->paginate(
             'region' => $region,
             'form' => $form->createView(),
             'properties' =>$properties,
+            'editMode'=>$region->getId()!=null
         ]);
     }
 
@@ -110,6 +108,7 @@ $properties= $paginator->paginate(
         return $this->render('region/edit.html.twig', [
             'region' => $region,
             'form' => $form->createView(),
+            'editMode'=>$region->getId()!=null
         ]);
     }
 

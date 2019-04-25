@@ -12,9 +12,9 @@
                 <div class="table-title"   style="background-color:#E95420;">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2 style="color:#ffffff;textSize:7px;margin-left:11px;"> Liste des<b> Plats</b></h2>
+                            <h2 style="color:#ffffff;textSize:7px;margin-left:11px;"> Liste des<b> articles</b></h2>
                         </div>
-                        <a style="width:150px;height:37px;margin-top:-55px;margin-left:670px;color:white;" class="btn btn-success"  href="{{ path('plat_new') }}">Ajouter un plat</a>
+                        <a style="width:150px;height:37px;margin-top:-55px;margin-left:670px;color:white;" class="btn btn-success"  href="{{ path('plat_new') }}">Ajouter un article</a>
 
 
                     </div>
@@ -26,26 +26,31 @@
                     <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Nom du plat</th>
+                        <th>Nom de l'article</th>
                         <th>{{ knp_pagination_sortable (properties,'Categorie','Categorie')}}↑↓</th>
-
-                        <th>Image du plat</th>
+                        <th>Image</th>
                         <th>{{ knp_pagination_sortable (properties,'Prix','Prix')}} ↑↓   </th>
+
                         <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {% for plat in properties %}
+                    {% for article in properties %}
                         <tr>
-                            <td>{{ plat.id }}</td>
-                            <td>{{ plat.libele }}</td>
-                            <td>{{ plat.categorie.getLibele() }}</td>
+                            <td>{{ article.id }}</td>
+                            <td>{{ article.libele }}</td>
+                            <td>{{ article.categorie.getLibele() }}</td>
+                            <td><img src="{{ asset('assets/images/'~ article.image ) }}"/> </td>
+                            <td>{{ article.prix}}dt</td>
 
-                            <td> <img src=" {{ plat.imag }}" ></td>
-                            <td>{{ plat.prix}}dt</td>
+
+
+
+
+
                             <td>
-                                <a href="{{ path('plat_show', {'id': plat.id}) }}"><i class="material-icons" title="voir">&#xE417;</i></a>
-                                <a href="{{ path('plat_edit', {'id': plat.id}) }}" style="color:#E4A11D;"><i class="material-icons" data-toggle="tooltip" title="Modifier" >&#xE254;</i></a>
+                                <a href="{{ path('plat_show', {'id': article.id}) }}"><i class="material-icons" title="voir">&#xE417;</i></a>
+                                <a href="{{ path('plat_edit', {'id': article.id}) }}" style="color:#E4A11D;"><i class="material-icons" data-toggle="tooltip" title="Modifier" >&#xE254;</i></a>
 
 
                             </td>

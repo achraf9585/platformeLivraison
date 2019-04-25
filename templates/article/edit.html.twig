@@ -1,15 +1,25 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseres.html.twig' %}
 
-{% block title %}Modifier Plat{% endblock %}
+{% block title %}Modifier Article{% endblock %}
 
 {% block body %}
-<a href="{{ path('plat_index')}}" class="btn"> <i class="material-icons">&#xE317;</i></a> 
-   
-   <center> <h1>Modifier les données du Plat n°{{plat.id}}</h1>
+
+   <center> <h1></h1>
    
     {{ include('article/_form.html.twig', {'button_label': 'Sauvergarder les modifications'}) }}
 <br> <br>
   
     </center>
+{% endblock %}
+
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css"/>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js">
+        $('select').select2();
+    </script>
 {% endblock %}
 

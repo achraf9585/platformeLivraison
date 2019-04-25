@@ -20,7 +20,7 @@ class Ville
     /**
      * @ORM\Column(type="string", length=255)
        * @Assert\Regex(
-     *        pattern  = "/[^a-z A-Z]+/",
+     *        pattern  = "/[^a-z A-Z  À-þ 0-9]+/",
      *     match=false,
      *     message="le libele ne doit pas contenir des chiffres"
      * )
@@ -38,7 +38,7 @@ class Ville
      */
     private $statut;
 
-    public function getId(): ?int
+    public function getId(): ?string
     {
         return $this->id;
     }

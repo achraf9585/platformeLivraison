@@ -1,3 +1,8 @@
+
+
+{% extends 'baseres.html.twig' %}
+
+{% block title %}Supplement{% endblock %}
 {% block stylesheets %}
     <style>
         html,body{
@@ -7,19 +12,20 @@
             height: 100%;
             font-family: 'Numans', sans-serif;
             background-image: url("https://img.freepik.com/fotos-kostenlos/geschmackvolle-pepperonipizza-auf-einem-schwarzen-konkreten-hintergrund_79782-103.jpg?size=626&ext=jpg")
+
         }
 
         .container{
             height: 100%;
             align-content: center;
-            margin-top: 50px;
+            margin-top: 70px;
             margin-right: -100px;
         }
 
         .card{
-            height: 200px;
+            height: 250px;
             margin-top: auto;
-            margin-bottom: auto;
+            margin-bottom: 420px;
             width: 500px;
             background-color: rgba(0,0,0,0) !important;
         }
@@ -88,39 +94,47 @@
         .links a{
             margin-left: 4px;
         }
-
-
     </style>
 {% endblock %}
 {% block body %}
-
 
 
     <div class="container">
         <div class="d-flex justify-content-center h-100">
             <div>
 
-                <h1 class="h3 mb-3 font-weight-normal" style="color:#FFFFFF">
-                    {% if editMode %}
-                        Modifier la catégorie n° {{ categorie.id }}
-                        {% else %}
-                         Créer une nouvelle catégorie
-                     {% endif %}
-                </h1>
+                <categorie>
 
-                <div class="card-body">
-                    {{ form_start(form) }}
 
-                     <label style="margin-right: 300px; color: #FFFFFF">Nom de la catégorie</label>
+                    <center> <h2 style="color: #FFFFFF"> Supplement n° {{supplement.id}}</h2> </center>
                     <br>
-                    {{ form_widget(form.libele, {'attr':{'class':'form-control','placeholder':'Nom de la nouvelle catégorie...'}}) }}
-                    <br> <br> <br> <br>
-                    <button style="width: 200px; margin-top: -97px; align:center;" class="btn btn-success"> {{ button_label|default('Enregistrer') }}</button>
-                    {{ form_end(form) }}
-                </div>
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <th></th> <th style="color: #FFFFFF">Id</th>
+                            <td></td><td style="color: #FFFFFF">{{ supplement.id }}</td>
+                        </tr>
+                        <tr>
+                            <th></th><th style="color: #FFFFFF">Libele</th>
+                            <td></td><td style="color: #FFFFFF">{{ supplement.libele }}</td>
+                        </tr>
+
+                        <tr>
+                            <th></th><th style="color: #FFFFFF">Prix</th>
+                            <td></td><td style="color: #FFFFFF">{{ supplement.prix }} dt</td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </categorie>
+                <center>
+
             </div>
         </div>
     </div>
+    </div>
+
+
+
+
 {% endblock %}
-
-

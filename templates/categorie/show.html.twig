@@ -9,11 +9,15 @@
             background-repeat: no-repeat;
             height: 100%;
             font-family: 'Numans', sans-serif;
+            background-image: url("https://img.freepik.com/fotos-kostenlos/geschmackvolle-pepperonipizza-auf-einem-schwarzen-konkreten-hintergrund_79782-103.jpg?size=626&ext=jpg")
+
         }
 
         .container{
             height: 100%;
             align-content: center;
+            margin-top: 70px;
+            margin-right: -100px;
         }
 
         .card{
@@ -91,34 +95,33 @@
     </style>
 {% endblock %}
 {% block body %}
-    <a href="{{ path('categorie_index')}}" class="btn"> <i class="material-icons">&#xE317;</i></a>
 
 
     <div class="container">
         <div class="d-flex justify-content-center h-100">
-            <div class="card">
+            <div>
 
                 <categorie>
 
 
-                    <center> <h2> Catégorie n° {{categorie.id}}</h2> </center>
+                    <center> <h2 style="color: #FFFFFF"> Catégorie n° {{categorie.id}}</h2> </center>
                     <br>
                     <table class="table">
                         <tbody>
                         <tr>
-                            <th>Id</th><td></td>
-                            <td>{{ categorie.id }}</td>
+                            <th></th> <th style="color: #FFFFFF">Id</th>
+                             <td></td><td style="color: #FFFFFF">{{ categorie.id }}</td>
                         </tr>
                         <tr>
-                            <th>Nom</th><td></td>
-                            <td>{{ categorie.libele }}</td>
+                            <th></th><th style="color: #FFFFFF">Nom</th>
+                            <td></td><td style="color: #FFFFFF">{{ categorie.libele }}</td>
                         </tr>
 
                         </tbody>
                     </table>
                 </categorie>
                 <center>
-                    {{ include('categorie/_delete_form.html.twig') }}</center> <br/>
+
             </div>
         </div>
     </div>

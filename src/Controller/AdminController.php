@@ -15,15 +15,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class AdminController extends AbstractController
 {
-    /**
-     * @Route("/admin", name="admin")
-     */
-    public function index()
-    {
-        return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController',
-        ]);
-    }
+
 
     /**
      * @Route("/client", name="admin")
@@ -32,6 +24,15 @@ class AdminController extends AbstractController
     public function cli()
     {
         return $this->render('client/index.html.twig', [
+            'controller_name' => 'AdminController',
+        ]);
+    }
+    /**
+     * @Route("/admin", name="admin")
+     */
+    public function index()
+    {
+        return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
         ]);
     }

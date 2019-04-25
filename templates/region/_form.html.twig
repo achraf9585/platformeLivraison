@@ -1,12 +1,16 @@
-<br>
-<h1 style="margin-left: 10px;">Ajouter une nouvelle région</h1>
+<div class="container" style="height:270px;">
+<h1 style="margin-left: 10px;">{% if editMode %}
+        Modifier la région n° {{ region.id   }}
+    {% else %}
+        <br>
+        Ajouter une nouvelle région
+    {% endif %}</h1>
 <br>
 {{ form_start(form) }}
-    {{ form_row(form.libele,{'attr':{'class':'form-control'}}) }}
-    {{ form_row(form.statut,{'attr':{'class':'ennos'}}) }}
-
-
+    {{ form_row(form.libele,{'attr':{'class':'form-control','placeholder':'Nom de la nouvelle région ...'}}) }}
 <br>
-<button class="btn btn-success" style="width: 70%; margin-left: 70px; margin-right: 10px; margin-bottom: 10px;">{{ button_label|default('Ajouter') }}</button>
+<button class="btn btn-success" style="width: 70%; margin-left: 70px; margin-right: 10px; margin-bottom: ">{{ button_label|default('Enregistrer') }}</button>
+<br>
 
 {{ form_end(form) }}
+</div>
