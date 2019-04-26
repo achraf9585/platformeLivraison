@@ -1,30 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="41aa5c75-9886-4db2-80d3-50aad5137229" name="Default Changelist" comment="tabdil l livreur walla yekhdem jawou behi salami ^^">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Form/RegistrationClientFormType.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/registration/cliregister.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/security/loginadmin.html.twig" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Migrations/Version20190424142539.php" afterPath="" />
+    <list default="true" id="41aa5c75-9886-4db2-80d3-50aad5137229" name="Default Changelist" comment="logo , many to many salami">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/bundles.php" afterPath="$PROJECT_DIR$/config/bundles.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/packages/security.yaml" afterPath="$PROJECT_DIR$/config/packages/security.yaml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/packages/vich_uploader.yaml" afterPath="$PROJECT_DIR$/config/packages/vich_uploader.yaml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/AdminController.php" afterPath="$PROJECT_DIR$/src/Controller/AdminController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/RegistrationController.php" afterPath="$PROJECT_DIR$/src/Controller/RegistrationController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Entity/Article.php" afterPath="$PROJECT_DIR$/src/Entity/Article.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Entity/Categorie.php" afterPath="$PROJECT_DIR$/src/Entity/Categorie.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Entity/Condi.php" afterPath="$PROJECT_DIR$/src/Entity/Condi.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Entity/Livreur.php" afterPath="$PROJECT_DIR$/src/Entity/Livreur.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Entity/Supplement.php" afterPath="$PROJECT_DIR$/src/Entity/Supplement.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Form/ArticleType.php" afterPath="$PROJECT_DIR$/src/Form/ArticleType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/symfony.lock" afterPath="$PROJECT_DIR$/symfony.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/article/_form.html.twig" afterPath="$PROJECT_DIR$/templates/article/_form.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/article/index.html.twig" afterPath="$PROJECT_DIR$/templates/article/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/base3.html.twig" afterPath="$PROJECT_DIR$/templates/base3.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/security/login.html.twig" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/supplement/index.html.twig" afterPath="$PROJECT_DIR$/templates/supplement/index.html.twig" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -73,21 +51,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Livreur.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Entity/Livreur.php">
+      <file leaf-file-name="Client.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Entity/Client.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1">
-              <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="51" selection-end-column="8" />
+            <state relative-caret-position="21">
+              <caret line="66" column="45" lean-forward="false" selection-start-line="66" selection-start-column="45" selection-end-line="66" selection-end-column="45" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Condi.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Entity/Condi.php">
+      <file leaf-file-name="Livreur.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Entity/Livreur.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="20" column="6" lean-forward="false" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+            <state relative-caret-position="-1">
+              <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="51" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -137,7 +115,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/supplement/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="353">
@@ -911,7 +889,7 @@
       <workItem from="1555930829625" duration="8615000" />
       <workItem from="1556008180870" duration="14850000" />
       <workItem from="1556276448653" duration="845000" />
-      <workItem from="1556278254914" duration="6390000" />
+      <workItem from="1556278254914" duration="7549000" />
     </task>
     <task id="LOCAL-00001" summary="changes">
       <created>1555692679671</created>
@@ -934,11 +912,18 @@
       <option name="project" value="LOCAL" />
       <updated>1555946279707</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="logo , many to many salami">
+      <created>1556285881345</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1556285881345</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="218863000" />
+    <option name="totallyTimeSpent" value="220022000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="1" width="1934" height="1036" extended-state="0" />
@@ -1001,7 +986,8 @@
     <MESSAGE value="changes" />
     <MESSAGE value="2.0" />
     <MESSAGE value="tabdil l livreur walla yekhdem jawou behi salami ^^" />
-    <option name="LAST_COMMIT_MESSAGE" value="tabdil l livreur walla yekhdem jawou behi salami ^^" />
+    <MESSAGE value="logo , many to many salami" />
+    <option name="LAST_COMMIT_MESSAGE" value="logo , many to many salami" />
     <option name="UPDATE_GROUP_BY_PACKAGES" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1309,14 +1295,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Client.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4">
-          <caret line="66" column="45" lean-forward="false" selection-start-line="66" selection-start-column="45" selection-end-line="66" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/Condi.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -1401,6 +1379,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="353">
           <caret line="50" column="54" lean-forward="false" selection-start-line="50" selection-start-column="54" selection-end-line="50" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Client.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="66" column="45" lean-forward="false" selection-start-line="66" selection-start-column="45" selection-end-line="66" selection-end-column="45" />
           <folding />
         </state>
       </provider>
