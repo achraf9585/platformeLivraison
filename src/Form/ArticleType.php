@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ArticleType extends AbstractType
 {
@@ -24,10 +25,7 @@ class ArticleType extends AbstractType
                 'class' => 'App:Categorie',
                 'choice_label' => 'libele'))
 
-           ->add('image', FileType::class ,[
-                    'mapped'=>false,
-                    'label'=> 'choisir image'
-           ])
+          ->add('imageFile' , VichImageType::class)
            ->add('supplements', EntityType::class,
                ['class'=> Supplement::class,
                  'choice_label'=>'libele',

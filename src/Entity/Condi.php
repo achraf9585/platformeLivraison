@@ -18,6 +18,7 @@ class Condi
 
     /**
      * @ORM\Column(type="text")
+     *
      */
     private $libele;
 

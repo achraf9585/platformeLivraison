@@ -18,7 +18,7 @@ class AdminController extends AbstractController
 
 
     /**
-     * @Route("/client", name="admin")
+     * @Route("/client", name="client")
      */
 
     public function cli()
@@ -27,6 +27,7 @@ class AdminController extends AbstractController
             'controller_name' => 'AdminController',
         ]);
     }
+
     /**
      * @Route("/admin", name="admin")
      */
@@ -36,18 +37,17 @@ class AdminController extends AbstractController
             'controller_name' => 'AdminController',
         ]);
     }
-
     /**
      * @Route("/",name="home")
      */
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function loginAdmin(AuthenticationUtils $authenticationUtils): Response
     {
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('security/loginadmin.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
 

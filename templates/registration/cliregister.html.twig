@@ -1,0 +1,155 @@
+{% extends 'base3.html.twig' %}
+
+{% block title %}Inscription Client{% endblock %}
+
+{% block body %}
+
+
+    <br>
+    <br>
+
+    <div class="container"  style="margin: 0 auto; width: 50%; background: whitesmoke;">
+        <div class="modal-header">
+            <h5 class="modal-title" >Demande Livreur</h5>
+
+        </div>
+        {{ form_start(registrationForm) }}
+        {{ form_errors(registrationForm) }}
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa  fa-users"></i>
+                        </div>
+                        {{ form_row(registrationForm.nom,{ 'attr': {'class': 'inp-form' , 'placeholder': 'Nom'}}) }}
+                    </div>
+                </div>
+                <!-- /.col -->
+                <div class="col-xs-6">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa  fa-user"></i>
+                        </div>
+                        {{ form_row(registrationForm.prenom,{ 'attr': {'class': 'inp-form' , 'placeholder': 'Prenom'}}) }}
+
+                    </div>
+                </div>
+                <!-- /.col -->
+            </div>
+            <br>
+            <div class="form-group">
+
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fa fa-at"></i>
+                    </div>
+                    {{ form_row(registrationForm.email,{ 'attr': {'class': 'inp-form' , 'placeholder': 'Email'}}) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa  fa-lock"></i>
+                        </div>
+                        {{ form_row(registrationForm.plainPassword,{ 'attr': {'class': 'inp-form' , 'placeholder': 'Mot de passe'}}) }}
+
+
+                    </div>
+                </div>
+                <!-- /.col -->
+                <div class="col-xs-6">
+                    <div class="input-group">
+
+                        <div class="input-group-addon">
+                            <i class="fa  fa-lock"></i>
+                        </div>
+                        {{ form_row(registrationForm.confirm_password,{ 'attr': {'class': 'inp-form' , 'placeholder': 'Confimer Mot de passe'}}) }}
+
+                    </div>
+                </div>
+                <!-- /.col -->
+            </div><br>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa  fa-phone"></i>
+                        </div>
+                        {{ form_row(registrationForm.numtel1,{ 'attr': {'class': 'inp-form' , 'placeholder': 'Numero télephone 1' }} ) }}
+
+                    </div>
+                </div>
+                <!-- /.col -->
+                <div class="col-xs-6">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa  fa-phone"></i>
+                        </div>
+                        {{ form_row(registrationForm.numtel2,{ 'attr': {'class': 'inp-form' , 'placeholder': 'Numero télephone 2'}}) }}
+
+
+                    </div>
+                </div>
+                <!-- /.col -->
+            </div>
+            <br>
+
+
+
+
+
+
+
+
+            <br>
+
+
+
+
+
+
+
+
+
+
+            <br>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-home"></i>
+                </div>
+                {{ form_widget(registrationForm.adresse ,{ 'attr': {'class': 'inp-form' , 'placeholder': 'Adresse'}}) }}
+
+            </div>
+        </div>
+        <!-- /.input group -->
+        <div class="form-group" style="margin-left:15px;">
+
+            <label>Date de naissance:</label>
+
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                </div>
+                {{ form_widget(registrationForm.datenaissance,{ 'attr': {'class': "inp-form"}}) }}
+
+            </div>
+        </div>
+        <div class="checkbox icheck" style="margin-left:15px;">
+            {{ form_widget(registrationForm.terms) }}
+            J'ai lu et accepté les Termes et conditions  et la Politique de confidentialité
+
+        </div>
+        <center>        <button class="btn btn btn-aa btn-block btn-flat" style="width:400px;" >Inscription</button>
+        </center>
+    </div>
+
+
+    {{ form_end(registrationForm) }}
+
+
+
+
+{% endblock %}

@@ -6,6 +6,9 @@ security:
             algorithm: bcrypt
         App\Entity\Fournisseur:
             algorithm: bcrypt
+        App\Entity\Client:
+            algorithm: bcrypt
+
 
 
 
@@ -17,15 +20,19 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
-                class: App\Entity\User
-                property: username
-
+                class: App\Entity\Client
+                property: email
 
         app_livreur_provider:
             entity:
                 class: App\Entity\Livreur
                 property: email
 
+        app_admin_provider:
+            entity:
+              class: App\Entity\User
+              property: username
+        # used to reload user from session & other features (e.g. switch_user)
         # used to reload user from session & other features (e.g. switch_user)
         # used to reload user from session & other features (e.g. switch_user)
 
@@ -39,6 +46,7 @@ security:
             anonymous: true
             provider: app_user_provider
 
+
             logout:
                 path: logout
                 target: /
@@ -47,6 +55,8 @@ security:
             guard:
                 authenticators:
                     - App\Security\LoginFormAuthentificatorAuthenticator
+                    - App\Security\LoginCliFormAuthenticator
+                entry_point: App\Security\LoginFormAuthentificatorAuthenticator
 
 
 
@@ -61,6 +71,7 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+        - { path: ^/client/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, roles: ROLE_USER }
         - { path: ^/region, roles: ROLE_USER }
         - { path: ^/ville, roles: ROLE_USER }

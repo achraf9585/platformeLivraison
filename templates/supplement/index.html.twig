@@ -29,7 +29,7 @@
                         <th></th>
                         <th>{{ knp_pagination_sortable (properties,'libele','libele')}}</th>
                         <th>Prix</th>
-                        <th></th>
+                        <th>articles</th>
                         <th></th>
                         <th>actions</th>
 
@@ -43,7 +43,19 @@
                         <td></td>
                         <td>{{ supplement.libele }}</td>
                         <td>{{ supplement.prix }}</td>
-                        <td></td>
+                        <td>
+
+
+
+
+                            {% for supps in supplement.articles %}
+                                <ul>
+                                    <li>
+                                        {{ supps.libele}}
+                                    </li>
+                                </ul>
+                            {% endfor %}
+                        </td>
                         <td></td>
                         <td>
                             <a href="{{ path('supplement_edit', {'id': supplement.id}) }}" style="color:#E4A11D;"><i class="material-icons" data-toggle="tooltip" title="Modifier" >&#xE254;</i></a>
