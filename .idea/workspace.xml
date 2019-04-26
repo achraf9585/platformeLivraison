@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="41aa5c75-9886-4db2-80d3-50aad5137229" name="Default Changelist" comment="logo , many to many salami">
+    <list default="true" id="41aa5c75-9886-4db2-80d3-50aad5137229" name="Default Changelist" comment="logo , many to many salami v2">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -889,7 +889,7 @@
       <workItem from="1555930829625" duration="8615000" />
       <workItem from="1556008180870" duration="14850000" />
       <workItem from="1556276448653" duration="845000" />
-      <workItem from="1556278254914" duration="7549000" />
+      <workItem from="1556278254914" duration="7616000" />
     </task>
     <task id="LOCAL-00001" summary="changes">
       <created>1555692679671</created>
@@ -919,11 +919,18 @@
       <option name="project" value="LOCAL" />
       <updated>1556285881345</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="logo , many to many salami v2">
+      <created>1556287224946</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1556287224946</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="220022000" />
+    <option name="totallyTimeSpent" value="220089000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="1" width="1934" height="1036" extended-state="0" />
@@ -987,7 +994,8 @@
     <MESSAGE value="2.0" />
     <MESSAGE value="tabdil l livreur walla yekhdem jawou behi salami ^^" />
     <MESSAGE value="logo , many to many salami" />
-    <option name="LAST_COMMIT_MESSAGE" value="logo , many to many salami" />
+    <MESSAGE value="logo , many to many salami v2" />
+    <option name="LAST_COMMIT_MESSAGE" value="logo , many to many salami v2" />
     <option name="UPDATE_GROUP_BY_PACKAGES" value="true" />
   </component>
   <component name="XDebuggerManager">
