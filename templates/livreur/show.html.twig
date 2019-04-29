@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Client{% endblock %}
+
+{% block body %}
+    <main class="app-content">
+        <div class="app-title">
+
+            <ul class="app-breadcrumb breadcrumb">
+                <li class="breadcrumb-item"><i class="fa fa-building fa-lg"></i></li>
+                <li class="breadcrumb-item"><a href="#">Région</a></li>
+            </ul>
+        </div>
+        <div class="container">
+            <div class="table-wrapper" style="width:800px;margin-left:100px;">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>Gérer <b>Livreurs</b></h2>
+                        </div>
+
+                    </div>
+                </div>
+                <h1>Livreurs  <a href="{{ path('affcli_index') }}"><i class="material-icons">&#xE5C4;</i></a></h1>
+
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ livreur.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>E-mail</th>
+                        <td>{{ livreur.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <td>{{ livreur.nom }}</td>
+                    </tr>
+                    <tr>
+                        <th>Prenom</th>
+                        <td>{{ livreur.prenom }}</td>
+                    </tr>
+                    <tr>
+                        <th>Numero téléphone 1</th>
+                        <td>{{ livreur.numtel1 }}</td>
+                    </tr>
+                    <tr>
+                        <th>Numero téléphone 2</th>
+                        <td>{{ livreur.numtel2 }}</td>
+                    </tr>
+                    <tr>
+                        <th>Localisation</th>
+                        <td>{{ livreur.localisation }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date de naissance</th>
+                        <td>{{ livreur.datenaissance |date('Y-m-d')}}</td>
+                    </tr>
+                    <tr>
+                        <th>Disponibilité</th>
+                        <td>{{ livreur.disponibilite }}</td>
+                    </tr>
+                    <tr>
+                        <th>Type Véhicule</th>
+                        <td>{{ livreur.typevehicule }}</td>
+                    </tr>
+                    <tr>
+                        <th>Type Papier</th>
+                        <td>{{ livreur.typepapier }}</td>
+                    </tr>
+                    <tr>
+                        <th>Numero Papier</th>
+                        <td>{{ livreur.numpapier }}</td>
+                    </tr>
+                    <tr>
+                        <th>Commission</th>
+                        <td>{{ livreur.commission }} DT</td>
+                    </tr>
+                    <tr>
+                        <th>état</th>
+                        <td>{{ livreur.etat }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </main>
+{% endblock %}

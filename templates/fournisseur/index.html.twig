@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %}
+
+	{% block body %}
+        <main class="app-content">
+            <div class="app-title">
+
+                <ul class="app-breadcrumb breadcrumb">
+                    <li class="breadcrumb-item"><i class="fa fa-building fa-lg"></i></li>
+                    <li class="breadcrumb-item"><a href="#">Région</a></li>
+                </ul>
+            </div>
+            <div class="container">
+                <div class="table-wrapper" style="width:800px;margin-left:100px;">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h2>Gérer <b>Fournisseurs</b></h2>
+                            </div>
+                            <div class="col-sm-6">
+                                <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Ajouter  Fournisseur</span></a>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-title" >
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="container">
+
+
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+
+                            <th>{{ knp_pagination_sortable(properties, 'id','id') }}</th>
+                            <th>{{ knp_pagination_sortable(properties, 'nom restaurant','nomrestaurant') }}</th>
+                            <th>Logo</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+
+                            <th></th><th></th><th></th>
+
+                            <th>Action</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+
+
+                        {% for fournisseur in properties %}
+
+                            <tr>
+                                <region>
+                                    <td>{{ fournisseur.id }}</td>
+                                    <td>{{ fournisseur.nomrestaurant }}</td>
+                                    <td><img src="{{ asset('images/articles/'~ fournisseur.imageName) | imagine_filter('test') }}" /> </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+
+                                </region>
+                            </tr>
+                        {% endfor %}
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <div class="clearfix">
+
+                        <ul class="pagination">
+                            {{ knp_pagination_render(properties) }}
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Add Modal HTML -->
+            <div id="addEmployeeModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        {{ include ('fournisseur/_form.html.twig') }}
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+        </main>
+
+
+
+    {% endblock %}

@@ -1,0 +1,8 @@
+{{ form_start(form) }}
+    {{ form_row(form.etat,{'attr':{'class':'ennos'}}) }}
+
+    {{ form_row(form.commission,{'attr':{'class':'form-control'}}) }}
+<br>
+    <button class="btn btn-success" style="width: 70%; margin-left: 70px; margin-right: 10px; margin-bottom: 10px;">{{ button_label|default('Modifier') }}</button>
+
+{{ form_end(form) }}
