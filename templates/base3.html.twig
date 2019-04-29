@@ -74,22 +74,22 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand our_logo" href="#"><img src="{{ asset('assets/images/logo.png') }}" alt="" /></a>
+                        <a class="navbar-brand our_logo" href="{{ path('client') }}"><img src="{{ asset('assets/images/logo.png') }}" alt="" /></a>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#slider">Accueil</a></li>
+                            <li><a href="{{ path('client') }}">Accueil</a></li>
                             <li><a href="#abouts">Â propos de nous</a></li>
                             <li><a href="#footer_widget">Informations</a></li>
 
-                            <li><a href="#" style="color:#f0932b;"  data-toggle="modal" data-target="#inscC">Inscription</a></li>
+                            <li><a href="{{ path('cli_register') }}"" style="color:#f0932b;"  >Inscription</a></li>
 
 
-                            <li><a href="liv_register" style="color:#f0932b;" >Devenir Livreur</a></li>
-                            <li><a href="#"   data-toggle="modal" data-target="#exampleModal">Se connecter</a></li>
+                            <li><a href="{{ path('liv_register') }}" style="color:#f0932b;" >Devenir Livreur</a></li>
+                            <li><a href="{{ path('app_login') }}"   data-toggle="modal" data-target="#exampleModal">Se connecter</a></li>
 
                         </ul>
                     </div><!-- /.navbar-collapse -->

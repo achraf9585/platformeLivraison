@@ -1,0 +1,9 @@
+liip_imagine:
+    driver: "gd"
+    filter_sets:
+        test:
+            jpeg_quality:                 85
+            png_compression_level:        8
+            filters:
+                thumbnail: { size: [120, 90], mode: outbound, allow_upscale: true}
+

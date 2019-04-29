@@ -15,6 +15,7 @@ security:
 
 
 
+
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         # used to reload user from session & other features (e.g. switch_user)
@@ -32,6 +33,12 @@ security:
             entity:
               class: App\Entity\User
               property: username
+
+        app_fournisseur_provider:
+                    entity:
+                        class: App\Entity\Fournisseur
+                        property: email
+        # used to reload user from session & other features (e.g. switch_user)
         # used to reload user from session & other features (e.g. switch_user)
         # used to reload user from session & other features (e.g. switch_user)
         # used to reload user from session & other features (e.g. switch_user)

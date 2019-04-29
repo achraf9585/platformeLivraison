@@ -81,8 +81,10 @@ class Livreur implements UserInterface
     private $typepapier;
     /**
      * @ORM\Column(type="string", length=180)
-     * @Assert\Type(type="integer",
-     * message="le numero papier doit etre de chiffres"
+     * @Assert\Regex(
+     *        pattern  = "/[^0-9]+/",
+     *     match=false,
+     *     message="le numero de  papier doit  contenir des chiffres"
      * )
      */
     private $numpapier;

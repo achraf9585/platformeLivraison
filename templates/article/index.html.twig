@@ -41,7 +41,7 @@
                             <td>{{ article.id }}</td>
                             <td>{{ article.libele }}</td>
                             <td>{{ article.categorie.getLibele() }}</td>
-                            <td><img src="{{ asset('images/articles/'~ article.imageName) }}" style="height: 50px;"/> </td>
+                            <td><img src="{{ asset('images/articles/'~ article.imageName) | imagine_filter('test') }}" /> </td>
                             <td>{{ article.prix}}dt</td>
                           <td>
 
