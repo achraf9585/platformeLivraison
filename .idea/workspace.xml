@@ -1,28 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="41aa5c75-9886-4db2-80d3-50aad5137229" name="Default Changelist" comment="logo , many to many salami v2">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/articles/Salade Cobb.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/articles/téléchargement.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/routes/liip_imagine.yaml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Controller/FournisseurController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Controller/LivreurController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Entity/Fournisseur.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Form/FournisseurType.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Form/LivreurType.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Migrations/Version20190429141944.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/fournisseur/_delete_form.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/fournisseur/_form.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/fournisseur/edit.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/fournisseur/index.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/fournisseur/new.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/fournisseur/show.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/livreur/_delete_form.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/livreur/_form.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/livreur/edit.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/livreur/index.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/livreur/new.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/livreur/show.html.twig" />
+    <list default="true" id="41aa5c75-9886-4db2-80d3-50aad5137229" name="Default Changelist" comment="logo , many to many salami v3&#10;admin: liv , client done&#10;four : in progress">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -928,7 +907,7 @@
       <workItem from="1556278254914" duration="8830000" />
       <workItem from="1556290319584" duration="589000" />
       <workItem from="1556530908601" duration="16704000" />
-      <workItem from="1556570474719" duration="205000" />
+      <workItem from="1556570474719" duration="394000" />
     </task>
     <task id="LOCAL-00001" summary="changes">
       <created>1555692679671</created>
@@ -986,21 +965,29 @@
       <option name="project" value="LOCAL" />
       <updated>1556570554535</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="logo , many to many salami v3&#10;admin: liv , client done&#10;four : in progress">
+      <created>1556570736512</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1556570736512</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="238801000" />
+    <option name="totallyTimeSpent" value="238990000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="1" width="1934" height="1036" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16753654" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925472" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32925472" sideWeight="0.49791667" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32925472" sideWeight="0.49791667" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925472" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1076,7 +1063,8 @@
     <MESSAGE value="tabdil l livreur walla yekhdem jawou behi salami ^^" />
     <MESSAGE value="logo , many to many salami" />
     <MESSAGE value="logo , many to many salami v2" />
-    <option name="LAST_COMMIT_MESSAGE" value="logo , many to many salami v2" />
+    <MESSAGE value="logo , many to many salami v3&#10;admin: liv , client done&#10;four : in progress" />
+    <option name="LAST_COMMIT_MESSAGE" value="logo , many to many salami v3&#10;admin: liv , client done&#10;four : in progress" />
     <option name="UPDATE_GROUP_BY_PACKAGES" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1240,6 +1228,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="483">
           <caret line="23" column="28" lean-forward="false" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1283,6 +1272,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="355">
           <caret line="18" column="53" lean-forward="false" selection-start-line="18" selection-start-column="53" selection-end-line="18" selection-end-column="53" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1290,6 +1280,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="460">
           <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1314,6 +1305,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-107">
           <caret line="61" column="41" lean-forward="false" selection-start-line="61" selection-start-column="29" selection-end-line="61" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1328,6 +1320,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="5" column="115" lean-forward="false" selection-start-line="5" selection-start-column="115" selection-end-line="5" selection-end-column="115" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1351,6 +1344,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5162">
           <caret line="332" column="5" lean-forward="false" selection-start-line="332" selection-start-column="5" selection-end-line="332" selection-end-column="5" />
+          <folding>
+            <element signature="e#30#62#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1380,6 +1376,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="314">
           <caret line="73" column="65" lean-forward="false" selection-start-line="73" selection-start-column="65" selection-end-line="73" selection-end-column="65" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1387,6 +1384,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="185">
           <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
