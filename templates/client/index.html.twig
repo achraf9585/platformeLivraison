@@ -1,6 +1,9 @@
 {% extends 'base3.html.twig' %}
 {% block title %}Home{% endblock %}
+
 {% block body %}
+
+
 
     <section id="slider" class="slider">
         <div class="slider_overlay">
@@ -13,31 +16,38 @@
                                 <div class="single_abouts_text wow slideInRight" data-wow-duration="1s">
                                     <h4 style="color:#C24830;">Découvrer les restaurants  qui livre prés de vous</h4>
                                 </div>
-                                <input type="text" placeholder="Region" name="city" class="form-control" list="city">
+
+
+                                <form class="navbar-form" method="get" action="{{ path('cherch') }}">
+                                    <ville>
+                                <input type="text" placeholder="Region" name="m" class="form-control" list="city">
                                 <datalist id="city">
+                                    {% for r in regions %}
 
-                                    <option value="Megrine">
-                                    <option value="Cité Ennasr">
-                                    <option value="Mnezah 1">
-                                    <option value="Mnezah 6">
-                                    <option value="Mnezah 7">
-                                    <option value="Mnezah 9">
-                                    <option value="Rades">
+                                    <option selected disabled> {{ r.libele }} </option>
 
-                                </datalist>
-                                <!-- <select class="form-control" >  -->
-                                <!-- <div class="opa"> -->
-                                <!-- <option value="" disabled selected>Region</option>  -->
-                                <!-- <option class="opa" >Megrine </option>  -->
-                                <!-- <option >Cité Ennasr </option>  -->
-                                <!-- <option >Mnezah 6 </option>  -->
-                                <!-- <option >Menzah 9 </option>  -->
-                                <!-- <option >Rades </option>  -->
-                                <!-- <option >Ezzahra </option>  -->
-                                <!-- </div> -->
-                                <!-- </select>  -->
+                                    {% for v in villes %}
 
-                                <button href="" class="btn-lg" >Chercher</button>
+                                        {% if r.id == v.region_id %}
+
+
+                                            <option  name="m">{{ v.libele }} </option>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% endfor %}
+
+                     </datalist>
+
+
+
+
+
+
+
+
+
+    </ville>
+</form>
                             </div>
                         </div>
                     </div>

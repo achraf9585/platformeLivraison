@@ -28,13 +28,7 @@ class VilleType extends AbstractType
                 },*/
                'choice_label' =>'libele',
             ))
-            ->add('statut', ChoiceType::class, [
-                'choices' => [
-                    'Disponibilité' => [
-                        'Oui' => 'Oui',
-                        'Non' => 'Non'
 
-                    ]]])
         ;
     }
 

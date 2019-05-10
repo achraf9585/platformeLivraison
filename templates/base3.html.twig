@@ -24,6 +24,7 @@
 
         <!--Theme custom css -->
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/card.css') }}">
 
         <!--Theme Responsive css-->
         <link rel="stylesheet" href="assets/css/responsive.css" />
@@ -84,13 +85,17 @@
                             <li><a href="{{ path('client') }}">Accueil</a></li>
                             <li><a href="#abouts">Â propos de nous</a></li>
                             <li><a href="#footer_widget">Informations</a></li>
-
-                            <li><a href="{{ path('cli_register') }}"" style="color:#f0932b;"  >Inscription</a></li>
+                            {% if not app.user %}
+                            <li><a href="{{ path('cli_register') }}" style="color:#f0932b;"  >Inscription</a></li>
 
 
                             <li><a href="{{ path('liv_register') }}" style="color:#f0932b;" >Devenir Livreur</a></li>
-                            <li><a href="{{ path('app_login') }}"   data-toggle="modal" data-target="#exampleModal">Se connecter</a></li>
+                            <li><a href="{{ path('app_login') }}"   >Se connecter</a></li>
 
+                            {% else %}
+                            <li>Bienvenue {{ app.user.prenom }} {{   app.user.nom}}</li>
+                                <li><a href="{{ path('logout') }}"   >Deconnexion</a></li>
+                            {% endif %}
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->

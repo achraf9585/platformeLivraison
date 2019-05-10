@@ -16,11 +16,7 @@ class SupplementType extends AbstractType
         $builder
             ->add('libele')
             ->add('prix')
-            ->add('articles', EntityType::class,[
-                'class'=> Article::class,
-                'choice_label'=>'libele',
-                'multiple'=>true
-            ])
+
         ;
     }
 

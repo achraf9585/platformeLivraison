@@ -11,6 +11,7 @@ namespace App\Controller;
 
 use App\Entity\Client;
 use App\Repository\ClientRepository;
+use App\Repository\VilleRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,6 +39,8 @@ class ClientController extends  AbstractController
             'properties' =>$properties,
         ]);
     }
+
+
 
 
     /**

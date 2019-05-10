@@ -29,7 +29,8 @@ class ArticleType extends AbstractType
            ->add('supplements', EntityType::class,
                ['class'=> Supplement::class,
                  'choice_label'=>'libele',
-                   'multiple'=>true
+                   'multiple'=>true,
+                   'expanded'=>true,
                ])
         ;
     }

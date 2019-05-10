@@ -46,5 +46,20 @@ class FournisseurRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
+
+
     */
+
+
+    public function findregion($value): array
+    {
+$conn= $this->getEntityManager()->getConnection();
+$sql=' SELECT f.* FROM fournisseur f , ville v 
+ WHERE f.region_id IN (SELECT v.id FROM ville WHERE v.libele= :val)
+
+';
+$smt= $conn->prepare($sql);
+$smt->execute(['val' => $value]);
+return $smt->fetchAll();
+    }
 }

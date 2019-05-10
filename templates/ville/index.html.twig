@@ -45,11 +45,10 @@
                             <th></th>
                             <th></th>
                             <th>{{ knp_pagination_sortable(properties, 'Ville','libele') }}</th>
-                            <th>{{ knp_pagination_sortable(properties, 'statut','statut') }}</th>
                             <th>{{ knp_pagination_sortable(properties, 'Region','region') }}</th>
 
 
-                            <th></th>
+                            <th>{{ knp_pagination_sortable(properties, 'Region','staut') }}</th>
                             <th>Action</th>
 
                         </tr>
@@ -59,21 +58,19 @@
 
 
                         {% for region in properties %}
-                            <tr>
-                                {% if region.statut =="Oui" %}
-                        <tr style="background: rgb(35, 203, 167);">
-                            {% else %}
-                            <tr style="background: rgb(238, 238, 238);">
+                            {% if region.statut == "Disponible" %}
+                            <tr style="background: green">
+{% else %}
+                                <tr>
                             {% endif %}
                                 <region>
                                     <td>{{ region.id }}</td>
                                     <th></th>
                                     <th></th>
                                     <td>{{ region.libele }}</td>
-                                    <td> {{ region.statut }}</td>
                                     <td>{{ region.region.getLibele() }}</td>
 
-                                    <td></td>
+                                    <td>{{ region.statut }}</td>
                                     <td>
 
                                         <a href="{{ path('ville_edit', {'id': region.id}) }}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Modifier">&#xE254;</i></a>

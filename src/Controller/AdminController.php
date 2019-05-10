@@ -3,6 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Region;
+use App\Repository\FournisseurRepository;
+use App\Repository\RegionRepository;
+use App\Repository\VilleRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,15 +19,18 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class AdminController extends AbstractController
 {
 
-
     /**
      * @Route("/client", name="client")
      */
 
-    public function cli()
+    public function cli(VilleRepository $villeRepository,RegionRepository $regionRepository)
     {
+        $villes= $villeRepository->findVilleCli();
+        $regions=$regionRepository->findAll();
         return $this->render('client/index.html.twig', [
             'controller_name' => 'AdminController',
+            'villes' => $villes,
+            'regions' => $regions,
         ]);
     }
 
@@ -51,9 +57,19 @@ class AdminController extends AbstractController
     }
 
 
+// TO DO IN RAMADHANE KARIM YYA KARIM !!!
+    /**
+     * @Route("/client/recherche",name="cherch")
+     */
+public  function  search(FournisseurRepository $fournisseurRepository,Request $request){
+    $m= $request->query->get('m');
+     $fournisseurs= $fournisseurRepository->findregion($m);
+    return $this->render('client/cherche.html.twig', [
+        'fournisseurs' => $fournisseurs,
+        'm' => $m,
 
-
-
+    ]);
+}
 
 
 

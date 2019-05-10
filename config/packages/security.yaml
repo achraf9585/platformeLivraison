@@ -51,7 +51,7 @@ security:
         main:
 
             anonymous: true
-            provider: app_user_provider
+            provider: app_admin_provider
 
 
             logout:
@@ -65,6 +65,30 @@ security:
                     - App\Security\LoginCliFormAuthenticator
                 entry_point: App\Security\LoginFormAuthentificatorAuthenticator
 
+        cli:
+            pattern: ^/client/
+            security: false
+        client:
+
+            anonymous: true
+            provider: app_user_provider
+
+
+            logout:
+                path: logoutcli
+                target: /client
+        four:
+            pattern: ^/fournisseur/
+            security: false
+        fournisseur:
+
+            anonymous: true
+            provider: app_fournisseur_provider
+
+
+            logout:
+                path: logoutfour
+                target: /four
 
 
             # activate different ways to authenticate
@@ -83,4 +107,6 @@ security:
         - { path: ^/region, roles: ROLE_USER }
         - { path: ^/ville, roles: ROLE_USER }
         - { path: ^/condi, roles: ROLE_USER }
+        - { path: ^/affcli, roles: ROLE_USER }
+        - { path: ^/fournisseur, roles: ROLE_USER }
         # - { path: ^/profile, roles: ROLE_USER }

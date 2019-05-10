@@ -111,6 +111,13 @@ class Fournisseur implements UserInterface
 
 
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Ville", inversedBy="fournisseurs")
+     */
+    private $region;
+
+
+
 
     public function getId(): ?int
     {
@@ -331,4 +338,19 @@ class Fournisseur implements UserInterface
     {
         return $this->imageName;
     }
+
+
+    public function getRegion(): ?Ville
+    {
+        return $this->region;
+    }
+
+    public function setRegion(?Ville $region): self
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
+
 }

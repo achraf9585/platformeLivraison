@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Ville;
+use App\Form\VilleClientType;
 use App\Form\VilleType;
 use App\Repository\VilleRepository;
+use Doctrine\ORM\EntityManager;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -73,6 +75,9 @@ class VilleController extends AbstractController
         ]);
     }
 */
+
+
+
     /**
      * @Route("/{id}", name="ville_show", methods={"GET"})
      */

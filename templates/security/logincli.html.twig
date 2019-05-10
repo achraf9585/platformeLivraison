@@ -1,0 +1,91 @@
+{% extends 'base3.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+    <form method="post">
+        <br>
+        <br>
+
+        <div class="container"  style="margin: 0 auto; width: 50%; background: whitesmoke;">
+            <div class="modal-header">
+                <h5 class="modal-title" >Se conneter</h5>
+
+            </div>
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+            <div class="modal-body">
+                <!-- Form modal  -->
+                <div >
+
+                    <div class="form-group has-feedback">
+                        <label for="inputEmail" class="sr-only">Email</label>
+
+                        <input type="mail"  value="{{ last_username }}" name="email" id="inputEmail" required autofocus class="inp-form "  placeholder="E-mail">
+
+                        <span  class="glyphicon glyphicon-envelope form-control-feedback"> </span></input> </div>
+
+                </div>
+                <div class="form-group has-feedback">
+                    <label for="inputPassword" class="sr-only">Password</label>
+
+
+                    <input type="password"  name="password" id="inputPassword" required class="inp-form " placeholder="Mot de passe">
+                    <span class="glyphicon glyphicon-lock form-control-feedback"> </span> </div>
+
+                </input>
+            </div>
+            <div class= "form-group">
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="checkbox icheck" style="margin-left:10px;">
+                            <label>
+                                <input type="checkbox" > Remember Me
+                            </label>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-xs-4" style="margin-left:-10px;">
+                        <button type="submit" class="btn btn-aa btn-block btn-flat">Se connecter</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!--
+                              <a href="index.html" class="btn btn-google btn-user btn-block">
+                                <i class="fa fa-google"></i> Login with Google
+                              </a>
+                              <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                                <i class="fa fa-facebook-f"></i> Login with Facebook
+                              </a>
+
+          -->
+                <br>
+                <div class="text-center">
+                    <a class="small" href="forgot-password.html">Mot de passe oublié </a>
+                </div>
+                <div class="text-center">
+                    <a class="small" href="register.html">Créer un compte</a>
+                </div>
+
+            </div>
+
+            <input type="hidden" name="_csrf_token"
+                   value="{{ csrf_token('authenticate') }}"
+            >
+
+            {#
+                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                See https://symfony.com/doc/current/security/remember_me.html
+
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" name="_remember_me"> Remember me
+                    </label>
+                </div>
+            #}
+
+        </div>
+    </form>
+{% endblock %}

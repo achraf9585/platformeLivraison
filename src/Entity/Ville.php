@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -34,9 +36,20 @@ class Ville
     private $region;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Fournisseur", mappedBy="region")
+     */
+    private $fournisseurs;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $statut;
+
+    public function __construct()
+    {
+        $this->fournisseurs = new ArrayCollection();
+    }
+
 
     public function getId(): ?string
     {
@@ -67,6 +80,37 @@ class Ville
         return $this;
     }
 
+    /**
+     * @return Collection|Fournisseur[]
+     */
+    public function getFournisseurs(): Collection
+    {
+        return $this->fournisseurs;
+    }
+
+    public function addFournisseur(Fournisseur $fournisseur): self
+    {
+        if (!$this->fournisseurs->contains($fournisseur)) {
+            $this->fournisseurs[] = $fournisseur;
+            $fournisseur->setRegion($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFournisseur(Fournisseur $fournisseur): self
+    {
+        if ($this->fournisseurs->contains($fournisseur)) {
+            $this->fournisseurs->removeElement($fournisseur);
+            // set the owning side to null (unless already changed)
+            if ($fournisseur->getRegion() === $this) {
+                $fournisseur->setRegion(null);
+            }
+        }
+
+        return $this;
+    }
+
     public function getStatut(): ?string
     {
         return $this->statut;
@@ -78,4 +122,6 @@ class Ville
 
         return $this;
     }
+
+
 }

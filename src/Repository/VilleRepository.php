@@ -47,4 +47,15 @@ class VilleRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function  findVilleCli(){
+        $conn = $this->getEntityManager()->getConnection();
+        $sql='
+        SELECT * FROM ville v 
+        ORDER BY v.region_id ASC 
+        ';
+        $stmt= $conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }

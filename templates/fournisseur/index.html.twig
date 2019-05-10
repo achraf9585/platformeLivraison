@@ -46,7 +46,7 @@
                             <th>{{ knp_pagination_sortable(properties, 'id','id') }}</th>
                             <th>{{ knp_pagination_sortable(properties, 'nom restaurant','nomrestaurant') }}</th>
                             <th>Logo</th>
-                            <th></th>
+                            <th>etat</th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -64,12 +64,13 @@
 
                         {% for fournisseur in properties %}
 
-                            <tr>
+                            <tr style="background-color: green">
+
                                 <region>
                                     <td>{{ fournisseur.id }}</td>
                                     <td>{{ fournisseur.nomrestaurant }}</td>
                                     <td><img src="{{ asset('images/articles/'~ fournisseur.imageName) | imagine_filter('test') }}" /> </td>
-                                    <td></td>
+                                    <td>{{ fournisseur.etat }}</td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
@@ -80,6 +81,7 @@
 
                                 </region>
                             </tr>
+
                         {% endfor %}
 
 
@@ -99,8 +101,8 @@
             </div>
             <!-- Add Modal HTML -->
             <div id="addEmployeeModal" class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content">
+                <div class="modal-dialog" style="height:100px; ">
+                    <div class="modal-content" style="height: 480px;">
                         {{ include ('fournisseur/_form.html.twig') }}
                     </div>
                 </div>

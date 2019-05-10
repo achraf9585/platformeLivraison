@@ -8,18 +8,105 @@
     <br>
     {{ form_start(form) }}
 
-    {{ form_row(form.nom,{'attr':{'class':'form-control','placeholder':'Nom de la nouvelle région ...'}}) }}
-    {{ form_row(form.prenom,{'attr':{'class':'form-control','placeholder':'Nom de la nouvelle région ...'}}) }}
-    {{ form_row(form.email,{'attr':{'class':'form-control','placeholder':'Nom de la nouvelle région ...'}}) }}
-    {{ form_row(form.password,{'attr':{'class':'form-control','placeholder':'Nom de la nouvelle région ...'}}) }}
-    {{ form_row(form.numtel1,{'attr':{'class':'form-control','placeholder':'Nom de la nouvelle région ...'}}) }}
-    {{ form_row(form.numtel2,{'attr':{'class':'form-control','placeholder':'Nom de la nouvelle région ...'}}) }}
-    {{ form_row(form.adresse,{'attr':{'class':'form-control','placeholder':'Nom de la nouvelle région ...'}}) }}
-    {{ form_row(form.datenaissance,{'attr':{'class':'form-control','placeholder':'Nom de la nouvelle région ...'}}) }}
-    {{ form_row(form.etat,{'attr':{'class':'form-control','placeholder':'Nom de la nouvelle région ...'}}) }}
-    {{ form_row(form.nomrestaurant,{'attr':{'class':'form-control','placeholder':'Nom de la nouvelle région ...'}}) }}
-    {{ form_row(form.tempsapprox,{'attr':{'class':'form-control','placeholder':'Nom de la nouvelle région ...'}}) }}
-    {{ form_row(form.imageFile,{'attr':{'class':'form-control','placeholder':'Nom de la nouvelle région ...'}}) }}
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="input-group">
 
-    <button class="btn">{{ button_label|default('Save') }}</button>
+                {{ form_row(form.nom,{ 'attr': {'class': 'form-control' , 'placeholder': 'Nom'}}) }}
+            </div>
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-6">
+            <div class="input-group">
+
+                {{ form_row(form.prenom,{ 'attr': {'class': 'form-control' , 'placeholder': 'Prenom'}}) }}
+
+            </div>
+        </div>
+        <!-- /.col -->
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="input-group">
+
+
+
+
+    {{ form_row(form.email,{'attr':{'class':'form-control','placeholder':'Nom de la nouvelle région ...'}}) }}
+            </div>
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-6">
+            <div class="input-group">
+
+    {{ form_row(form.password,{'attr':{'class':'form-control','placeholder':'Nom de la nouvelle région ...'}}) }}
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="input-group">
+                    {{ form_row(form.numtel1,{'attr':{'class':'form-control','placeholder':'Nom de la nouvelle région ...'}}) }}
+                </div>
+            </div>
+            <!-- /.col -->
+            <div class="col-xs-6">
+                <div class="input-group">
+
+                    {{ form_row(form.numtel2,{ 'attr': {'class': 'form-control' , 'placeholder': 'Prenom'}}) }}
+
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+
+
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="input-group">
+
+                    {{ form_row(form.adresse,{ 'attr': {'class': 'form-control' , 'placeholder': 'Nom'}}) }}
+                </div>
+            </div>
+            <!-- /.col -->
+            <div class="col-xs-6">
+                <div class="input-group">
+
+                    {{ form_row(form.datenaissance,{ 'attr': {'class': 'form-control' , 'placeholder': 'Prenom'}}) }}
+
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="input-group">
+
+                    {{ form_row(form.nomrestaurant,{ 'attr': {'class': 'form-control' , 'placeholder': 'Nom'}}) }}
+                </div>
+            </div>
+            <!-- /.col -->
+            <div class="col-xs-6">
+                <div class="input-group">
+
+                    {{ form_row(form.tempsapprox,{ 'attr': {'class': 'form-control' , 'placeholder': 'Prenom'}}) }}
+
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+
+
+
+    {{ form_row(form.imageFile,{'attr':{'class':'form-control','placeholder':'Nom de la nouvelle région ...'}}) }}
+    <br>
+
+    {{ form_row(form.region,{'attr':{'class':'form-control','placeholder':'Nom de la nouvelle région ...'}}) }}
+    <br>
+
+    <button class="btn btn-success" style="width: 100%;">{{ button_label|default('Ajouter') }}</button>
 {{ form_end(form) }}
+    </div>
+</div>
