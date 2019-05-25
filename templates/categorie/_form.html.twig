@@ -103,19 +103,22 @@
                 <h1 class="h3 mb-3 font-weight-normal" style="color:#FFFFFF">
                     {% if editMode %}
                         Modifier la catégorie n° {{ categorie.id }}
-                        {% else %}
-                         Créer une nouvelle catégorie
-                     {% endif %}
+                    {% else %}
+                        Créer une nouvelle catégorie
+                    {% endif %}
                 </h1>
 
                 <div class="card-body">
                     {{ form_start(form) }}
 
-                     <label style="margin-right: 300px; color: #FFFFFF">Nom de la catégorie</label>
+                    <label style="margin-right: 300px; color: #FFFFFF">Nom de la catégorie</label>
                     <br>
                     {{ form_widget(form.libele, {'attr':{'class':'form-control','placeholder':'Nom de la nouvelle catégorie...'}}) }}
-                    <br> <br> <br> <br>
-                    <button style="width: 200px; margin-top: -97px; align:center;" class="btn btn-success"> {{ button_label|default('Enregistrer') }}</button>
+
+                    <br> <br>
+                    <label style="margin-right: 300px; color: #FFFFFF">Etat de la catégorie</label>
+                    {{ form_widget(form.etat, {'attr':{'class':'form-control'}}) }}
+                    <button style="width: 200px; margin-top: 40px; align:center;" class="btn btn-success"> {{ button_label|default('Enregistrer') }}</button>
                     {{ form_end(form) }}
                 </div>
             </div>

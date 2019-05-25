@@ -38,7 +38,7 @@ class FournisseurAuthAuthenticator extends AbstractFormLoginAuthenticator
 
     public function supports(Request $request)
     {
-        return 'app_login' === $request->attributes->get('_route')
+        return 'app_four' === $request->attributes->get('_route')
             && $request->isMethod('POST');
     }
 
@@ -68,7 +68,7 @@ class FournisseurAuthAuthenticator extends AbstractFormLoginAuthenticator
 
         if (!$user) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('Email could not be found.');
+            throw new CustomUserMessageAuthenticationException('Email introuvable');
         }
 
         return $user;

@@ -24,8 +24,11 @@ class ArticleController extends AbstractController
      */
     public function index(ArticleRepository $platRepository, Request $request, PaginatorInterface $paginator): Response
     {
-
-        $article=$platRepository->findAll();
+        /**
+         * @var \App\Entity\Fournisseur $user
+         */
+        $user = $this->getUser();
+        $article=$platRepository->findBy(array('fournisseur' => $user));
      /*  foreach ($article as $key=>$value){
             $value->setImage(base64_encode(stream_get_contents($value->getImage())));
         }*/

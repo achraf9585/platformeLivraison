@@ -14,6 +14,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -26,34 +27,39 @@ class RegistrationClientFormType extends AbstractType
     public function  buildForm(FormBuilderInterface $builder, array $options){
 
         $builder
-            ->add('email' )
-            ->add('nom')
-            ->add('prenom')
+            ->add('email' ,TextType::class, ['label'=>' Email'])
+            ->add('nom', TextType::class, ['label'=>' Nom'])
+            ->add('prenom' , TextType::class, ['label'=>' Prénom'])
             ->add('numtel1',TextType::class,['label' => ' Téléphone 1'])
             ->add('numtel2',null ,array('required'=>false ,'label' => ' Téléphone 2'))
-            ->add('adresse')
+            ->add('adresse', TextType::class, ['label'=>'Adresse'])
             ->add('datenaissance', DateType::class, [
+                'label'=>'Date de naissance',
                 'widget' => 'single_text',
 
             ])
 
-            ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
+            ->add('plainPassword', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'first_options'  => ['label' => 'Mot de passe'],
+                'second_options' => ['label' => 'Confirmez votre mot de passe'],
+
                 'mapped' => false,
+
                 'constraints' => [
+
+
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Entrer votre mot de passe',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'le mot de passe doit contenir au moins {{ limit }} characters',
+                        'minMessage' => 'le mot de passe doit contenir au moins {{ limit }} caractéres',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
                 ],
             ])
-            ->add('confirm_password',PasswordType::class)
 
             ->add('terms', CheckboxType::class, [
                 'mapped' => false,

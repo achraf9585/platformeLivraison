@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\LivreurRepository")
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @UniqueEntity(fields={"numpapier"}, message="Existe déjà un numéro de papier")
  */
 class Livreur implements UserInterface
 {
@@ -88,10 +89,7 @@ class Livreur implements UserInterface
      * )
      */
     private $numpapier;
-    /**
-     * @ORM\Column(type="string", length=180)
-     */
-    private $localisation;
+
     /**
      * @ORM\Column(type="string", length=180)
      */
@@ -108,6 +106,7 @@ class Livreur implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\Length(min="6", minMessage="votre mot de passe doit contenir au moins six caractéres")
      */
     private $password;
 
@@ -132,7 +131,9 @@ class Livreur implements UserInterface
         $this->nom = $nom;
     }
 
-
+    /**
+     * @Assert\EqualTo(propertyPath="password ", message="Vous n'avez pas tapé le même mot de passe")
+     */
     public $confirm_password;
 
     /**

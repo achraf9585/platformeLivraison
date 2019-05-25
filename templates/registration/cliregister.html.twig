@@ -4,8 +4,6 @@
 
 {% block body %}
 
-
-    <br>
     <br>
 
     <div class="container"  style="margin: 0 auto; width: 50%; background: whitesmoke;">
@@ -22,7 +20,7 @@
                         <div class="input-group-addon">
                             <i class="fa  fa-users"></i>
                         </div>
-                        {{ form_row(registrationForm.nom,{ 'attr': {'class': 'inp-form' , 'placeholder': 'Nom'}}) }}
+                        {{ form_row(registrationForm.nom,{ 'attr': {'class': 'inp-form' , 'placeholder': 'Tapez votre nom...'}}) }}
                     </div>
                 </div>
                 <!-- /.col -->
@@ -31,7 +29,7 @@
                         <div class="input-group-addon">
                             <i class="fa  fa-user"></i>
                         </div>
-                        {{ form_row(registrationForm.prenom,{ 'attr': {'class': 'inp-form' , 'placeholder': 'Prenom'}}) }}
+                        {{ form_row(registrationForm.prenom,{ 'attr': {'class': 'inp-form' , 'placeholder': 'Tapez votre prénom'}}) }}
 
                     </div>
                 </div>
@@ -44,32 +42,32 @@
                     <div class="input-group-addon">
                         <i class="fa fa-at"></i>
                     </div>
-                    {{ form_row(registrationForm.email,{ 'attr': {'class': 'inp-form' , 'placeholder': 'Email'}}) }}
+                    {{ form_row(registrationForm.email,{ 'attr': {'class': 'inp-form' , 'placeholder': ' Tapez votre adresse Email'}}) }}
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-xs-6">
+                <div class="col-xs-12">
                     <div class="input-group">
                         <div class="input-group-addon">
                             <i class="fa  fa-lock"></i>
                         </div>
-                        {{ form_row(registrationForm.plainPassword,{ 'attr': {'class': 'inp-form' , 'placeholder': 'Mot de passe'}}) }}
+                        {{ form_row(registrationForm.plainPassword.first,{ 'attr': {'class': 'inp-form' , 'placeholder': 'Tapez votre mot de passe'}}) }}
+                        {{ form_widget(registrationForm.plainPassword.second,{ 'attr': {'class': 'inp-form' , 'placeholder': 'Confirmez votre mot de passe'}}) }}
 
 
                     </div>
                 </div>
                 <!-- /.col -->
-                <div class="col-xs-6">
-                    <div class="input-group">
+                <!---  <div class="col-xs-6">
+                      <div class="input-group">
 
-                        <div class="input-group-addon">
-                            <i class="fa  fa-lock"></i>
-                        </div>
-                        {{ form_row(registrationForm.confirm_password,{ 'attr': {'class': 'inp-form' , 'placeholder': 'Confimer Mot de passe'}}) }}
+                          <div class="input-group-addon">
+                              <i class="fa  fa-lock"></i>
+                          </div>
 
-                    </div>
-                </div>
+                      </div>
+                  </div>-->
                 <!-- /.col -->
             </div><br>
             <div class="row">
@@ -78,7 +76,7 @@
                         <div class="input-group-addon">
                             <i class="fa  fa-phone"></i>
                         </div>
-                        {{ form_row(registrationForm.numtel1,{ 'attr': {'class': 'inp-form' , 'placeholder': 'Numero télephone 1' }} ) }}
+                        {{ form_row(registrationForm.numtel1,{ 'attr': {'class': 'inp-form' , 'placeholder': ' Tapez votre numéro télephone 1' }} ) }}
 
                     </div>
                 </div>
@@ -88,7 +86,7 @@
                         <div class="input-group-addon">
                             <i class="fa  fa-phone"></i>
                         </div>
-                        {{ form_row(registrationForm.numtel2,{ 'attr': {'class': 'inp-form' , 'placeholder': 'Numero télephone 2'}}) }}
+                        {{ form_row(registrationForm.numtel2,{ 'attr': {'class': 'inp-form' , 'placeholder': ' Tapez votre numéro télephone 2'}}) }}
 
 
                     </div>
@@ -97,30 +95,12 @@
             </div>
             <br>
 
-
-
-
-
-
-
-
-            <br>
-
-
-
-
-
-
-
-
-
-
             <br>
             <div class="input-group">
                 <div class="input-group-addon">
                     <i class="fa fa-home"></i>
                 </div>
-                {{ form_widget(registrationForm.adresse ,{ 'attr': {'class': 'inp-form' , 'placeholder': 'Adresse'}}) }}
+                {{ form_row(registrationForm.adresse ,{ 'attr': {'class': 'inp-form' , 'placeholder': 'Tapez votre adresse'}}) }}
 
             </div>
         </div>

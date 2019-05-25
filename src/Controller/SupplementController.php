@@ -22,7 +22,10 @@ class SupplementController extends AbstractController
      */
     public function index(SupplementRepository $supplementRepository, Request $request, PaginatorInterface $paginator): Response
     {
-
+        /**
+         * @var \App\Entity\Fournisseur $user
+         */
+        $user = $this->getUser();
         $supplement=$supplementRepository->findAll();
 
         $properties=$paginator->paginate($supplement,

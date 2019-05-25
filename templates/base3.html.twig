@@ -30,6 +30,22 @@
         <link rel="stylesheet" href="assets/css/responsive.css" />
 
         <script src="{{ asset('assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js') }}"></script>{% endblock %}
+<style>
+    .btn-panier {
+    color: #fff;
+    background-color: transparent;
+    }
+
+
+
+    .table-responsive {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+    }
+</style>
 </head>
 
 <body>
@@ -94,6 +110,15 @@
 
                             {% else %}
                             <li>Bienvenue {{ app.user.prenom }} {{   app.user.nom}}</li>
+                                <li><a class="btn btn-panier btn-sm ml-3 treeview menu-open "href="{{ path('panier_show') }}"  onclick="openForm()">
+                                        <i class="fa fa-shopping-cart" style="margin-top:-10px;" ></i> Panier
+                                        <span class="badge badge-light">{{ nbr }}</span>
+
+                                    </a>
+
+
+
+                                </li>
                                 <li><a href="{{ path('logout') }}"   >Deconnexion</a></li>
                             {% endif %}
                         </ul>

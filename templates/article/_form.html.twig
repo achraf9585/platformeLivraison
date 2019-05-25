@@ -1,134 +1,139 @@
 
 <style>
-html,body{
-background: white;
-background-size: cover;
-background-repeat: no-repeat;
-height: 100%;
-font-family: 'Numans', sans-serif;
-    background-image: url("https://img.freepik.com/fotos-kostenlos/geschmackvolle-pepperonipizza-auf-einem-schwarzen-konkreten-hintergrund_79782-103.jpg?size=626&ext=jpg")
+    html,body{
+        background: white;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100%;
+        font-family: 'Numans', sans-serif;
+        background-image: url("https://img.freepik.com/fotos-kostenlos/geschmackvolle-pepperonipizza-auf-einem-schwarzen-konkreten-hintergrund_79782-103.jpg?size=626&ext=jpg")
 
-}
+    }
 
-.container{
-height: 100%;
-    margin-top: 3px;
-    margin-right: -100px;
-}
+    .container{
+        height: 100%;
+        margin-top: 3px;
+        margin-right: -100px;
+    }
 
-.card{
-height: 370px;
-margin-top: auto;
-margin-bottom: auto;
-width: 700px;
-background-color: rgba(0,0,0,0) !important;
-}
+    .card{
+        height: 370px;
+        margin-top: auto;
+        margin-bottom: auto;
+        width: 700px;
+        background-color: rgba(0,0,0,0) !important;
+    }
 
-.social_icon span{
-font-size: 60px;
-margin-left: 10px;
-color: #FFC312;
-}
+    .social_icon span{
+        font-size: 60px;
+        margin-left: 10px;
+        color: #FFC312;
+    }
 
-.social_icon span:hover{
-color: white;
-cursor: pointer;
-}
+    .social_icon span:hover{
+        color: white;
+        cursor: pointer;
+    }
 
-.card-header h3{
-color: white;
-}
+    .card-header h3{
+        color: white;
+    }
 
-.social_icon{
-position: absolute;
-right: 20px;
-top: -45px;
-}
+    .social_icon{
+        position: absolute;
+        right: 20px;
+        top: -45px;
+    }
 
-.input-group-prepend span{
-width: 50px;
-background-color: #FFC312;
-color: black;
-border:0 !important;
-}
+    .input-group-prepend span{
+        width: 50px;
+        background-color: #FFC312;
+        color: black;
+        border:0 !important;
+    }
 
-input:focus{
-outline: 0 0 0 0  !important;
-box-shadow: 0 0 0 0 !important;
+    input:focus{
+        outline: 0 0 0 0  !important;
+        box-shadow: 0 0 0 0 !important;
 
-}
+    }
 
-.remember{
-color: white;
-}
+    .remember{
+        color: white;
+    }
 
-.remember input
-{
-width: 20px;
-height: 20px;
-margin-left: 15px;
-margin-right: 5px;
-}
+    .remember input
+    {
+        width: 20px;
+        height: 20px;
+        margin-left: 15px;
+        margin-right: 5px;
+    }
 
-.login_btn{
-color: black;
-background-color: #FFC312;
-width: 100px;
-}
+    .login_btn{
+        color: black;
+        background-color: #FFC312;
+        width: 100px;
+    }
 
-.login_btn:hover{
-color: black;
-background-color: white;
-}
+    .login_btn:hover{
+        color: black;
+        background-color: white;
+    }
 
-.links{
-color: white;
-}
+    .links{
+        color: white;
+    }
 
-.links a{
-margin-left: 4px;
-}
+    .links a{
+        margin-left: 4px;
+    }
 </style>
 
 
 
 <div class="container">
-  <div class="d-flex justify-content-center h-100">
-    <div>
-     
-        <h1 class="h3 mb-3 font-weight-normal" style="color:#FFFFFF">
-          {% if editMode %}
-              Modifier les données de l'Article n°{{article.id}}
-              {% else %}
-                Ajouter un Article
-          {% endif %}
-          
-        </h1>
-      
-    <div class="card-body">      
-     {{ form_start(form) }}
-        <label style="color:#FFFFFF; float: left"> Article </label>
-    {{ form_widget(form.libele, {'attr':{'class':'form-control','placeholder':'Nom du nouveau Article...'}}) }}
-        <br>
+    <div class="d-flex justify-content-center h-100">
+        <div>
 
-        <label style="color:#FFFFFF ; float: left"> Image de l'Article </label>
-        {{ form_widget (form.imageFile  ,{'attr':  {'class':'form-control'}   }) }}
-  <br>
-        <label style="color:#FFFFFF ; float: left"> Catégorie </label>
-      {{ form_widget(form.categorie,{'attr':{'class':'form-control'}}) }}
- <br>
-        <label style="color:#FFFFFF ; float: left"> Prix </label>
-    {{ form_widget(form.prix , {'attr':{'class':'form-control','placeholder':'Prix du nouveau Article...'}}) }}
-<br>
-        <label style="color:#FFFFFF ; float: left"> Supplements </label>
-<br>
-        {{ form_widget(form.supplements, {'attr':{'class':'form-control'}}) }}
-        <br>
-    <button style="width:210px;" class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
-{{ form_end(form) }}
-</div>
-</div>
-</div>
+            <h1 class="h3 mb-3 font-weight-normal" style="color:#FFFFFF">
+                {% if editMode %}
+                    Modifier les données de l'Article n°{{article.id}}
+                {% else %}
+                    Ajouter un Article
+                {% endif %}
+
+            </h1>
+
+            <div class="card-body">
+                {{ form_start(form) }}
+                <label style="color:#FFFFFF; float: left"> Nom de l' Article </label>
+                {{ form_widget(form.libele, {'attr':{'class':'form-control','placeholder':'Nom du nouveau Article...'}}) }}
+                <br>
+
+                <label style="color:#FFFFFF ; float: left"> Image de l'Article </label>
+                {% set imageFile = 'images/articles/'~article.imageName %}
+                {{ form_widget (form.imageFile  ,{'attr':  {'class':'form-control'}   }) }}
+
+                <br>
+                <label style="color:#FFFFFF ; float: left"> Catégorie </label>
+                {{ form_widget(form.categorie,{'attr':{'class':'form-control'}}) }}
+                <br>
+                <label style="color:#FFFFFF ; float: left"> Prix de l'article </label>
+                {{ form_widget(form.prix , {'attr':{'class':'form-control','placeholder':'Prix du nouveau Article...'}}) }}
+                <br>
+                <label style="color:#FFFFFF ; float: left"> Supplements </label>
+                <br>
+                {{ form_widget(form.supplements, {'attr':{'class':'form-control'}}) }}
+                <br>
+
+                {{ form_widget(form.etatArticle, {'attr':{'class':'form-control'}}) }}
+                <br>
+                <button style="width:210px;" class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
 </div>
 
 

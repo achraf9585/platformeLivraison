@@ -34,7 +34,7 @@
                     <div class="card-deck" style="width: 380px;margin-top:40px; " >
 
                         <div class="card" style="margin-top: 85px;" >
-                            <a href="#">
+                            <a href="{{ path('lstarticle_show', {'idf': f.id}) }}">
                             <img class="card-img-top"  src="{{ asset('images/articles/'~ f.image_name)  | imagine_filter('test') }}" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title">{{ f.nomrestaurant }}  </h5>

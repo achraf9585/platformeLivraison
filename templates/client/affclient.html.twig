@@ -10,7 +10,7 @@
                 </ul>
             </div>
             <div class="container">
-                <div class="table-wrapper" style="width:800px;margin-left:100px;">
+                <div class="table-wrapper" >
                     <div class="table-title">
                         <div class="row">
                             <div class="col-sm-6">
@@ -20,31 +20,16 @@
                         </div>
                     </div>
 
-                    <div class="table-title" >
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="container">
 
-
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6">
-
-
-
-                            </div>
-                        </div>
-                    </div>
-                    <table class="table table-striped table-hover">
+                    <table id="regions" class="table table-bordered table-striped">
                         <thead>
                         <tr>
 
-                            <th>{{ knp_pagination_sortable(properties, 'id','id') }}</th>
-                            <th>{{ knp_pagination_sortable(properties, 'email','email') }}</th>
-                            <th>{{ knp_pagination_sortable(properties, 'nom prenom','nom') }}</th>
-                            <th>{{ knp_pagination_sortable(properties, 'numtel1','numtel1') }}</th>
-                            <th>{{ knp_pagination_sortable(properties, 'adresse','adresse') }}</th>
+                            <th>Id</th>
+                            <th>Email</th>
+                            <th>Nom & Prenom</th>
+                            <th>Numéro Téléphone</th>
+                            <th>Adresse</th>
 
 
                             <th>Action</th>
@@ -55,7 +40,7 @@
 
 
 
-                        {% for client in properties %}
+                        {% for client in clients %}
 
                             <tr>
                                 <client>
@@ -79,12 +64,7 @@
 
                         </tbody>
                     </table>
-                    <div class="clearfix">
 
-                        <ul class="pagination">
-                            {{ knp_pagination_render(properties) }}
-                        </ul>
-                    </div>
 
                 </div>
             </div>
@@ -100,3 +80,42 @@
 
 
     {% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-3.2.1.min.js')}}"></script>
+    <script src="{{ asset('js/popper.min.js') }}"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script>
+        $(function () {
+            $('#regions').DataTable( {
+                "language": {
+                    "lengthMenu": "afficher _MENU_ enregistement par page",
+                    "zeroRecords": "Aucun enregistrement a été trouvé !",
+                    "info": "Page _PAGE_ de _PAGES_ pages",
+                    "infoEmpty": "Aucun enregistrement",
+                    "infoFiltered": "(filtré de  _MAX_ total enregistement)",
+                    "search": "Recherche:",
+                    "paginate": {
+                        "previous": "Precédent",
+                        "next" : "suivant"
+                    }
+                }
+            } );
+        })
+    </script>
+
+    <!-- jQuery 3 -->
+    <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <!-- DataTables -->
+    <script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+    <!--  <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script> -->
+    <!-- SlimScroll -->
+    <script src="{{ asset('bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+    <!-- FastClick -->
+    <script src="{{ asset('bower_components/fastclick/lib/fastclick.js')}}"></script>
+
+{% endblock %}

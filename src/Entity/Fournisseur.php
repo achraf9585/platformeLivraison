@@ -2,10 +2,13 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\FournisseurRepository")
@@ -30,11 +33,17 @@ class Fournisseur implements UserInterface
      */
     private $roles = [];
 
-    /**
-     * @var string The hashed password
-     * @ORM\Column(type="string")
-     */
+/**
+* @var string The hashed password
+* @ORM\Column(type="string")
+* @Assert\Length(min="5")
+*/
     private $password;
+
+/**
+* @Assert\EqualTo(propertyPath="password", message="Vous n'avez pas tapé le même mot de passe")
+*/
+    public $confirm_password;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -116,6 +125,16 @@ class Fournisseur implements UserInterface
      */
     private $region;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="fournisseur")
+     */
+    private $articles;
+
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+    }
+
 
 
 
@@ -153,7 +172,7 @@ class Fournisseur implements UserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        $roles[] = 'ROLE_FOUR';
 
         return array_unique($roles);
     }
@@ -348,6 +367,37 @@ class Fournisseur implements UserInterface
     public function setRegion(?Ville $region): self
     {
         $this->region = $region;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Article[]
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(Article $article): self
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+            $article->setFournisseur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(Article $article): self
+    {
+        if ($this->articles->contains($article)) {
+            $this->articles->removeElement($article);
+            // set the owning side to null (unless already changed)
+            if ($article->getFournisseur() === $this) {
+                $article->setFournisseur(null);
+            }
+        }
 
         return $this;
     }

@@ -49,6 +49,11 @@ class Region
      */
     private $villes;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $etatRegion;
+
 
 
     public function __construct()
@@ -100,6 +105,18 @@ class Region
                 $ville->setRegion(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEtatRegion(): ?string
+    {
+        return $this->etatRegion;
+    }
+
+    public function setEtatRegion(string $etatRegion): self
+    {
+        $this->etatRegion = $etatRegion;
 
         return $this;
     }

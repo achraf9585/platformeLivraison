@@ -1,25 +1,26 @@
-<div class="container" style="height:270px;">
+<div class="container" style="width: 500px;height: 500px;">
     <h1 style="margin-left: 10px;">{% if editMode %}
-            Modifier la région n° {{ region.id   }}
+            <br> <br>
+            Modifier les données du fournisseur n° {{ fournisseur.id   }}
         {% else %}
             <br>
-            Ajouter une nouvelle région
+            Créer un nouveau Fournisseur
         {% endif %}</h1>
-    <br>
-    {{ form_start(form) }}
 
+    {{ form_start(form) }}
+    <br>
     <div class="row">
         <div class="col-xs-6">
             <div class="input-group">
 
-                {{ form_row(form.nom,{ 'attr': {'class': 'form-control' , 'placeholder': 'Nom'}}) }}
+                {{ form_row(form.nom,{ 'attr': {'class': 'form-control' , 'placeholder': 'Tapez le nom du fournisseur'}}) }}
             </div>
         </div>
         <!-- /.col -->
         <div class="col-xs-6">
             <div class="input-group">
 
-                {{ form_row(form.prenom,{ 'attr': {'class': 'form-control' , 'placeholder': 'Prenom'}}) }}
+                {{ form_row(form.prenom,{ 'attr': {'class': 'form-control' , 'placeholder': 'Tapez le prenom du fournisseur'}}) }}
 
             </div>
         </div>
@@ -27,86 +28,101 @@
     </div>
     <div class="row">
         <div class="col-xs-6">
-            <div class="input-group">
-
-
-
-
-    {{ form_row(form.email,{'attr':{'class':'form-control','placeholder':'Nom de la nouvelle région ...'}}) }}
+            <div class="input-group" >
+                {{ form_row(form.email,{'attr':{'class':'form-control','placeholder':'Adresse email ...'}}) }}
             </div>
         </div>
         <!-- /.col -->
+
+        <div class="col-xs-6">
+            <div class="input-group">
+                {{ form_row(form.password,{'attr':{'class':'form-control','placeholder':'Mot de passe ...'}}) }}
+
+
+            </div>
+
+        </div>
         <div class="col-xs-6">
             <div class="input-group">
 
-    {{ form_row(form.password,{'attr':{'class':'form-control','placeholder':'Nom de la nouvelle région ...'}}) }}
+                {{ form_row(form.confirm_password,{'attr':{'class':'form-control','placeholder':'Confirmer Mot de passe ...'}}) }}
+            </div>
+
+        </div>
+
+        <div class="col-xs-6">
+            <div class="input-group">
+                {{ form_row(form.numtel1,{'attr':{'class':'form-control','placeholder':'Numéro de téléphone 1...'}}) }}
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="input-group">
+
+                {{ form_row(form.numtel2,{ 'attr': {'class': 'form-control' , 'placeholder': 'Numéro de téléphone 2...'}}) }}
+
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="input-group">
+
+                {{ form_row(form.datenaissance,{ 'attr': {'class': 'form-control' , 'placeholder': 'Prenom'}}) }}
+
             </div>
         </div>
 
+        <div class="col-xs-6">
+            <div class="input-group">
 
-        <div class="row">
-            <div class="col-xs-6">
-                <div class="input-group">
-                    {{ form_row(form.numtel1,{'attr':{'class':'form-control','placeholder':'Nom de la nouvelle région ...'}}) }}
-                </div>
+                {{ form_row(form.adresse,{ 'attr': {'class': 'form-control' , 'placeholder': 'Adresse fournisseur'}}) }}
             </div>
-            <!-- /.col -->
-            <div class="col-xs-6">
-                <div class="input-group">
-
-                    {{ form_row(form.numtel2,{ 'attr': {'class': 'form-control' , 'placeholder': 'Prenom'}}) }}
-
-                </div>
-            </div>
-            <!-- /.col -->
         </div>
 
+        <div class="col-xs-6">
+            <div class="input-group">
 
-        <div class="row">
-            <div class="col-xs-6">
-                <div class="input-group">
-
-                    {{ form_row(form.adresse,{ 'attr': {'class': 'form-control' , 'placeholder': 'Nom'}}) }}
-                </div>
+                {{ form_row(form.nomrestaurant,{ 'attr': {'class': 'form-control' , 'placeholder': 'Nom du restaurant'}}) }}
             </div>
-            <!-- /.col -->
-            <div class="col-xs-6">
-                <div class="input-group">
-
-                    {{ form_row(form.datenaissance,{ 'attr': {'class': 'form-control' , 'placeholder': 'Prenom'}}) }}
-
-                </div>
-            </div>
-            <!-- /.col -->
         </div>
 
-        <div class="row">
-            <div class="col-xs-6">
-                <div class="input-group">
+        <div class="col-xs-6">
+            <div class="input-group">
+                {{ form_row(form.region,{'attr':{'class':'ennos','placeholder':'Nom de la nouvelle région ...'}}) }}
 
-                    {{ form_row(form.nomrestaurant,{ 'attr': {'class': 'form-control' , 'placeholder': 'Nom'}}) }}
-                </div>
             </div>
-            <!-- /.col -->
-            <div class="col-xs-6">
-                <div class="input-group">
-
-                    {{ form_row(form.tempsapprox,{ 'attr': {'class': 'form-control' , 'placeholder': 'Prenom'}}) }}
-
-                </div>
-            </div>
-            <!-- /.col -->
         </div>
+        <div class="col-xs-6">
+            <div class="input-group">
+
+
+                {{ form_row(form.tempsapprox,{ 'attr': {'class': 'form-control' , 'placeholder': 'Temps approximatif'}}) }}
 
 
 
-    {{ form_row(form.imageFile,{'attr':{'class':'form-control','placeholder':'Nom de la nouvelle région ...'}}) }}
-    <br>
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <div class="input-group" style="width: 50px;">
+                {{ form_row(form.imageFile,{'attr':{'class':'ennos'}}) }}
 
-    {{ form_row(form.region,{'attr':{'class':'form-control','placeholder':'Nom de la nouvelle région ...'}}) }}
-    <br>
 
-    <button class="btn btn-success" style="width: 100%;">{{ button_label|default('Ajouter') }}</button>
-{{ form_end(form) }}
+
+            </div>
+        </div>
+        <div class="col-xs-6" >
+            <div class="input-group" style="margin-left: 140px;">
+
+
+                {{ form_row(form.etat,{'attr':{'class':'ennos'}}) }}
+
+            </div>
+        </div>
+        <br>
+        <br>
+        <button class="btn btn-success" style="width: 70%; margin-left: 70px; margin-top: 10px;">{{ button_label|default('Ajouter') }}</button>
+        <br>
+
+        <br>
+
+        {{ form_end(form) }}
     </div>
 </div>

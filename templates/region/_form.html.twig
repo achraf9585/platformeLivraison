@@ -1,16 +1,19 @@
 <div class="container" style="height:270px;">
-<h1 style="margin-left: 10px;">{% if editMode %}
-        Modifier la région n° {{ region.id   }}
-    {% else %}
+        <h1 style="margin-left: 10px;">{% if editMode %}
+                        Modifier la région n° {{ region.id   }}
+            {% else %}
+                    <br>
+                    Ajouter une nouvelle région
+            {% endif %}</h1>
         <br>
-        Ajouter une nouvelle région
-    {% endif %}</h1>
-<br>
-{{ form_start(form) }}
-    {{ form_row(form.libele,{'attr':{'class':'form-control','placeholder':'Nom de la nouvelle région ...'}}) }}
-<br>
-<button class="btn btn-success" style="width: 70%; margin-left: 70px; margin-right: 10px; margin-bottom: ">{{ button_label|default('Enregistrer') }}</button>
-<br>
+    {{ form_start(form) }}
+    {{ form_row(form.libele,{'attr':{'class':'form-control','placeholder':'Tapez le nom de la région ...'}}) }}
 
-{{ form_end(form) }}
+    {{ form_row(form.etatRegion,{'attr':{'class':'ennos'}}) }}
+
+        <br>
+        <button class="btn btn-success" style="width: 70%; margin-left: 70px; margin-right: 10px; margin-bottom: ">{{ button_label|default('Sauvergarder') }}</button>
+        <br>
+
+    {{ form_end(form) }}
 </div>

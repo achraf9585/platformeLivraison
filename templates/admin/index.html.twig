@@ -3,4 +3,58 @@
 {% block title %}Hello AdminController!{% endblock %}
 
 {% block body %}
+<main class="app-content">
+
+    <div class="app-title">
+
+        <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li class="breadcrumb-item"><a href="#">Acceuil</a></li>
+        </ul>
+    </div>
+    <div class="row" style="margin-left:300px;margin-top:50px;">
+
+        <div class="col-md-6 col-lg-8">
+
+
+            <div class="widget-small danger coloured-icon"><i class="icon fa  fa-server fa-3x"></i>
+                <div class="info">
+                    <h4><a href="commande.html"><h1>Commandes</h1></a></h4>
+                    <p><b><h2>0</h2></b></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-left:300px;">
+        <div class="col-md-6 col-lg-8">
+            <div class="widget-small primary coloured-icon"><i class="icon fa fa-users fa-3x"></i>
+                <div class="info">
+                    <h4><a href="{{ path('affcli_index') }}"><h1>Clients</a></h4>
+                    <p><b><h2>{{ clientnbr }}</b></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-left:300px;">
+        <div class="col-md-6 col-lg-8">
+            <div class="widget-small info coloured-icon"><i class="icon fa  fa-cutlery fa-3x"></i>
+                <div class="info">
+                    <h4><a href="{{ path('fournisseur_index') }}"><h1>Fournisseurs</h1></a></h4>
+                    <p><b> <h2>{{ fournisseursnbr }}</b></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-left:300px;">
+
+        <div class="col-md-6 col-lg-8">
+            <div class="widget-small warning coloured-icon"><i class="icon fa  fa-user-secret fa-3x"></i>
+                <div class="info">
+                    <h4><a href="{{ path('livreur_index') }}"><h1>Livreurs</h1></h4></a></h4>
+                    <p><b><h2>{{ livreurnbr }}</b></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

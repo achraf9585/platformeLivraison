@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Tests\Extension\Core\Type\NumberTypeTest;
@@ -24,13 +25,14 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email' )
-            ->add('nom')
-            ->add('prenom')
+            ->add('email', TextType::class, ['label'=>'Adresse email'] )
+            ->add('nom', TextType::class, ['label'=>'Nom'])
+            ->add('prenom' , TextType::class, ['label'=>'Prénom'])
             ->add('etat', HiddenType::class, ['empty_data' => 'en attente'])
             ->add('commission', HiddenType::class, ['empty_data' => 0])
-                ->add('numtel1',TextType::class,['label' => ' Téléphone 1'])
-            ->add('numtel2',null ,array('required'=>false ,'label' => ' Téléphone 2'))
+
+            ->add('numtel1',TextType::class,['label' => ' Téléphone 1'])
+            ->add('numtel2',TextType::class, array('required'=>false ,'label' => ' Téléphone 2'))
             ->add('typevehicule',ChoiceType::class,[
                 'choices'  => [
                     'voiture' => 'Voiture',
@@ -41,43 +43,43 @@ class RegistrationFormType extends AbstractType
                 'multiple' => false
 
             ])
-
-            ->add('typepapier',ChoiceType::class,[
+            ->add('typepapier', ChoiceType::class,[
                 'choices'  => [
                     'Carte identité national' => 'Carte identité national',
                     'Passeport' => 'Passeport',
                     'Carte sejour' => 'Carte sejour',
                 ],
             ])
-            ->add('numpapier')
-            ->add('localisation')
+            ->add('numpapier', NumberType::class, ['label'=>'Numéro de papier'])
             ->add('datenaissance', DateType::class, [
                 'widget' => 'single_text',
 
             ])
-
-            ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
+            ->add('plainPassword', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'first_options'  => ['label' => 'Mot de passe'],
+                'second_options' => ['label' => 'Confirmez votre mot de passe'],
+                'options' => ['attr' => ['class' => 'form-control']],
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Tapez votre mot de passe SVP',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'minMessage' => 'Votre mot de passe doit contenir au moins six caractéres',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
                 ],
             ])
-            ->add('confirm_password',PasswordType::class)
+
 
             ->add('terms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => new IsTrue(),
             ])
+            ->add('disponibilite', TextType::class,['label'=>'Disponiblité'])
         ;
     }
 

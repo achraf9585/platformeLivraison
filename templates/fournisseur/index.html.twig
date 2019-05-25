@@ -6,7 +6,7 @@
 
                 <ul class="app-breadcrumb breadcrumb">
                     <li class="breadcrumb-item"><i class="fa fa-building fa-lg"></i></li>
-                    <li class="breadcrumb-item"><a href="#">Région</a></li>
+                    <li class="breadcrumb-item"><a href="#">Fournisseur</a></li>
                 </ul>
             </div>
             <div class="container">
@@ -43,16 +43,18 @@
                         <thead>
                         <tr>
 
-                            <th>{{ knp_pagination_sortable(properties, 'id','id') }}</th>
-                            <th>{{ knp_pagination_sortable(properties, 'nom restaurant','nomrestaurant') }}</th>
+                            <th>{{ knp_pagination_sortable(properties, 'Id','id') }}</th>
+                            <th></th>
+                            <th>{{ knp_pagination_sortable(properties, 'Nom restaurant','nomrestaurant') }}</th>
+                            <th></th>
+                            <th></th>
                             <th>Logo</th>
-                            <th>etat</th>
-                            <th></th>
-                            <th></th>
                             <th></th>
                             <th></th>
 
-                            <th></th><th></th><th></th>
+                            <th>{{ knp_pagination_sortable(properties, 'Etat fournisseur','etat') }}</th>
+                            <th></th>
+                            <th></th>
 
                             <th>Action</th>
 
@@ -63,23 +65,30 @@
 
 
                         {% for fournisseur in properties %}
+                            {% if fournisseur.etat=="Activé" %}
+                                <tr style="background: #52BE80;">
+                            {% else %}
+                                <tr style="background: #D3CBCB;">
+                            {% endif %}
+                            <fournisseur>
+                                <td>{{ fournisseur.id }}</td>
+                                <td></td>
+                                <td>{{ fournisseur.nomrestaurant }} </td>
+                                <td></td>
+                                <td></td>
+                                <td><img src="{{ asset('images/articles/'~ fournisseur.imageName) | imagine_filter('test') }}" /></td>
+                                <td></td>
 
-                            <tr style="background-color: green">
+                                <td> </td>
+                                <td> {{ fournisseur.etat }}</td>
+                                <td> </td>
+                                <td></td>
+                                <td>
+                                    <a href="{{ path('fournisseur_edit', {'id': fournisseur.id}) }}" style="color:#E4A11D;"><i class="material-icons" data-toggle="tooltip" title="Modifier" >&#xE254;</i></a>
 
-                                <region>
-                                    <td>{{ fournisseur.id }}</td>
-                                    <td>{{ fournisseur.nomrestaurant }}</td>
-                                    <td><img src="{{ asset('images/articles/'~ fournisseur.imageName) | imagine_filter('test') }}" /> </td>
-                                    <td>{{ fournisseur.etat }}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-
-                                    <td> </td>
-                                    <td> </td>
-                                    <td> </td>
-
-                                </region>
+                                    <a href="{{ path('fournisseur_show', {'id': fournisseur.id}) }}" ><i class="material-icons" title="voir">&#xE417;</i></a>
+                                </td>
+                            </fournisseur>
                             </tr>
 
                         {% endfor %}
@@ -102,7 +111,7 @@
             <!-- Add Modal HTML -->
             <div id="addEmployeeModal" class="modal fade">
                 <div class="modal-dialog" style="height:100px; ">
-                    <div class="modal-content" style="height: 480px;">
+                    <div class="modal-content" style="height: 570px;">
                         {{ include ('fournisseur/_form.html.twig') }}
                     </div>
                 </div>
@@ -117,3 +126,45 @@
 
 
     {% endblock %}
+
+
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-3.2.1.min.js')}}"></script>
+    <script src="{{ asset('js/popper.min.js') }}"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script>
+        $(function () {
+            $('#regions').DataTable( {
+                "language": {
+                    "lengthMenu": "afficher _MENU_ enregistement par page",
+                    "zeroRecords": "Aucun enregistrement a été trouvé !",
+                    "info": "Page _PAGE_ de _PAGES_ pages",
+                    "infoEmpty": "Aucun enregistrement",
+                    "infoFiltered": "(filtré de  _MAX_ total enregistement)",
+                    "search": "Recherche:",
+                    "paginate": {
+                        "previous": "Precédent",
+                        "next" : "suivant"
+                    }
+                }
+            } );
+        })
+    </script>
+
+    <!-- jQuery 3 -->
+    <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <!-- DataTables -->
+    <script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+    <!--  <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script> -->
+    <!-- SlimScroll -->
+    <script src="{{ asset('bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+    <!-- FastClick -->
+    <script src="{{ asset('bower_components/fastclick/lib/fastclick.js')}}"></script>
+    <!--  <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script> -->
+{% endblock %}

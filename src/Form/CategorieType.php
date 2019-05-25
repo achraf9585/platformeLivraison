@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Categorie;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,6 +14,15 @@ class CategorieType extends AbstractType
     {
         $builder
             ->add('libele')
+            ->add('etat', ChoiceType::class,
+                [
+                    'label'=>'Etat de la catégorie',
+                    'choices' =>    [
+                        'Activé' => 'Activé',
+                        'Désactivé' => 'Désactivé',
+
+                    ]
+                ])
 
         ;
     }

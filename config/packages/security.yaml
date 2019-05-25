@@ -63,6 +63,7 @@ security:
                 authenticators:
                     - App\Security\LoginFormAuthentificatorAuthenticator
                     - App\Security\LoginCliFormAuthenticator
+                    - App\Security\FournisseurAuthAuthenticator
                 entry_point: App\Security\LoginFormAuthentificatorAuthenticator
 
         cli:
@@ -86,9 +87,6 @@ security:
             provider: app_fournisseur_provider
 
 
-            logout:
-                path: logoutfour
-                target: /four
 
 
             # activate different ways to authenticate
@@ -109,4 +107,7 @@ security:
         - { path: ^/condi, roles: ROLE_USER }
         - { path: ^/affcli, roles: ROLE_USER }
         - { path: ^/fournisseur, roles: ROLE_USER }
+        - { path: ^/categorie, roles: ROLE_FOUR }
+        - { path: ^/article, roles: ROLE_FOUR }
+        - { path: ^/supplement, roles: ROLE_FOUR }
         # - { path: ^/profile, roles: ROLE_USER }

@@ -1,0 +1,82 @@
+{% extends 'base3.html.twig' %}
+{% block title %}Panier!{% endblock %}
+
+
+{% block body %}
+    <div class="container mb-4">
+    <div class="row">
+    <div class="col-12">
+<div class="table-responsive">
+    <table class="table table-striped" style="margin-top: 40px;">
+<thead style="background: white">
+
+
+<th scope="col"></th>
+<th scope="col">Article</th>
+<th scope="col">Qte</th>
+<th scope="col">Prix</th>
+<th scope="col">Prix Total</th>
+<th scope="col">Action</th>
+</thead>
+        <tbody >
+        {% for key,value in articles %}
+        <tr style="background: whitesmoke">
+            <td> <img src="{{ asset('images/articles/'~ articles[key].imageName) | imagine_filter('test') }}"/> </td>
+            <td>{{ articles[key].libele }}</td>
+            <td><a href="{{ path('panier_minus' ,  {'id': articles[key].id}) }}">-</a>  {{ qts[key] }}
+                <a href="{{ path('panier_plus', {'id': articles[key].id}) }}">+</a> </td>
+            <td>{{ articles[key].prix }} DT</td>
+            <td>{{ qts[key] * articles[key].prix }} DT</td>
+            <td><a href="{{ path('panier_supprimer' , {'id': articles[key].id}) }}" class="btn btn-sm btn-danger"><i  class="fa fa-trash">    </i> </a></td>
+        </tr>
+
+        {% endfor %}
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Total </td>
+            <td>{{ total }} DT </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Frais livraison </td>
+            <td>6DT </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Total Commande </td>
+            <td>{{ total + 6 }}  DT</td>
+        </tr>
+        </tbody>
+
+
+
+
+
+    </table>
+</div>
+    </div>
+        <div class="col mb-2">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                <button class="btn btn-block btn-light"> Continuer les achats</button>
+                </div>
+                <div class="col-sm-12 col-md-6 text-right">
+
+
+                    <button class="btn btn-block   text-uppercase" style=" color: #fff; background-color: #28a745;
+                    border-color: #28a745;"> Commander</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

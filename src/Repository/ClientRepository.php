@@ -47,4 +47,15 @@ class ClientRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
+    public function nbrcli()
+    {
+        return $this->createQueryBuilder('c')
+            ->select('count(c.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+
+    }
 }

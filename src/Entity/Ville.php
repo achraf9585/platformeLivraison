@@ -45,6 +45,11 @@ class Ville
      */
     private $statut;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $etatVille;
+
     public function __construct()
     {
         $this->fournisseurs = new ArrayCollection();
@@ -119,6 +124,18 @@ class Ville
     public function setStatut(string $statut): self
     {
         $this->statut = $statut;
+
+        return $this;
+    }
+
+    public function getEtatVille(): ?string
+    {
+        return $this->etatVille;
+    }
+
+    public function setEtatVille(string $etatVille): self
+    {
+        $this->etatVille = $etatVille;
 
         return $this;
     }

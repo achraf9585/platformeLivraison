@@ -1,18 +1,20 @@
 <div class="container" style="">
-<br>
-<h1 style="margin-left: 10px;">Ajouter une nouvelle Ville</h1>
+    <br>
+    <h1 style="margin-left: 10px;">Ajouter une nouvelle Ville</h1>
 
-{{ form_start(form) }}
+    {{ form_start(form) }}
 
-    {{ form_row(form.libele,{'attr':{'class':'form-control'}}) }}
+    {{ form_row(form.libele,{'attr':{'class':'form-control','placeholder':'Tapez le nom de la ville...'}}) }}
     {{ form_row(form.region,{'attr':{'class':'ennos'}}) }}
-<br>
+    {{ form_row(form.etatVille,{'attr':{'class':'ennos'}}) }}
+
+    <br>
 
 
-<br>
-<div>
-    <button class="btn btn-success" style="width: 70%; margin-left: 70px; margin-right: 10px; margin-bottom: 10px;">{{ button_label|default('Enregistrer') }}</button>
+    <br>
+    <div>
+        <button class="btn btn-success" style="width: 70%; margin-left: 70px; margin-right: 10px; margin-bottom: 10px;">{{ button_label|default('Enregistrer') }}</button>
 
-</div>
-{{ form_end(form) }}
+    </div>
+    {{ form_end(form) }}
 </div>

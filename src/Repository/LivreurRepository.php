@@ -47,4 +47,13 @@ class LivreurRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function nbrcli()
+    {
+        return $this->createQueryBuilder('l')
+            ->select('count(l.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+
+    }
 }

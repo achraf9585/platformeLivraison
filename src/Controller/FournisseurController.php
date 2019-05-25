@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @Route("/fournisseur")
@@ -19,7 +20,7 @@ class FournisseurController extends AbstractController
     /**
      * @Route("", name="fournisseur_index", methods={"GET","POST"})
      */
-    public function index(FournisseurRepository $fournisseurRepository,Request $request, PaginatorInterface $paginator): Response
+    public function index(FournisseurRepository $fournisseurRepository,Request $request, PaginatorInterface $paginator,UserPasswordEncoderInterface $passwordEncoder): Response
     {
         $fournisseurs=$fournisseurRepository->findAll();
         $properties= $paginator->paginate(
@@ -33,6 +34,12 @@ class FournisseurController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $fournisseur->setPassword(
+                $passwordEncoder->encodePassword(
+                    $fournisseur,
+                    $form->get('password')->getData()
+                )
+            );
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($fournisseur);
             $entityManager->flush();
@@ -41,7 +48,7 @@ class FournisseurController extends AbstractController
         }
 
         return $this->render('fournisseur/index.html.twig', [
-            'regions' => $fournisseurs,
+            'fournisseurs' => $fournisseurs,
             'region' => $fournisseur,
             'form' => $form->createView(),
             'properties' =>$properties,

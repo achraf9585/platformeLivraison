@@ -6,6 +6,7 @@ use App\Entity\Article;
 use App\Entity\Supplement;
 use function Sodium\add;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Bridge\Doctrine\Form\Type\Textty;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -32,6 +33,13 @@ class ArticleType extends AbstractType
                    'multiple'=>true,
                    'expanded'=>true,
                ])
+            ->add('etatArticle', ChoiceType::class,[
+                'choices'=>
+                    [
+                        'Activé'=>'Activé',
+                        'Désactivé'=>'Désactivé'
+                    ]
+            ])
         ;
     }
 

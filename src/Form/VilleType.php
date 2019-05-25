@@ -28,6 +28,13 @@ class VilleType extends AbstractType
                 },*/
                'choice_label' =>'libele',
             ))
+            ->add('etatVille', ChoiceType::class,[
+                'label'=>'Etat Ville',
+                'choices'=> [
+                    'Activé'=>'Activé',
+                    'Désactivé'=>'Désactivé'
+                ]
+            ])
 
         ;
     }

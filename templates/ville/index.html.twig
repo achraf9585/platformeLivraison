@@ -37,18 +37,18 @@
                             </div>
                         </div>
                     </div>
-                    <table class="table table-striped table-hover">
+                    <table id="regions" class="table table-bordered table-striped">
                         <thead>
                         <tr>
 
-                            <th>{{ knp_pagination_sortable(properties, 'id','id') }}</th>
-                            <th></th>
-                            <th></th>
-                            <th>{{ knp_pagination_sortable(properties, 'Ville','libele') }}</th>
-                            <th>{{ knp_pagination_sortable(properties, 'Region','region') }}</th>
+                            <th>Id</th>
+
+                            <th>Nom Ville</th>
+                            <th>Nom Région</th>
 
 
-                            <th>{{ knp_pagination_sortable(properties, 'Region','staut') }}</th>
+                            <th>Statut</th>
+                            <th>Etat</th>
                             <th>Action</th>
 
                         </tr>
@@ -57,27 +57,27 @@
 
 
 
-                        {% for region in properties %}
+                        {% for region in villes %}
                             {% if region.statut == "Disponible" %}
                             <tr style="background: green">
 {% else %}
                                 <tr>
                             {% endif %}
-                                <region>
+
                                     <td>{{ region.id }}</td>
-                                    <th></th>
-                                    <th></th>
+
                                     <td>{{ region.libele }}</td>
                                     <td>{{ region.region.getLibele() }}</td>
 
                                     <td>{{ region.statut }}</td>
+                                    <td>{{ region.etatVille }}</td>
                                     <td>
 
                                         <a href="{{ path('ville_edit', {'id': region.id}) }}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Modifier">&#xE254;</i></a>
                                         <a  href="{{ path('ville_show', {'id': region.id}) }}"  ><i title="Voir" class="material-icons">&#xE8F4;</i></a>
                                     </td>
 
-                                </region>
+
                             </tr>
                         {% endfor %}
 
@@ -87,12 +87,7 @@
 
                         </tbody>
                     </table>
-                    <div class="clearfix">
 
-                        <ul class="pagination">
-                            {{ knp_pagination_render(properties) }}
-                        </ul>
-                    </div>
 
                 </div>
             </div>
@@ -111,5 +106,44 @@
 
 
 
+
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-3.2.1.min.js')}}"></script>
+    <script src="{{ asset('js/popper.min.js') }}"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script>
+        $(function () {
+            $('#regions').DataTable( {
+                "language": {
+                    "lengthMenu": "afficher _MENU_ enregistement par page",
+                    "zeroRecords": "Aucun enregistrement a été trouvé !",
+                    "info": "Page _PAGE_ de _PAGES_ pages",
+                    "infoEmpty": "Aucun enregistrement",
+                    "infoFiltered": "(filtré de  _MAX_ total enregistement)",
+                    "search": "Recherche:",
+                    "paginate": {
+                        "previous": "Precédent",
+                        "next" : "suivant"
+                    }
+                }
+            } );
+        })
+    </script>
+
+    <!-- jQuery 3 -->
+    <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <!-- DataTables -->
+    <script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+    <!--  <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script> -->
+    <!-- SlimScroll -->
+    <script src="{{ asset('bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+    <!-- FastClick -->
+    <script src="{{ asset('bower_components/fastclick/lib/fastclick.js')}}"></script>
 
 {% endblock %}

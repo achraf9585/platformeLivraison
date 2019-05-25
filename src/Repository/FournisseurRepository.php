@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Fournisseur;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use phpDocumentor\Reflection\Types\String_;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -61,5 +62,18 @@ $sql=' SELECT f.* FROM fournisseur f , ville v
 $smt= $conn->prepare($sql);
 $smt->execute(['val' => $value]);
 return $smt->fetchAll();
+    }
+
+
+
+
+    public function nbrfour()
+    {
+        return $this->createQueryBuilder('f')
+            ->select('count(f.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+
     }
 }

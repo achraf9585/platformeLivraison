@@ -82,6 +82,16 @@ class Article
      */
     private $updatedAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Fournisseur", inversedBy="articles")
+     */
+    private $fournisseur;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $etatArticle;
+
 
 
 
@@ -207,5 +217,29 @@ class Article
     public function getImageName(): ?string
     {
         return $this->imageName;
+    }
+
+    public function getFournisseur(): ?Fournisseur
+    {
+        return $this->fournisseur;
+    }
+
+    public function setFournisseur(?Fournisseur $fournisseur): self
+    {
+        $this->fournisseur = $fournisseur;
+
+        return $this;
+    }
+
+    public function getEtatArticle(): ?string
+    {
+        return $this->etatArticle;
+    }
+
+    public function setEtatArticle(string $etatArticle): self
+    {
+        $this->etatArticle = $etatArticle;
+
+        return $this;
     }
 }

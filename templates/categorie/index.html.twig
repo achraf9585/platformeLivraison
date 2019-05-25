@@ -38,14 +38,24 @@
                         <th></th>
                         <th></th>
                         <th></th><th></th>
-                        <th>{{ knp_pagination_sortable (properties,'nom','nom')}}</th>
+                        <th>{{ knp_pagination_sortable (properties,'Nom de la catégorie ??','nom')}}</th>
                         <th></th>
-                        <th></th><th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>{{ knp_pagination_sortable (properties,'Etat de la catégorie ??','etat')}}</th>
+
                         <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
                     {% for categorie in properties %}
+                        {% if categorie.etat == "Activé" %}
+                            <tr style="background: greenyellow;">
+                        {% else %}
+                            <tr style="color: rgb(238, 238, 238);">
+                        {% endif %}
+
                         <tr>
                         <td></td>
                         <td> {{ categorie.id }} </td>
@@ -57,11 +67,14 @@
                         <td></td>
                         <td></td>
                         <td></td>
+                        <td></td>
+                        <td>{{ categorie.etat }}</td>
                         <td>
                             <a href="{{ path('categorie_edit', {'id': categorie.id}) }}" style="color:#E4A11D;"><i class="material-icons" data-toggle="tooltip" title="Modifier" >&#xE254;</i></a>
 
                             <a href="{{ path('categorie_show', {'id': categorie.id}) }}" ><i class="material-icons" title="voir">&#xE417;</i></a>
                         </td>
+
                     {% else %}
                         <tr>
                             <td colspan="4">liste vides</td>

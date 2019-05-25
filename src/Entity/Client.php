@@ -31,6 +31,7 @@ class Client implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\Length(min="6")
      */
     private $password;
 
@@ -74,7 +75,9 @@ class Client implements UserInterface
      */
     private $datenaissance;
 
-
+    /**
+     * @Assert\EqualTo(propertyPath="password", message="Vous n'avez pas tapé le même mot de passe")
+     */
     public $confirm_password;
 
 

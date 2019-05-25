@@ -47,4 +47,15 @@ class SupplementRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findsuppfour($value): array
+    {
+        $conn= $this->getEntityManager()->getConnection();
+        $sql=' SELECT s.* FROM supplement s , plat p 
+ WHERE p.fournisseur_id = :val
+';
+        $smt= $conn->prepare($sql);
+        $smt->execute(['val' => $value]);
+        return $smt->fetchAll();
+    }
 }

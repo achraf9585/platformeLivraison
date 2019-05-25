@@ -26,11 +26,12 @@
                     <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Nom de l'article</th>
-                        <th>{{ knp_pagination_sortable (properties,'Categorie','Categorie')}}↑↓</th>
+                        <th>{{ knp_pagination_sortable (properties,'Nom Article ??','nom')}}</th>
+                        <th>{{ knp_pagination_sortable (properties,'Categorie ??','Categorie')}}</th>
                         <th>Image</th>
-                        <th>{{ knp_pagination_sortable (properties,'Prix','Prix')}} ↑↓   </th>
+                        <th>{{ knp_pagination_sortable (properties,'Prix ??','Prix')}}   </th>
                         <th>Supplements   </th>
+                        <th>Etat de l'article</th>
 
                         <th>Actions</th>
                     </tr>
@@ -43,22 +44,24 @@
                             <td>{{ article.categorie.getLibele() }}</td>
                             <td><img src="{{ asset('images/articles/'~ article.imageName) | imagine_filter('test') }}" /> </td>
                             <td>{{ article.prix}}dt</td>
-                          <td>
-
-
-
-
-                            {% for supps in article.supplements %}
-                                <ul>
-                                  <li>
-                            {{ supps.libele}}
-                                  </li>
-                              </ul>
-                            {% endfor %}
-                          </td>
                             <td>
-                                <a href="{{ path('plat_show', {'id': article.id}) }}"><i class="material-icons" title="voir">&#xE417;</i></a>
+
+
+
+
+                                {% for supps in article.supplements %}
+                                    <ul>
+                                        <li>
+                                            {{ supps.libele}}
+                                        </li>
+                                    </ul>
+                                {% endfor %}
+                            </td>
+                            <td>{{ article.etatArticle }}</td>
+                            <td>
                                 <a href="{{ path('plat_edit', {'id': article.id}) }}" style="color:#E4A11D;"><i class="material-icons" data-toggle="tooltip" title="Modifier" >&#xE254;</i></a>
+
+                                <a href="{{ path('plat_show', {'id': article.id}) }}"><i class="material-icons" title="voir">&#xE417;</i></a>
 
 
                             </td>
