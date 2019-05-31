@@ -2,18 +2,24 @@
 
 namespace App\Controller;
 
+use App\Entity\Commande;
+use App\Entity\Commande_article;
 use App\Entity\Region;
 use App\Form\ArticleType;
+use App\Form\CommandeType;
 use App\Form\FournisseurType;
 use App\Form\ResetPasswordType;
 use App\Repository\ArticleRepository;
 use App\Repository\CategorieRepository;
 use App\Repository\ClientRepository;
+use App\Repository\CommandeRepository;
 use App\Repository\FournisseurRepository;
 use App\Repository\LivreurRepository;
 use App\Repository\RegionRepository;
 use App\Repository\VilleRepository;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\DBAL\DriverManager;
+use Doctrine\ORM\EntityManager;
 use Monolog\Logger;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -49,16 +55,18 @@ class AdminController extends Controller
     /**
      * @Route("/admin", name="admin")
      */
-    public function index(FournisseurRepository $fournisseurRepository, LivreurRepository $livreurRepository , ClientRepository $clientRepository)
+    public function index(FournisseurRepository $fournisseurRepository, LivreurRepository $livreurRepository , ClientRepository $clientRepository,CommandeRepository $commandeRepository)
     {
         $fournisseursnbr=$fournisseurRepository->nbrfour();
         $clientnbr= $clientRepository->nbrcli();
         $livreurnbr= $livreurRepository->nbrcli();
+        $commandenbr=$commandeRepository->nbrcom();
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
             'fournisseursnbr' => $fournisseursnbr,
             'clientnbr' => $clientnbr,
             'livreurnbr' => $livreurnbr,
+            'commandenbr' => $commandenbr,
         ]);
     }
     /**
@@ -122,9 +130,12 @@ public  function  search(FournisseurRepository $fournisseurRepository,Request $r
     }
 
     /**
-     * @Route("/client/panier", name="panier_show", methods={"GET"})
+     * @Route("/client/panier", name="panier_show", methods={"GET","POST"})
      */
-    public function getPanier(ArticleRepository $articleRepository){
+    public function getPanier(ArticleRepository $articleRepository,Request $request){
+
+
+
         $articles=[];
         $qts=[];
         $session =  $this->get('session');
@@ -138,11 +149,57 @@ public  function  search(FournisseurRepository $fournisseurRepository,Request $r
             array_push($qts,$qte);
             $total+=$qte*$article->getPrix();
         }
+
+
+
+        $commande = new Commande();
+        $form = $this->createForm(CommandeType::class, $commande );
+ //mezelet
+
+
+        $form->handleRequest($request);
+        $usr= $this->get('security.token_storage')->getToken()->getUser();
+        $usr->getId();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($commande);
+            $commande->setClient($usr);
+            $commande->setTotal($total+6);
+            $entityManager->flush();
+
+// *************//
+
+            foreach ($panier as $id => $qte){
+                $comart= new Commande_article();
+
+
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($comart);
+                $comart->setArticle($article);
+                $comart->setCommande($commande);
+                $comart->setQte($qte);
+                $entityManager->flush();
+            }
+            //*****************//
+          /*  for($i=0;$i<sizeof($qts);$i++)
+            {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($comart);
+                $comart->setArticle($articles[$i]);
+                $comart->setCommande($commande);
+                $comart->setQte($qts[$i]);
+                $entityManager->flush();
+            }*/
+
+            return $this->redirectToRoute('cherch');
+        }
         return $this->render('client/panier.html.twig', [
             'articles' => $articles,
             'total' => $total,
             'nbr'=>$this->panierCount(),
             'qts' => $qts,
+            'form' => $form->createView(),
+
         ]);
     }
 
@@ -240,6 +297,7 @@ public  function  search(FournisseurRepository $fournisseurRepository,Request $r
         if ($session->has('panier')) {$nbr=count($session->get('panier'));}
         return($nbr);
     }
+
 
 
 

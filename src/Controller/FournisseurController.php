@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Fournisseur;
+use App\Form\FourEditType;
 use App\Form\FournisseurType;
 use App\Repository\FournisseurRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -72,7 +73,7 @@ class FournisseurController extends AbstractController
      */
     public function edit(Request $request, Fournisseur $fournisseur): Response
     {
-        $form = $this->createForm(FournisseurType::class, $fournisseur);
+        $form = $this->createForm(FourEditType::class, $fournisseur);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -86,6 +87,8 @@ class FournisseurController extends AbstractController
         return $this->render('fournisseur/edit.html.twig', [
             'fournisseur' => $fournisseur,
             'form' => $form->createView(),
+            'editMode'=>$fournisseur->getId()!=null
+
         ]);
     }
 

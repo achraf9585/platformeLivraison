@@ -22,7 +22,6 @@
 <br>
 <br>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="background-color: white">
-        <a class="navbar-brand" href=""</a>
 
 
         <div class="collapse navbar-collapse" id="navbarColor01">
@@ -47,7 +46,7 @@
 
             <div class="card">
                 <div class="card-body">
-                    <img class="card-img-top" src="{{ asset('images/articles/'~ a.imageName) | imagine_filter('test') }}">
+                    <img class="card-img-top" style="height: 300px;" src="{{ asset('images/articles/'~ a.imageName)  }}">
 
                     <h5 class="card-title">{{ a.libele }}</h5>
                     <p class="card-text">{{ a.prix }} DT</p>
@@ -58,5 +57,41 @@
             </div>
         {% endfor %}
     </div>
+    <div class="collapse navbar-collapse" style="background-color: white">
+       Commentaires
 
+
+      <form>
+          <textarea class="form-control" rows="3" style=" width:100%;background: whitesmoke; color: #0a0a0a" placeholder="Commentaire...">
+
+          </textarea>
+<div class="container">
+    <div class="rating">
+        <input type="radio" name="star" id="rating" value="1">
+        <input type="radio" name="star" id="rating" value="2">
+        <input type="radio" name="star" id="rating" value="3">
+        <input type="radio" name="star" id="rating" value="4">
+        <input type="radio" name="star" id="rating" value="5">
+        <br/>
+    </div>
+</div>
+          <button class="btn btn-block" style="color: #fff; background-color: #28a745;">Commenter</button>
+      </form>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $('.rating').rating(function (vote, event) {
+            $.ajax({
+                method: 'POST',
+                url:'aa.php',
+                data:{vote:vote}
+            }).done(function (info) {
+               $('.info').html("YOUR VOTE <b>"+info+"</b>")
+                
+            })
+            
+        })
+    </script>
 {% endblock %}

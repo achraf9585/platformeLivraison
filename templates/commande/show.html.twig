@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande{% endblock %}
+
+{% block body %}
+    <main class="app-content">
+        <div class="app-title">
+
+            <ul class="app-breadcrumb breadcrumb">
+                <li class="breadcrumb-item"><i class="fa fa-users fa-lg"></i></li>
+                <li class="breadcrumb-item"><a href="#">Commande</a></li>
+            </ul>
+        </div>
+        <div class="container">
+            <div class="table-wrapper" style="width:800px;margin-left:100px;">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>Commande </h2>
+                        </div>
+
+                    </div>
+                </div>
+                <h1>Commande  <a href="{{ path('commande_index') }}"><i class="material-icons">&#xE5C4;</i></a></h1>
+
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ commande.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Client</th>
+                        <td>{{ commande.client.getNom }} {{ commande.client.getPrenom }}</td>
+                    </tr>
+                    <tr>
+                        <th>Livreur</th>
+                        {% if commande.livreur is null %}
+                            <td></td>
+                        {% else %}
+                            <td>{{ commande.livreur.getNom()  }}  {{ commande.livreur.getPrenom() }}</td>
+                        {% endif %}
+
+                    </tr>
+                    <tr>
+                        <th>Date commande</th>
+                        <td>{{ commande.datecommande |date('Y-m-d-H:i:s') }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date choix livraison</th>
+                        <td>{{ commande.datechoixliv|date('Y-m-d H:i:s') }}</td>
+                    </tr>
+                    <tr>
+                        <th>CRL</th>
+                        <td>{{ commande.codeconfirmlivfour }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date confirmation livreur/fournisseur </th>
+                        {% if commande.dateconfirmlivcli is null %}
+                        <td></td>
+                        {% else %}
+                        <td>{{ commande.dateconfirmliv|date('Y-m-d H:i:s')  }}</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <th>CCL</th>
+                        <td>{{ commande.codeconfirmlivcli }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date confirmation livreur/client</th>
+                        {% if commande.dateconfirmlivcli is null %}
+                        <td></td>
+                       {% else %}
+                        <td>{{ commande.dateconfirmlivcli|date('Y-m-d H:i:s')  }}</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <th>Etat</th>
+                        <td>{{ commande.etat }}</td>
+                    </tr>
+                    <tr>
+                        <th>Total</th>
+                        <td>{{ commande.total  }} DT</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </main>
+{% endblock %}

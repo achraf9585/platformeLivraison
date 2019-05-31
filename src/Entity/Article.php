@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use PhpParser\Node\Scalar\String_;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use App\Entity\CommandeArticleSupplement;
 
 
 
@@ -92,6 +93,15 @@ class Article
      */
     private $etatArticle;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CommandeArticleSupplement", mappedBy="article")
+     */
+    private $commandeArticleSupplements;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Commande_article", mappedBy="articles",cascade={"persist","remove"})
+     */
+    private $commandes;
 
 
 
@@ -101,6 +111,8 @@ class Article
     public function __construct()
     {
         $this->supplements = new ArrayCollection();
+        $this->commandeArticleSupplements = new ArrayCollection();
+        $this->commandes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -242,4 +254,73 @@ class Article
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCommandeArticleSupplements()
+    {
+        return $this->commandeArticleSupplements;
+    }
+
+    /**
+     * @param mixed $commandeArticleSupplements
+     */
+    public function setCommandeArticleSupplements($commandeArticleSupplements)
+    {
+        $this->commandeArticleSupplements = $commandeArticleSupplements;
+    }
+
+    public function addCommandeArticleSupplement(CommandeArticleSupplement $commandeArticleSupplement): self
+    {
+        if (!$this->commandeArticleSupplements->contains($commandeArticleSupplement)) {
+            $this->commandeArticleSupplements[] = $commandeArticleSupplement;
+            $commandeArticleSupplement->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommandeArticleSupplement(CommandeArticleSupplement $commandeArticleSupplement): self
+    {
+        if ($this->commandeArticleSupplements->contains($commandeArticleSupplement)) {
+            $this->commandeArticleSupplements->removeElement($commandeArticleSupplement);
+            // set the owning side to null (unless already changed)
+            if ($commandeArticleSupplement->getArticle() === $this) {
+                $commandeArticleSupplement->setArticle(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commande[]
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes[] = $commande;
+            $commande->addArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commandes->contains($commande)) {
+            $this->commandes->removeElement($commande);
+            $commande->removeArticle($this);
+        }
+
+        return $this;
+    }
+
+
 }

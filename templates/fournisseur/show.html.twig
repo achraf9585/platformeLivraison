@@ -3,7 +3,25 @@
 {% block title %}Fournisseur{% endblock %}
 
 {% block body %}
-    <h1>Fournisseur</h1>
+<main class="app-content">
+    <div class="app-title">
+
+        <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item"><i class="fa fa-building fa-lg"></i></li>
+            <li class="breadcrumb-item"><a href="#">Région</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="table-wrapper" style="width:800px;margin-left:100px;">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2>Gérer <b>fournisseurs</b></h2>
+                    </div>
+
+                </div>
+            </div>
+            <h1>{{ fournisseur.nomrestaurant }}  <a href="{{ path('fournisseur_index') }}"><i class="material-icons">&#xE5C4;</i></a></h1>
 
     <table class="table">
         <tbody>
@@ -15,14 +33,8 @@
                 <th>Email</th>
                 <td>{{ fournisseur.email }}</td>
             </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ fournisseur.roles ? fournisseur.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ fournisseur.password }}</td>
-            </tr>
+
+
             <tr>
                 <th>Nom</th>
                 <td>{{ fournisseur.nom }}</td>
@@ -61,18 +73,14 @@
             </tr>
             <tr>
                 <th>ImageName</th>
-                <td>{{ fournisseur.imageName }}</td>
+            <td>   <img src="{{ asset('images/articles/'~ fournisseur.imageName) | imagine_filter('test') }}" /></td>
             </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ fournisseur.updatedAt ? fournisseur.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
+
         </tbody>
     </table>
 
-    <a href="{{ path('fournisseur_index') }}">back to list</a>
+        </div>
 
-    <a href="{{ path('fournisseur_edit', {'id': fournisseur.id}) }}">edit</a>
-
-    {{ include('fournisseur/_delete_form.html.twig') }}
+    </div>
+</main>
 {% endblock %}

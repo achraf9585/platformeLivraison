@@ -3,7 +3,7 @@ liip_imagine:
     filter_sets:
         test:
             jpeg_quality:                 85
-            png_compression_level:        8
+            png_compression_level:        0
             filters:
-                thumbnail: { size: [120, 90], mode: outbound, allow_upscale: true}
+                thumbnail: { size: [120, 900], mode: outbound, allow_upscale: true}
 

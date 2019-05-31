@@ -1,31 +1,32 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Achraf Zaafrane
+ * Date: 27/05/2019
+ * Time: 01:55
+ */
 
 namespace App\Form;
+
 
 use App\Entity\Fournisseur;
 use App\Entity\Ville;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
-class FournisseurType extends AbstractType
+class FourEditType extends  AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('email', EmailType::class, ['label'=>'Adresse email'])
-            ->add('password', PasswordType::class,['label'=>'Mot de passe'])
-            ->add('confirm_password', PasswordType::class,['label'=>'Confirmer Mot de passe'])
             ->add('nom',TextType::class,['label'=>'Nom'])
             ->add('prenom',TextType::class,['label'=>'Prénom'])
             ->add('numtel1',TextType::class,['label'=>'Numéro de téléphone 1'])
@@ -42,8 +43,11 @@ class FournisseurType extends AbstractType
                         'Désactivé' => 'Désactivé',]
                 ])
             ->add('imageFile' , VichImageType::class, [
+                'required' => false,
+                'allow_delete' => false,
+
                 'imagine_pattern' => 'test'
-                ])
+            ])
             ->add('region',EntityType::class,array(
                 'class' => Ville::class,
 
@@ -65,4 +69,5 @@ class FournisseurType extends AbstractType
             'data_class' => Fournisseur::class,
         ]);
     }
+
 }

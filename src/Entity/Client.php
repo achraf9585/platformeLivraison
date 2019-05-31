@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -79,6 +81,16 @@ class Client implements UserInterface
      * @Assert\EqualTo(propertyPath="password", message="Vous n'avez pas tapé le même mot de passe")
      */
     public $confirm_password;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Commande", mappedBy="client")
+     */
+    private $commandes;
+
+    public function __construct()
+    {
+        $this->commandes = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -227,6 +239,37 @@ class Client implements UserInterface
     public function setDatenaissance(\DateTimeInterface $datenaissance): self
     {
         $this->datenaissance = $datenaissance;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commande[]
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes[] = $commande;
+            $commande->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commandes->contains($commande)) {
+            $this->commandes->removeElement($commande);
+            // set the owning side to null (unless already changed)
+            if ($commande->getClient() === $this) {
+                $commande->setClient(null);
+            }
+        }
 
         return $this;
     }

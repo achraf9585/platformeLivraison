@@ -61,7 +61,7 @@ class Fournisseur implements UserInterface
     private $numtel1;
 
     /**
-     * @ORM\Column(type="string", length=8)
+     * @ORM\Column(type="string", length=8 , nullable=true)
      */
     private $numtel2;
 

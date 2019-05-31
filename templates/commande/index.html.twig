@@ -6,15 +6,15 @@
 
                 <ul class="app-breadcrumb breadcrumb">
                     <li class="breadcrumb-item"><i class="fa fa-building fa-lg"></i></li>
-                    <li class="breadcrumb-item"><a href="#">Livreurs</a></li>
+                    <li class="breadcrumb-item"><a href="#">Clients</a></li>
                 </ul>
             </div>
             <div class="container">
-                <div class="table-wrapper" style="width:900px;margin-left:100px;">
+                <div class="table-wrapper" >
                     <div class="table-title">
                         <div class="row">
                             <div class="col-sm-6">
-                                <h2>Liste des  <b>Livreurs</b></h2>
+                                <h2>Liste des  <b>Clients</b></h2>
                             </div>
 
                         </div>
@@ -26,11 +26,15 @@
                         <tr>
 
                             <th>Id</th>
-                            <th>Email</th>
-                            <th>Nom & Prenom</th>
-                            <th>Numero Téléphone</th>
+                            <th> Client</th>
+                            <th>Numero téléphone client</th>
+                            <th>Adresse</th>
                             <th>Etat</th>
-                            <th>Type Vehicule</th>
+
+                            <th>Livreur</th>
+                            <th>Date commande</th>
+                            <th>CRL</th>
+                            <th>CCL</th>
 
 
                             <th>Action</th>
@@ -41,24 +45,26 @@
 
 
 
-                        {% for livreur in livreurs %}
-                                {% if livreur.disponibilite=="oui" and livreur.etat=="accepte" %}
-                            <tr style="background: #52BE80">
-                                {% else %}
-                                <tr>
-                            {% endif %}
+                        {% for commande in commandes %}
+
+                            <tr>
                                 <client>
-                                    <td>{{ livreur.id }}</td>
-                                    <td>{{ livreur.email }}</td>
-                                    <td>{{ livreur.nom }} {{ livreur.prenom }} </td>
-                                    <td>{{ livreur.numtel1 }}</td>
-                                    <td>{{ livreur.etat }}</td>
-                                    <td>{{ livreur.typevehicule }}</td>
+                                    <td>{{ commande.id }}</td>
+                                    <td>{{ commande.client.getNom()  }}  {{ commande.client.getPrenom() }}</td>
+                                    <td>{{ commande.client.getNumtel1()  }} / {{ commande.client.getNumtel2() }}</td>
+                                    <td>{{ commande.client.getAdresse()  }} </td>
+                                    {% if commande.livreur is null %}
+                                    <td></td>
+                                    {% else %}
+                                    <td>{{ commande.livreur.getNom()  }}  {{ commande.livreur.getPrenom() }}</td>
+                                    {% endif %}
 
-                                    <td>
-                                        <a href="{{ path('livreur_edit', {'id': livreur.id}) }}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Modifier">&#xE254;</i></a>
+                                    <td>{{ commande.etat  }} </td>
+                                    <td>{{ commande.datecommande |date('Y-m-d-H:i:s')  }} </td>
+                                    <td>{{ commande.codeconfirmlivfour  }} </td>
+                                    <td>{{ commande.codeconfirmlivcli  }} </td>
 
-                                        <a  href="{{ path('livreur_show', {'id': livreur.id}) }}"  ><i title="Voir" class="material-icons">&#xE8F4;</i></a>
+                                    <td>    <a  href="{{ path('commande_show', {'id': commande.id}) }}"  ><i title="Voir" class="material-icons">&#xE8F4;</i></a>
                                     </td>
 
 

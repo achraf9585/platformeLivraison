@@ -47,11 +47,17 @@ class Supplement
      */
     private $articles;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CommandeArticleSupplement", mappedBy="supplement")
+     */
+    private $commandeArticleSupplements;
+
 
 
     public function __construct()
     {
         $this->articles = new ArrayCollection();
+        $this->commandeArticleSupplements = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -108,4 +114,45 @@ class Supplement
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCommandeArticleSupplements()
+    {
+        return $this->commandeArticleSupplements;
+    }
+
+    /**
+     * @param mixed $commandeArticleSupplements
+     */
+    public function setCommandeArticleSupplements($commandeArticleSupplements)
+    {
+        $this->commandeArticleSupplements = $commandeArticleSupplements;
+    }
+
+    public function addCommandeArticleSupplement(CommandeArticleSupplement $commandeArticleSupplement): self
+    {
+        if (!$this->commandeArticleSupplements->contains($commandeArticleSupplement)) {
+            $this->commandeArticleSupplements[] = $commandeArticleSupplement;
+            $commandeArticleSupplement->setSupplement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommandeArticleSupplement(CommandeArticleSupplement $commandeArticleSupplement): self
+    {
+        if ($this->commandeArticleSupplements->contains($commandeArticleSupplement)) {
+            $this->commandeArticleSupplements->removeElement($commandeArticleSupplement);
+            // set the owning side to null (unless already changed)
+            if ($commandeArticleSupplement->getSupplement() === $this) {
+                $commandeArticleSupplement->setSupplement(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }
