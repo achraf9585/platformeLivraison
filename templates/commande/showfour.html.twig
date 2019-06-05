@@ -50,6 +50,12 @@
                  <td>{{ commande.etat }}</td>
                     <td>{{ commande.codeconfirmlivfour}}</td>
 
+                 {% if commande.livreur is null %}
+                     <td></td>
+                 {% else %}
+                     <td>{{ commande.livreur.getNom()  }}  {{ commande.livreur.getPrenom() }}</td>
+                 {% endif %}
+
 
 
                     <td>
