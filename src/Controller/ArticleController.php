@@ -28,17 +28,17 @@ class ArticleController extends AbstractController
          * @var \App\Entity\Fournisseur $user
          */
         $user = $this->getUser();
-        $article=$platRepository->findBy(array('fournisseur' => $user));
+        $articles=$platRepository->findBy(array('fournisseur' => $user));
      /*  foreach ($article as $key=>$value){
             $value->setImage(base64_encode(stream_get_contents($value->getImage())));
         }*/
-        $properties=$paginator->paginate($article,
+        $properties=$paginator->paginate($articles,
             $request->query->getInt('page',1),
             4
         );
 
         return $this->render('article/index.html.twig', [
-            'article' => $article,
+            'articles' => $articles,
             'properties'=>$properties,
 
         ]);
@@ -49,8 +49,10 @@ class ArticleController extends AbstractController
      */
     public function new(Request $request)
     {
+        $usr= $this->get('security.token_storage')->getToken()->getUser();
+        $usr->getId();
         $article = new Article();
-        $form = $this->createForm(ArticleType::class, $article);
+        $form = $this->createForm(ArticleType::class, $article , array('user'=>$this->getUser()));
         $form->handleRequest($request);
         /*foreach ($article as $key=>$value){
             $value->setImage(base64_encode(stream_get_contents($value->getImage())));
@@ -60,6 +62,7 @@ class ArticleController extends AbstractController
 
               $entityManager = $this->getDoctrine()->getManager();
               $entityManager->persist($article);
+              $article->setFournisseur($usr);
               $entityManager->flush();
 
               return $this->redirectToRoute('plat_index');

@@ -22,7 +22,9 @@ class CategorieController extends AbstractController
      */
     public function index(CategorieRepository $categorieRepository,Request $request,PaginatorInterface $paginator): Response
     {
-        $categories=$categorieRepository->findAll();
+        $usr= $this->get('security.token_storage')->getToken()->getUser();
+        $usr->getId();
+        $categories=$categorieRepository->findBy(array('fournisseur'=>$usr));
         $properties=$paginator->paginate($categories,
 
             $request->query->getInt('page',1),
@@ -40,6 +42,8 @@ class CategorieController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        $usr= $this->get('security.token_storage')->getToken()->getUser();
+        $usr->getId();
         $categorie = new Categorie();
         $form = $this->createForm(CategorieType::class, $categorie);
         $form->handleRequest($request);
@@ -47,6 +51,7 @@ class CategorieController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($categorie);
+            $categorie->setFournisseur($usr);
             $entityManager->flush();
 
             return $this->redirectToRoute('categorie_index');

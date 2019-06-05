@@ -49,6 +49,7 @@ class FourEditType extends  AbstractType
                 'imagine_pattern' => 'test'
             ])
             ->add('region',EntityType::class,array(
+                'label'    => 'Ville',
                 'class' => Ville::class,
 
                 /*'query_builder'=> function (EntityRepository $er)

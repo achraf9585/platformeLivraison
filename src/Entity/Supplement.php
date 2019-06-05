@@ -52,6 +52,11 @@ class Supplement
      */
     private $commandeArticleSupplements;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Fournisseur", inversedBy="supplements")
+     */
+    private $fournisseur;
+
 
 
     public function __construct()
@@ -150,6 +155,18 @@ class Supplement
                 $commandeArticleSupplement->setSupplement(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getFournisseur(): ?Fournisseur
+    {
+        return $this->fournisseur;
+    }
+
+    public function setFournisseur(?Fournisseur $fournisseur): self
+    {
+        $this->fournisseur = $fournisseur;
 
         return $this;
     }

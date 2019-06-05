@@ -29,7 +29,7 @@ class FournisseurType extends AbstractType
             ->add('nom',TextType::class,['label'=>'Nom'])
             ->add('prenom',TextType::class,['label'=>'Prénom'])
             ->add('numtel1',TextType::class,['label'=>'Numéro de téléphone 1'])
-            ->add('numtel2',null ,array('required'=>false ,'label' => ' Téléphone 2'))
+            ->add('numtel2',null ,array('required'=>false ,'label' => 'Numéro de téléphone 2'))
             ->add('etat', TextType::class,['label'=>'Etat'])
             ->add('adresse',TextType::class,['label'=>'Adresse'])
             ->add('datenaissance', DateType::class, ['label'=>'Date de fondation '])
@@ -45,8 +45,9 @@ class FournisseurType extends AbstractType
                 'imagine_pattern' => 'test'
                 ])
             ->add('region',EntityType::class,array(
-                'class' => Ville::class,
 
+                'class' => Ville::class,
+                'label'    => 'Ville',
                 /*'query_builder'=> function (EntityRepository $er)
                 {
                     return $er->createQueryBuilder('u')

@@ -1,0 +1,126 @@
+{% extends 'baseres.html.twig' %}
+{% block title %}Commandes   index{% endblock %}
+
+{% block body %}
+    <div class="container" style="margin-top:30px;">
+        <div class="table-wrapper" style="width:900px;margin-left:100px;">
+            <div class="table-title"   style="background-color:#E95420;">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2 style="color:#ffffff;textSize:7px;margin-left:11px;margin-top: 15px;"> Liste des<b> Commandes</b></h2>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <table id="regions" class="table table-bordered table-striped"style="width: 900px;">
+                <thead>
+                <tr>
+
+                    <th>Id</th>
+                    <th>Date commande</th>
+                    <th>Date fin livraison </th>
+
+
+                    <th>Etat</th>
+                    <th>CRL</th>
+                    <th>Livreur</th>
+
+
+                    <th>Action</th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+
+
+                {% for commande in commandes %}
+
+             <tr>
+
+                    <td>{{ commande.id }}</td>
+                    <td>{{ commande.datecommande |date('Y-m-d-H:i:s')}}</td>
+                 {% if commande.dateconfirmlivcli is null %}
+                     <td></td>
+                 {% else %}
+                     <td>{{ commande.dateconfirmlivcli|date('Y-m-d H:i:s')  }}</td>
+                 {% endif %}
+                 <td>{{ commande.etat }}</td>
+                    <td>{{ commande.codeconfirmlivfour}}</td>
+
+
+
+                    <td>
+                        <a href="{{ path('fournisseur_edit', {'id': commande.id}) }}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Modifier">&#xE254;</i></a>
+
+                        <a  href="{{ path('fournisseur_show', {'id': commande.id}) }}"  ><i title="Voir" class="material-icons">&#xE8F4;</i></a>
+                    </td>
+
+
+                    </tr>
+                {% endfor %}
+
+
+
+
+
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+    <!-- Add Modal HTML -->
+
+
+
+
+
+
+    </main>
+
+
+
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-3.2.1.min.js')}}"></script>
+    <script src="{{ asset('js/popper.min.js') }}"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script>
+        $(function () {
+            $('#regions').DataTable( {
+                "language": {
+                    "lengthMenu": "afficher _MENU_ enregistement par page",
+                    "zeroRecords": "Aucun enregistrement a été trouvé !",
+                    "info": "Page _PAGE_ de _PAGES_ pages",
+                    "infoEmpty": "Aucun enregistrement",
+                    "infoFiltered": "",
+                    "search": "Recherche:",
+                    "paginate": {
+                        "previous": "Precédent",
+                        "next" : "suivant"
+                    }
+                }
+            } );
+        })
+    </script>
+
+    <!-- jQuery 3 -->
+    <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <!-- DataTables -->
+    <script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+    <!-- SlimScroll -->
+    <script src="{{ asset('bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+    <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+
+    <!-- FastClick -->
+    <script src="{{ asset('bower_components/fastclick/lib/fastclick.js')}}"></script>
+
+{% endblock %}

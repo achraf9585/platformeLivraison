@@ -1,10 +1,10 @@
 <div class="container" style="width: 500px;height: 500px;">
     <h1 style="margin-left: 10px;">{% if editMode %}
 
-            Modifier les données du fournisseur n° {{ fournisseur.id   }}
+            Modifier les données du Restaurant n° {{ fournisseur.id   }}
         {% else %}
             <br>
-            Créer un nouveau Fournisseur
+            Créer un nouveau Restaurant
         {% endif %}</h1>
 
     {{ form_start(form) }}
@@ -13,14 +13,14 @@
         <div class="col-xs-6">
             <div class="input-group">
 
-                {{ form_row(form.nom,{ 'attr': {'class': 'form-control' , 'placeholder': ' le nom du fournisseur'}}) }}
+                {{ form_row(form.nom,{ 'attr': {'class': 'form-control' ,'style': 'width: 200px; ', 'placeholder': ' le nom du Restaurateur'}}) }}
             </div>
         </div>
         <!-- /.col -->
         <div class="col-xs-6">
             <div class="input-group">
 
-                {{ form_row(form.prenom,{ 'attr': {'class': 'form-control' , 'placeholder': ' le prenom du fournisseur'}}) }}
+                {{ form_row(form.prenom,{ 'attr': {'class': 'form-control' , 'style': 'width: 200px; ','placeholder': ' le prenom du Restaurateur'}}) }}
 
             </div>
         </div>
@@ -106,7 +106,7 @@
 
         <div class="col-xs-6">
             <div class="input-group">
-                {{ form_row(form.region,{'attr':{'class':'ennos','placeholder':'Nom de la nouvelle région ...'}}) }}
+                {{ form_row(form.region,{'attr':{'class':'ennos','placeholder':'Nom de la ville ...'}}) }}
 
             </div>
         </div>

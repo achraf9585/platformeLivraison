@@ -103,10 +103,11 @@ public  function  search(FournisseurRepository $fournisseurRepository,Request $r
     /**
      * @Route("/client/recherche", name="lstarticle_show")
      */
-       public function show(ArticleRepository $articleRepository, CategorieRepository $categorieRepository): Response
+       public function show(ArticleRepository $articleRepository, CategorieRepository $categorieRepository,Request $request): Response
     {
+        $m= $request->query->get('m');
         $articles= $articleRepository->findAll();
-        $categories=$categorieRepository->findAll();
+        $categories=$categorieRepository->findBy(array('fournisseur'=> $usr));
         return $this->render('client/lstplats.html.twig', [
             'articles' => $articles,
             'categories' => $categories,
@@ -172,7 +173,7 @@ public  function  search(FournisseurRepository $fournisseurRepository,Request $r
             foreach ($panier as $id => $qte){
                 $comart= new Commande_article();
 
-
+                $article= $articleRepository->findOneBy(['id' =>$id]);
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($comart);
                 $comart->setArticle($article);

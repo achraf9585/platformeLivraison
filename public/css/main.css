@@ -604,6 +604,7 @@ pre code {
       flex-wrap: wrap;
   margin-right: -15px;
   margin-left: -15px;
+  width: 100%;
 }
 
 .no-gutters {
@@ -1968,7 +1969,7 @@ pre code {
   display: block;
   width: 100%;
   padding: 0.375rem 0.75rem;
-  font-size: 1.875rem;
+  font-size: 1.2rem;
   line-height: 1.5;
   color: #495057;
   background-color: #FFF;

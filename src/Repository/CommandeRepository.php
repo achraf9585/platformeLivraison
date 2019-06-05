@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Commande;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @method Commande|null find($id, $lockMode = null, $lockVersion = null)
@@ -55,5 +56,22 @@ class CommandeRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
 
 
+    }
+
+
+
+
+    public function findfour($value): array
+    {
+        $conn= $this->getEntityManager()->getConnection();
+        $sql=' SELECT DISTINCT  commande.id,commande.datecommande,commande.dateconfirmlivcli,
+commande.etat,commande.codeconfirmlivfour,livreur.nom,livreur.prenom FROM commande commande,livreur livreur,article article,commande_article  commande_article
+ WHERE  article.id=commande_article.article_id AND article.fournisseur_id = :val
+ GROUP BY  commande.id
+
+';
+        $smt= $conn->prepare($sql);
+        $smt->execute(['val' => $value]);
+        return $smt->fetchAll();
     }
 }

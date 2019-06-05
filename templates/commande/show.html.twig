@@ -82,6 +82,26 @@
                         <th>Total</th>
                         <td>{{ commande.total  }} DT</td>
                     </tr>
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <thead>
+                            <th>Plat</th>
+                            <th>Qte</th>
+                            <th>Prix Unitaire</th>
+                            <th>Prix Total</th>
+                            </thead>
+                        </tr>
+<tbody>
+                        <tr>
+                            {% for com in commandess %}
+                            <td>{{ com.article.getLibele() }}</td>
+                            <td>{{ com.qte }}</td>
+                            <td>{{  com.article.getPrix() }} DT</td>
+                            <td>{{  com.article.getPrix() * com.qte }} DT</td>
+                        </tr>
+</tbody>
+                        {% endfor %}
+                    </table>
                     </tbody>
                 </table>
             </div>

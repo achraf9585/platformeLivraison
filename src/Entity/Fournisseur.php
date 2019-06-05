@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use PhpParser\Node\Scalar\String_;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
@@ -22,6 +23,7 @@ class Fournisseur implements UserInterface
      * @ORM\Column(type="integer")
      */
     private $id;
+
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
@@ -91,7 +93,9 @@ class Fournisseur implements UserInterface
     private $tempsapprox;
 
 
-
+    public function __toString() :String {
+        return $this->id;
+    }
 
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
@@ -130,9 +134,26 @@ class Fournisseur implements UserInterface
      */
     private $articles;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Supplement", mappedBy="fournisseur")
+     */
+    private $supplements;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Categorie", mappedBy="fournisseur")
+     */
+    private $categories;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $slogan;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
+        $this->supplements = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
 
@@ -398,6 +419,80 @@ class Fournisseur implements UserInterface
                 $article->setFournisseur(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Supplement[]
+     */
+    public function getSupplements(): Collection
+    {
+        return $this->supplements;
+    }
+
+    public function addSupplement(Supplement $supplement): self
+    {
+        if (!$this->supplements->contains($supplement)) {
+            $this->supplements[] = $supplement;
+            $supplement->setFournisseur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSupplement(Supplement $supplement): self
+    {
+        if ($this->supplements->contains($supplement)) {
+            $this->supplements->removeElement($supplement);
+            // set the owning side to null (unless already changed)
+            if ($supplement->getFournisseur() === $this) {
+                $supplement->setFournisseur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Categorie[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Categorie $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+            $category->setFournisseur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Categorie $category): self
+    {
+        if ($this->categories->contains($category)) {
+            $this->categories->removeElement($category);
+            // set the owning side to null (unless already changed)
+            if ($category->getFournisseur() === $this) {
+                $category->setFournisseur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getSlogan(): ?string
+    {
+        return $this->slogan;
+    }
+
+    public function setSlogan(?string $slogan): self
+    {
+        $this->slogan = $slogan;
 
         return $this;
     }

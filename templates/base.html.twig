@@ -3,18 +3,19 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{{ asset('cssw/c1.css') }}">
+        <link rel="stylesheet" href="{{ asset('cssw/c2.css') }}">
+        <link rel="stylesheet" href="{{ asset('cssw/c3.css') }}">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+        <link rel="stylesheet" href="{{ asset('cssw/brs.css') }}">
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <script src="{{ asset('cssw/j1.js') }}"></script>
+        <script src="{{ asset('cssw/j2.js') }}"></script>
         <link rel="stylesheet" href="{{ asset('css/main.css') }} ">
         <link rel="stylesheet" href="{{ asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.css') }} ">
-        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 
@@ -24,10 +25,7 @@
     <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
     <!-- Navbar Right Menu-->
     <ul class="app-nav">
-        <li class="app-search">
-            <input class="app-search__input" type="search" placeholder="Search">
-            <button class="app-search__button"><i class="fa fa-search"></i></button>
-        </li>
+
         <!--Notification Menu-->
         <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="fa fa-bell-o fa-lg"></i></a>
             <ul class="app-notification dropdown-menu dropdown-menu-right">
@@ -91,7 +89,7 @@
         <li><a class="app-menu__item " href="{{ path('commande_index') }}"><i class="app-menu__icon fa fa-server "></i><span class="app-menu__label">Commande</span></a></li>
 
         <li><a class="app-menu__item " href="{{ path('affcli_index') }}"><i class="app-menu__icon fa fa-users"></i><span class="app-menu__label">Client</span></a></li>
-        <li><a class="app-menu__item " href="{{ path('fournisseur_index') }}"><i class="app-menu__icon fa fa-cutlery"></i><span class="app-menu__label">Fournisseur</span></a></li>
+        <li><a class="app-menu__item " href="{{ path('fournisseur_index') }}"><i class="app-menu__icon fa fa-cutlery"></i><span class="app-menu__label">Restaurant</span></a></li>
         <li><a class="app-menu__item " href="{{ path('livreur_index') }}"><i class="app-menu__icon fa fa-user-secret"></i><span class="app-menu__label">Livreur</span></a></li>
         <li><a class="treeview-item" href="commentaire.html"><i class="app-menu__icon fa fa-commenting-o"></i> Commentaire</a></li>
 
@@ -113,12 +111,12 @@
 {% block javascripts %}
     <script src="{{ asset('js/jquery-3.2.1.min.js')}}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.js') }}"></script>
     <script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
     <!-- The javascript plugin to display page loading on top-->
-    <script src="js/plugins/pace.min.js"></script>
+    <script src="{{ asset('js/plugins/pace.min.js') }}"></script>
 {% endblock %}
 
 {%  block body %}

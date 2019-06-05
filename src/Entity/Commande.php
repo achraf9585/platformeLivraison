@@ -60,15 +60,6 @@ class Commande
      */
     private $total;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $tempslivraison;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $tempspreparation;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="commandes")

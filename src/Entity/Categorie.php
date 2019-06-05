@@ -45,6 +45,11 @@ class Categorie
      */
     private $etat;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Fournisseur", inversedBy="categories")
+     */
+    private $fournisseur;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -106,6 +111,18 @@ class Categorie
     public function setEtat(string $etat): self
     {
         $this->etat = $etat;
+
+        return $this;
+    }
+
+    public function getFournisseur(): ?Fournisseur
+    {
+        return $this->fournisseur;
+    }
+
+    public function setFournisseur(?Fournisseur $fournisseur): self
+    {
+        $this->fournisseur = $fournisseur;
 
         return $this;
     }

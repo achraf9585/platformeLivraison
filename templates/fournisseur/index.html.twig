@@ -14,10 +14,10 @@
                     <div class="table-title">
                         <div class="row">
                             <div class="col-sm-6">
-                                <h2>Liste des  <b>Fournisseurs</b></h2>
+                                <h2>Liste des  <b>Restaurants</b></h2>
                             </div>
                             <div class="col-sm-6">
-                                <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Ajouter  Fournisseur</span></a>
+                                <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Ajouter  Restaurant</span></a>
                             </div>
                         </div>
                     </div>
@@ -28,8 +28,9 @@
                         <tr>
 
                             <th>Id</th>
-                            <th>Email</th>
                             <th>Restaurant</th>
+                            <th>Email</th>
+
                             <th>Numero Téléphone</th>
                             <th>Image</th>
                             <th>Etat</th>
@@ -52,8 +53,9 @@
                             {% endif %}
 
                                 <td>{{ fournisseur.id }}</td>
+                            <td>{{ fournisseur.nomrestaurant }} </td>
                                 <td>{{ fournisseur.email }}</td>
-                                <td>{{ fournisseur.nomrestaurant }} </td>
+
                                 <td>{{ fournisseur.numtel1 }}</td>
                             <td><img src="{{ asset('images/articles/'~ fournisseur.imageName) | imagine_filter('test') }}" /></td>
 
@@ -130,7 +132,7 @@
     <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
     <!-- DataTables -->
     <script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-    <!--  <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script> -->
+  <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
     <!-- SlimScroll -->
     <script src="{{ asset('bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
     <!-- FastClick -->

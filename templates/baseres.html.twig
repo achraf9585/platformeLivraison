@@ -1,22 +1,73 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="icon" type="image/png" href="logo.png" />
-    <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.min.css"/>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+
+    <link rel="stylesheet" href="{{ asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.css') }} ">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ asset('testres/assets/vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link href="{{ asset('testres/assets/vendor/fonts/circular-std/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('testres/assets/libs/css/style.css') }}">
+    <link rel="stylesheet" href="assets/libs/css/main.css">
+
+    <link rel="stylesheet" href="{{ asset('testres/assets/vendor/fonts/fontawesome/css/fontawesome-all.css') }}">
+    <link rel="stylesheet" href="{{ asset('testres/assets/vendor/charts/chartist-bundle/chartist.css') }}">
+    <link rel="stylesheet" href="{{ asset('testres/assets/vendor/charts/morris-bundle/morris.css') }}">
+    <link rel="stylesheet" href="{{ asset('testres/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('testres/assets/vendor/charts/c3charts/c3.css') }}">
+    <link rel="stylesheet" href="{{ asset('testres/assets/vendor/fonts/flag-icon-css/flag-icon.min.css') }}">
+    <style>
+        ul {
+            padding:0;
+            margin:0;
+            list-style-type:none;
+        }
+        li {
+            margin-left:2px;
+            float:left; /*pour IE*/
+        }
+        ul li a {
+            display:block;
+            float:left;
+            width:100px;
+
+            color:gray;
+
+            text-decoration:none;
+            text-align:center;
+            padding:5px;
+            color:#e67e22;
 
 
+        }
+        ul li a:hover {
+            color:#e67e22;
+        }
+        .fa {
+            display: inline-block;
+            font: normal normal normal 14px/1 FontAwesome;
+            font-size: inherit;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .fa-3x {
+            font-size: 3em;
+        }
+        .fa-cutlery:before {
+            content: "\f0f5";
+        }
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css"/>
 
-        <link rel="stylesheet" href="css/fonts/fontawesome/css/fontawesome-all.css">
-
-        <link rel="stylesheet" href="css/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
-        <link rel="stylesheet" href="css/fonts/flag-icon-css/flag-icon.min.css">
-
+    </style>
     {% block stylesheets %} {% endblock %}
 </head>
 <body>
@@ -29,45 +80,116 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto" style="margin-top:4px;">
 
-            <li class="nav-item">
+
                 <a class="nav-link" href="{{ path('categorie_index')}}"> Catégories <span class="sr-only"></span></a>
-            </li>
-            <li class="nav-item">
+
+
                 <a class="nav-link"> | </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('plat_index')}}"> Articles <span class="sr-only"></span></a>
-            </li>
-            <li class="nav-item">
+
+
+                <a class="nav-link" href="{{ path('plat_index')}}"> Plats <span class="sr-only"></span></a>
+
+
                 <a class="nav-link"> | </a>
-            </li>
-            <li class="nav-item">
+
+
                 <a class="nav-link" href=" {{ path ('supplement_index') }}"> Suppléments <span class="sr-only"></span></a>
-            </li>
-            <li class="nav-item dropdown" style="margin-left:830px; width:200px;">
-                <a  class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i style="width:0px;" class="material-icons">&#xE8B8;</i></a>
-                <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">
-                    <a  class="dropdown-item"  href="#">Compte</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ path('logout')}}">Déconnexion</a>
-                </div>
-            </li>
+            <a class="nav-link"> | </a>
+                <a class="nav-link" href=" {{ path ('commande_per') }}"> Commandes <span class="sr-only"></span></a>
+
+
 
         </ul>
     </div>
+
+
+
+
+
+    <ul class="navbar-nav ml-auto navbar-right-top"style="margin-top:15px;" >
+
+        <li class="nav-item dropdown notification">
+            <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>
+            <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
+                <li>
+                    <div class="notification-title"> Notifications</div>
+                    <div class="notification-list">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-action active">
+                                <div class="notification-info">
+                                    <div class="notification-list-user-img"><img src="assets/images/avatar-2.jpg" alt="" class="user-avatar-md rounded-circle"></div>
+                                    <div class="notification-list-user-block"><span class="notification-list-user-name">Jeremy Rakestraw</span>accepted your invitation to join the team.
+                                        <div class="notification-date">2 min ago</div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <div class="notification-info">
+                                    <div class="notification-list-user-img"><img src="assets/images/avatar-3.jpg" alt="" class="user-avatar-md rounded-circle"></div>
+                                    <div class="notification-list-user-block"><span class="notification-list-user-name">John Abraham </span>is now following you
+                                        <div class="notification-date">2 days ago</div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <div class="notification-info">
+                                    <div class="notification-list-user-img"><img src="assets/images/settings.jpg" style="width:10px;" alt=""></div>
+                                    <div class="notification-list-user-block"><span class="notification-list-user-name">Monaan Pechi</span> is watching your main repository
+                                        <div class="notification-date">2 min ago</div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <div class="notification-info">
+                                    <div class="notification-list-user-img"><img src="assets/images/avatar-5.jpg" alt="" class="user-avatar-md rounded-circle"></div>
+                                    <div class="notification-list-user-block"><span class="notification-list-user-name">Jessica Caruso</span>accepted your invitation to join the team.
+                                        <div class="notification-date">2 min ago</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="list-footer"> <a href="#">View all notifications</a></div>
+                </li>
+            </ul>
+        </li>
+
+        <li class="nav-item dropdown nav-user">
+            <a class="nav-link fa fa-cog" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/settings.png" style="width:17px;height:17px;" alt="" class="user-avatar-md rounded-circle"></a>
+            <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
+                <div class="nav-user-info" style="background:#EEA33D;">
+                    <h5 class="mb-0 text-white nav-user-name"> {{ app.user.nomrestaurant }}</h5>
+                    <span class="status"></span><span class="ml-2">Disponible</span>
+                </div>
+                <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Compte Fournisseur</a>
+
+                <a class="dropdown-item" href="{{ path('logout')}}"><i class="fas fa-power-off mr-2"></i>Se déconnecter</a>
+            </div>
+        </li>
+    </ul>
 </nav>
 <div class="container">
     {% block body %}{% endblock %}
 </div>
 
 
-    <script src="{{ asset('js/jquery-3.2.1.min.js')}}"></script>
-    <script src="{{ asset('js/bootstrap.min.js')}}"></script>
-    <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
-    <!-- bootstap bundle js -->
-    <script src="js/bootstrap.bundle.js"></script>
-    <!-- slimscroll js -->
-    <script src="assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+<!-- ============================================================== -->
+<!-- end main wrapper  -->
+<!-- ============================================================== -->
+<!-- Optional JavaScript -->
+<!-- jquery 3.3.1 -->
+<script src="{{ asset('testres/assets/vendor/jquery/jquery-3.3.1.min.js') }}"></script>
+<!-- bootstap bundle js -->
+<script src="{{ asset('testres/assets/vendor/bootstrap/js/bootstrap.bundle.js') }}"></script>
+<!-- slimscroll js -->
+<script src="{{ asset('testres/assets/vendor/slimscroll/jquery.slimscroll.js') }}"></script>
+<!-- main js -->
+<script src="{{ asset('testres/assets/libs/js/main-js.js') }}"></script>
+
+
+
 
 {% block javascripts %}{% endblock %}
 </body>

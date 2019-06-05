@@ -26,14 +26,16 @@ class SupplementController extends AbstractController
          * @var \App\Entity\Fournisseur $user
          */
         $user = $this->getUser();
-        $supplement=$supplementRepository->findAll();
+        $usr= $this->get('security.token_storage')->getToken()->getUser();
+        $usr->getId();
+        $supplements=$supplementRepository->findBy(array('fournisseur'=>$usr));
 
-        $properties=$paginator->paginate($supplement,
+        $properties=$paginator->paginate($supplements,
             $request->query->getInt('page',1),
             4
         );
         return $this->render('supplement/index.html.twig', [
-            'supplement'=> $supplement,
+            'supplements'=> $supplements,
             'properties' => $properties ,
         ]);
     }
@@ -43,6 +45,8 @@ class SupplementController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        $usr= $this->get('security.token_storage')->getToken()->getUser();
+        $usr->getId();
         $supplement = new Supplement();
         $form = $this->createForm(SupplementType::class, $supplement);
         $form->handleRequest($request);
@@ -50,6 +54,7 @@ class SupplementController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($supplement);
+            $supplement->setFournisseur($usr);
             $entityManager->flush();
 
             return $this->redirectToRoute('supplement_index');

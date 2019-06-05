@@ -65,16 +65,24 @@
           <textarea class="form-control" rows="3" style=" width:100%;background: whitesmoke; color: #0a0a0a" placeholder="Commentaire...">
 
           </textarea>
-<div class="container">
-    <div class="rating">
-        <input type="radio" name="star" id="rating" value="1">
-        <input type="radio" name="star" id="rating" value="2">
-        <input type="radio" name="star" id="rating" value="3">
-        <input type="radio" name="star" id="rating" value="4">
-        <input type="radio" name="star" id="rating" value="5">
-        <br/>
-    </div>
+          <form>
+
+              <div class="container">
+
+              <div class="page-header">
+                  <h3>Glyphicon Star RTL</h3>
+              </div>
+
+              <br>
+              <input type="text" class="kv-gly-star rating-loading" value="1.75" dir="rtl" data-size="md" title="">
+              <div class="clearfix"></div>
+              <br>
+
+
+
 </div>
+          </form>
+
           <button class="btn btn-block" style="color: #fff; background-color: #28a745;">Commenter</button>
       </form>
     </div>
@@ -82,16 +90,67 @@
 
 {% block javascripts %}
     <script>
-        $('.rating').rating(function (vote, event) {
-            $.ajax({
-                method: 'POST',
-                url:'aa.php',
-                data:{vote:vote}
-            }).done(function (info) {
-               $('.info').html("YOUR VOTE <b>"+info+"</b>")
-                
-            })
-            
-        })
+        $(document).on('ready', function () {
+            $('.kv-gly-star').rating({
+                containerClass: 'is-star'
+            });
+            $('.kv-gly-heart').rating({
+                containerClass: 'is-heart',
+                defaultCaption: '{rating} hearts',
+                starCaptions: function (rating) {
+                    return rating == 1 ? 'One heart' : rating + ' hearts';
+                },
+                filledStar: '<i class="glyphicon glyphicon-heart"></i>',
+                emptyStar: '<i class="glyphicon glyphicon-heart-empty"></i>'
+            });
+            $('.kv-fa').rating({
+                theme: 'krajee-fa',
+                filledStar: '<i class="fa fa-star"></i>',
+                emptyStar: '<i class="fa fa-star-o"></i>'
+            });
+            $('.kv-fa-heart').rating({
+                defaultCaption: '{rating} hearts',
+                starCaptions: function (rating) {
+                    return rating == 1 ? 'One heart' : rating + ' hearts';
+                },
+                theme: 'krajee-fa',
+                filledStar: '<i class="fa fa-heart"></i>',
+                emptyStar: '<i class="fa fa-heart-o"></i>'
+            });
+            $('.kv-uni-star').rating({
+                theme: 'krajee-uni',
+                filledStar: '&#x2605;',
+                emptyStar: '&#x2606;'
+            });
+            $('.kv-uni-rook').rating({
+                theme: 'krajee-uni',
+                defaultCaption: '{rating} rooks',
+                starCaptions: function (rating) {
+                    return rating == 1 ? 'One rook' : rating + ' rooks';
+                },
+                filledStar: '&#9820;',
+                emptyStar: '&#9814;'
+            });
+            $('.kv-svg').rating({
+                theme: 'krajee-svg',
+                filledStar: '<span class="krajee-icon krajee-icon-star"></span>',
+                emptyStar: '<span class="krajee-icon krajee-icon-star"></span>'
+            });
+            $('.kv-svg-heart').rating({
+                theme: 'krajee-svg',
+                filledStar: '<span class="krajee-icon krajee-icon-heart"></span>',
+                emptyStar: '<span class="krajee-icon krajee-icon-heart"></span>',
+                defaultCaption: '{rating} hearts',
+                starCaptions: function (rating) {
+                    return rating == 1 ? 'One heart' : rating + ' hearts';
+                },
+                containerClass: 'is-heart'
+            });
+
+            $('.rating,.kv-gly-star,.kv-gly-heart,.kv-uni-star,.kv-uni-rook,.kv-fa,.kv-fa-heart,.kv-svg,.kv-svg-heart').on(
+                'change', function () {
+                    console.log('Rating selected: ' + $(this).val());
+                });
+        });
     </script>
 {% endblock %}

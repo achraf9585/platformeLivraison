@@ -52,8 +52,9 @@ class Client implements UserInterface
      * @Assert\Regex(
      *        pattern  = "/[^0-9]+/",
      *     match=false,
-     *
+     *     message="le numero ne doit  contenir des chiffres"
      * )
+     * @assert\Length(min=8 ,max=8, minMessage="Votre numero n est pas compatible !")
      */
     private $numtel1;
 
@@ -62,8 +63,9 @@ class Client implements UserInterface
      * @Assert\Regex(
      *        pattern  = "/[^0-9]+/",
      *     match=false,
-     *
+     *     message="le numero ne doit  contenir des chiffres"
      * )
+     * @assert\Length(min=8 ,max=8, minMessage="Votre numero n est pas compatible !")
      */
     private $numtel2;
 

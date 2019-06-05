@@ -10,6 +10,7 @@ namespace App\Controller;
 
 
 use App\Entity\Commande;
+use App\Repository\CommandeArticleRepository;
 use App\Repository\CommandeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,10 +34,27 @@ class CommandeController extends AbstractController
     /**
      * @Route("commande/{id}", name="commande_show", methods={"GET"})
      */
-    public function show(Commande $commande): Response
+    public function show(Commande $commande,CommandeArticleRepository $commandeArticleRepository): Response
     {
+        $commandess= $commandeArticleRepository->findBy(array('commande'=>$commande->getId()));
         return $this->render('commande/show.html.twig', [
             'commande' => $commande,
+            'commandess' => $commandess,
+        ]);
+    }
+    /**
+     * @Route("/comm", name="commande_per", methods={"GET"})
+     */
+    public function showfour(CommandeRepository $commandeRepository, Request $request): Response
+    {
+        $usr= $this->get('security.token_storage')->getToken()->getUser();
+        $usr->getId();
+
+
+
+        $commandes=$commandeRepository->findfour($usr);
+        return $this->render('commande/showfour.html.twig', [
+            'commandes' => $commandes,
         ]);
     }
 
