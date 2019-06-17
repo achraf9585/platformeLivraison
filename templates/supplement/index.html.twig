@@ -1,4 +1,4 @@
-{% extends 'baseres.html.twig' %}
+{% extends 'baseres2.html.twig' %}
 {% block title %}Supplément index{% endblock %}
 
 {% block body %}
@@ -7,7 +7,7 @@
             <div class="table-title"   style="background-color:#E95420;">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2 style="color:#ffffff;textSize:7px;margin-left:11px;margin-top: 15px;"> Liste des<b> Supplément</b></h2>
+                        <h2 style="color:#ffffff;textSize:7px;margin-left:11px;margin-top: 15px;"> Liste des<b> Suppléments</b></h2>
                     </div>
 
                 </div>
@@ -47,7 +47,7 @@
                     <td>{{ supplement.id }}</td>
                     <td>{{ supplement.libele }}</td>
 
-                    <td>{{ supplement.prix }}</td>
+                    <td>{{ supplement.prix }}DT</td>
                     <td>
 
 
@@ -63,9 +63,9 @@
                     </td>
 
                     <td>
-                        <a href="{{ path('fournisseur_edit', {'id': supplement.id}) }}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Modifier">&#xE254;</i></a>
+                        <a href="{{ path('supplement_edit', {'id': supplement.id}) }}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Modifier">&#xE254;</i></a>
 
-                        <a  href="{{ path('fournisseur_show', {'id': supplement.id}) }}"  ><i title="Voir" class="material-icons">&#xE8F4;</i></a>
+                        <a  href="{{ path('supplement_show', {'id': supplement.id}) }}"  ><i title="Voir" class="material-icons">&#xE8F4;</i></a>
                     </td>
 
 

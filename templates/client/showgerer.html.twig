@@ -1,0 +1,56 @@
+{% extends 'baseinscri.html.twig' %}
+
+{% block title %}Voir Profil{% endblock %}
+
+{% block body %}
+
+
+    <div class="container">
+        <div class="d-flex justify-content-center h-100">
+            <div>
+
+                <categorie>
+
+
+                    <center> <h2 style="color: #FFFFFF"> {{ client.nom }} {{ client.prenom }}</h2> <a href="{{ path('cli_gerer') }}">Modifier</a><br><a href="{{ path('cli_mdp') }}">Modifier Mot de Passe</a> </center>
+                    <br>
+                    <table class="table">
+                        <tbody>
+
+                        <tr>
+                            <th></th><th style="color: #FFFFFF">Nom</th>
+                            <td></td><td style="color: #FFFFFF">{{ client.nom }}</td>
+                        </tr>
+                        <tr>
+                            <th></th><th style="color: #FFFFFF">Prenom</th>
+                            <td></td><td style="color: #FFFFFF">{{ client.prenom }}</td>
+                        </tr>
+                        <tr>
+                            <th></th><th style="color: #FFFFFF">Email</th>
+                            <td></td><td style="color: #FFFFFF">{{ client.email }}</td>
+                        </tr>
+
+                        <tr>
+                            <th></th><th style="color: #FFFFFF">Date Naissance</th>
+                            <td></td><td style="color: #FFFFFF">{{ client.datenaissance |date('Y-m-d') }}</td>
+                        </tr>
+                        <tr>
+                            <th></th><th style="color: #FFFFFF">Adresse</th>
+                            <td></td><td style="color: #FFFFFF">{{ client.adresse }}</td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </categorie>
+                <center>
+
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+{% endblock %}

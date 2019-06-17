@@ -145,6 +145,11 @@ class Livreur implements UserInterface
      */
     private $commandes;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Ville", inversedBy="livreurs")
+     */
+    private $ville;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
@@ -426,6 +431,18 @@ class Livreur implements UserInterface
                 $commande->setLivreur(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getVille(): ?Ville
+    {
+        return $this->ville;
+    }
+
+    public function setVille(?Ville $ville): self
+    {
+        $this->ville = $ville;
 
         return $this;
     }

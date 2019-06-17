@@ -590,19 +590,19 @@
     $.fn.ratingLocales.en = {
         defaultCaption: '{rating} Stars',
         starCaptions: {
-            0.5: 'Half Star',
-            1: 'One Star',
-            1.5: 'One & Half Star',
-            2: 'Two Stars',
-            2.5: 'Two & Half Stars',
-            3: 'Three Stars',
-            3.5: 'Three & Half Stars',
-            4: 'Four Stars',
-            4.5: 'Four & Half Stars',
-            5: 'Five Stars'
+            0.5: '0.5 Etoile',
+            1: '1 Etoile',
+            1.5: '1.5 Etoile',
+            2: '2 Etoile',
+            2.5: '2.5 Etoile',
+            3: '3 Etoile',
+            3.5: '3.5 Etoile',
+            4: '4 Etoile',
+            4.5: '4.5 Etoile',
+            5: '5 Etoile'
         },
         clearButtonTitle: 'Clear',
-        clearCaption: 'Not Rated'
+        clearCaption: 'Pas noté'
     };
 
     $.fn.rating.Constructor = Rating;

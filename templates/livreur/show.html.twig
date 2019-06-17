@@ -7,8 +7,8 @@
         <div class="app-title">
 
             <ul class="app-breadcrumb breadcrumb">
-                <li class="breadcrumb-item"><i class="fa fa-building fa-lg"></i></li>
-                <li class="breadcrumb-item"><a href="#">Région</a></li>
+                <li class="breadcrumb-item"><i class="fa fa-secret fa-lg"></i></li>
+                <li class="breadcrumb-item"><a href="#">Livreur</a></li>
             </ul>
         </div>
         <div class="container">
@@ -16,12 +16,12 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Gérer <b>Livreurs</b></h2>
+                            <h2>Détail <b>Livreur</b></h2>
                         </div>
 
                     </div>
                 </div>
-                <h1>Livreurs  <a href="{{ path('livreur_index') }}"><i class="material-icons">&#xE5C4;</i></a></h1>
+                <h1>{{ livreur.nom }}  {{ livreur.prenom }}  <a href="{{ path('livreur_index') }}"><i class="material-icons">&#xE5C4;</i></a></h1>
 
                 <table class="table">
                     <tbody>

@@ -5,8 +5,8 @@
             <div class="app-title">
 
                 <ul class="app-breadcrumb breadcrumb">
-                    <li class="breadcrumb-item"><i class="fa fa-building fa-lg"></i></li>
-                    <li class="breadcrumb-item"><a href="#">Clients</a></li>
+                    <li class="breadcrumb-item"><i class="fa fa-server fa-lg"></i></li>
+                    <li class="breadcrumb-item"><a href="#">Commandes</a></li>
                 </ul>
             </div>
             <div class="container">
@@ -28,10 +28,11 @@
                             <th>Id</th>
                             <th> Client</th>
                             <th>Numero téléphone client</th>
+
                             <th>Adresse</th>
+                            <th>Livreur</th>
                             <th>Etat</th>
 
-                            <th>Livreur</th>
                             <th>Date commande</th>
                             <th>CRL</th>
                             <th>CCL</th>
@@ -46,9 +47,9 @@
 
 
                         {% for commande in commandes %}
+                            {% if commande.etat=='payer' %}
+                            <tr style="background-color: #68c3a3;">
 
-                            <tr>
-                                <client>
                                     <td>{{ commande.id }}</td>
                                     <td>{{ commande.client.getNom()  }}  {{ commande.client.getPrenom() }}</td>
                                     <td>{{ commande.client.getNumtel1()  }} / {{ commande.client.getNumtel2() }}</td>
@@ -58,7 +59,6 @@
                                     {% else %}
                                     <td>{{ commande.livreur.getNom()  }}  {{ commande.livreur.getPrenom() }}</td>
                                     {% endif %}
-
                                     <td>{{ commande.etat  }} </td>
                                     <td>{{ commande.datecommande |date('Y-m-d-H:i:s')  }} </td>
                                     <td>{{ commande.codeconfirmlivfour  }} </td>
@@ -68,8 +68,34 @@
                                     </td>
 
 
-                                </client>
+
                             </tr>
+                                {% else %}
+                                    <tr>
+
+                                        <td>{{ commande.id }}</td>
+                                        <td>{{ commande.client.getNom()  }}  {{ commande.client.getPrenom() }}</td>
+                                        <td>{{ commande.client.getNumtel1()  }} / {{ commande.client.getNumtel2() }}</td>
+                                        <td>{{ commande.client.getAdresse()  }} </td>
+                                        {% if commande.livreur is null %}
+                                            <td></td>
+                                        {% else %}
+                                            <td>{{ commande.livreur.getNom()  }}  {{ commande.livreur.getPrenom() }}</td>
+                                        {% endif %}
+                                        <td>{{ commande.etat  }} </td>
+                                        <td>{{ commande.datecommande |date('Y-m-d-H:i:s')  }} </td>
+                                        <td>{{ commande.codeconfirmlivfour  }} </td>
+                                        <td>{{ commande.codeconfirmlivcli  }} </td>
+
+                                        <td>    <a  href="{{ path('commande_show', {'id': commande.id}) }}"  ><i title="Voir" class="material-icons">&#xE8F4;</i></a>
+                                        </td>
+
+
+
+                                    </tr>
+
+                            {% endif %}
+
                         {% endfor %}
 
 

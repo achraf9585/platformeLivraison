@@ -47,15 +47,17 @@ class Supplement
      */
     private $articles;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\CommandeArticleSupplement", mappedBy="supplement")
-     */
-    private $commandeArticleSupplements;
+
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Fournisseur", inversedBy="supplements")
      */
     private $fournisseur;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CommandeArticleSupplement", mappedBy="supplement")
+     */
+    private $commandeArticleSupplements;
 
 
 
@@ -120,20 +122,25 @@ class Supplement
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCommandeArticleSupplements()
+
+    public function getFournisseur(): ?Fournisseur
     {
-        return $this->commandeArticleSupplements;
+        return $this->fournisseur;
+    }
+
+    public function setFournisseur(?Fournisseur $fournisseur): self
+    {
+        $this->fournisseur = $fournisseur;
+
+        return $this;
     }
 
     /**
-     * @param mixed $commandeArticleSupplements
+     * @return Collection|CommandeArticleSupplement[]
      */
-    public function setCommandeArticleSupplements($commandeArticleSupplements)
+    public function getCommandeArticleSupplements(): Collection
     {
-        $this->commandeArticleSupplements = $commandeArticleSupplements;
+        return $this->commandeArticleSupplements;
     }
 
     public function addCommandeArticleSupplement(CommandeArticleSupplement $commandeArticleSupplement): self
@@ -155,18 +162,6 @@ class Supplement
                 $commandeArticleSupplement->setSupplement(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getFournisseur(): ?Fournisseur
-    {
-        return $this->fournisseur;
-    }
-
-    public function setFournisseur(?Fournisseur $fournisseur): self
-    {
-        $this->fournisseur = $fournisseur;
 
         return $this;
     }

@@ -1,4 +1,4 @@
-{% extends 'baseres.html.twig' %}
+{% extends 'baseres2.html.twig' %}
 {% block title %}Commandes   index{% endblock %}
 
 {% block body %}
@@ -35,7 +35,6 @@
                 <tbody>
 
 
-
                 {% for commande in commandes %}
 
              <tr>
@@ -50,18 +49,18 @@
                  <td>{{ commande.etat }}</td>
                     <td>{{ commande.codeconfirmlivfour}}</td>
 
-                 {% if commande.livreur is null %}
+                 {% if commande.livreur_id is null %}
                      <td></td>
                  {% else %}
-                     <td>{{ commande.livreur.getNom()  }}  {{ commande.livreur.getPrenom() }}</td>
+                     <td>{{ commande.nom  }}  {{ commande.prenom }}</td>
                  {% endif %}
 
 
 
                     <td>
-                        <a href="{{ path('fournisseur_edit', {'id': commande.id}) }}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Modifier">&#xE254;</i></a>
+                        <a href="{{ path('commande_edit_four', {'id': commande.id}) }}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Modifier">&#xE254;</i></a>
 
-                        <a  href="{{ path('fournisseur_show', {'id': commande.id}) }}"  ><i title="Voir" class="material-icons">&#xE8F4;</i></a>
+                        <a  href="{{ path('commande_show_resto', {'id': commande.id}) }}"  ><i title="Voir" class="material-icons">&#xE8F4;</i></a>
                     </td>
 
 

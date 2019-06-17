@@ -16,12 +16,12 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2>Gérer <b>Ville</b></h2>
+                        <h2>Modifier <b>Ville</b></h2>
                     </div>
 
                 </div>
             </div>
-            <h1>Modifier Ville  <a href="{{ path('ville_index') }}"><i class="material-icons">&#xE5C4;</i></a></h1>
+            <h1>{{ ville.libele }}  <a href="{{ path('ville_index') }}"><i class="material-icons">&#xE5C4;</i></a></h1>
             {{ include('ville/_form.html.twig', {'button_label': 'Sauvergarder les modifications'}) }}
 
         </div>

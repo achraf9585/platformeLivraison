@@ -27,24 +27,20 @@ class ArticleType extends AbstractType
             ->add('categorie',EntityType::class,array(
                 // query choices from this entity
                 'class' => 'App:Categorie',
-                'query_builder' => function (EntityRepository $er) use ($user) {
-                    return $er->createQueryBuilder('categorie')
-                        ->where('categorie.fournisseur = :user')
-                        ->setParameter('user', $user);
-                },
+
                 'multiple'  => false,
                 'required' => true,
-                'placeholder' => '--- Choisir un Cours ---',
                 'choice_label' => 'libele'))
 
-          ->add('imageFile' , VichImageType::class)
+          ->add('imageFile' , VichImageType::class,[
+              'required' => false,
+              'allow_delete' => false,
+
+              'imagine_pattern' => 'test'
+          ])
            ->add('supplements', EntityType::class,
                ['class'=> Supplement::class,
-                   'query_builder' => function (EntityRepository $er) use ($user) {
-                       return $er->createQueryBuilder('supplement')
-                           ->where('supplement.fournisseur = :user')
-                           ->setParameter('user', $user);
-                   },
+
                  'choice_label'=>'libele',
                    'multiple'=>true,
                    'expanded'=>true,

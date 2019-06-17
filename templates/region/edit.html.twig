@@ -16,12 +16,12 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2>Gérer <b>Région</b></h2>
+                        <h2>Modifier <b>Région</b></h2>
                     </div>
 
                 </div>
             </div>
- <h1>Modifier Region  <a href="{{ path('region_index') }}"><i class="material-icons">&#xE5C4;</i></a></h1>
+ <h1>{{ region.libele }}  <a href="{{ path('region_index') }}"><i class="material-icons">&#xE5C4;</i></a></h1>
 <br>
     {{ include('region/_form.html.twig', {'button_label': 'Sauvergarder modification'}) }}
 

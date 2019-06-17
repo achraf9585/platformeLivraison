@@ -1,7 +1,6 @@
 {% extends 'base3.html.twig' %}
 {% block title %}Chercher{% endblock %}
 
-
 {% block body %}
 
 
@@ -12,7 +11,6 @@
         .card-deck{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.card-deck .card{margin-bottom:15px}@media (min-width:576px){.card-deck{-ms-flex-flow:row wrap;flex-flow:row wrap;margin-right:-15px;margin-left:-15px}.card-deck .card{display:-ms-flexbox;display:flex;-ms-flex:1 0 0%;flex:1 0 0%;-ms-flex-direction:column;flex-direction:column;margin-right:15px;margin-bottom:0;margin-left:15px}}
         .card>.list-group:first-child .list-group-item:first-child{border-top-left-radius:.25rem;border-top-right-radius:.25rem}.card>.list-group:last-child .list-group-item:last-child{border-bottom-right-radius:.25rem;border-bottom-left-radius:.25rem}.card-body{-ms-flex:1 1 auto;flex:1 1 auto;padding:1.25rem}.card-title{margin-bottom:.75rem}.card-subtitle{margin-top:-.375rem;margin-bottom:0}.card-text:last-child{margin-bottom:0}.card-link:hover{text-decoration:none}.card-link+.card-link{margin-left:1.25rem}.card-header{padding:.75rem 1.25rem;margin-bottom:0;background-color:rgba(0,0,0,.03);border-bottom:1px solid rgba(0,0,0,.125)}.card-header:first-child{border-radius:calc(.25rem - 1px) calc(.25rem - 1px) 0 0}.card-header+.list-group .list-group-item:first-child{border-top:0}.card-footer{padding:.75rem 1.25rem;background-color:rgba(0,0,0,.03);border-top:1px solid rgba(0,0,0,.125)}.card-footer:last-child{border-radius:0 0 calc(.25rem - 1px) calc(.25rem - 1px)}.card-header-tabs{margin-right:-.625rem;margin-bottom:-.75rem;margin-left:-.625rem;border-bottom:0}.card-header-pills{margin-right:-.625rem;margin-left:-.625rem}.card-img-overlay{position:absolute;top:0;right:0;bottom:0;left:0;padding:1.25rem}.card-img{width:100%;border-radius:calc(.25rem - 1px)}.card-img-top{width:100%;border-top-left-radius:calc(.25rem - 1px);border-top-right-radius:calc(.25rem - 1px)}.card-img-bottom{width:100%;border-bottom-right-radius:calc(.25rem - 1px);border-bottom-left-radius:calc(.25rem - 1px)}.card-deck{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.card-deck .card{margin-bottom:15px}@media (min-width:576px){.card-deck{-ms-flex-flow:row wrap;flex-flow:row wrap;margin-right:-15px;margin-left:-15px}.card-deck .card{display:-ms-flexbox;display:flex;-ms-flex:1 0 0%;flex:1 0 0%;-ms-flex-direction:column;flex-direction:column;margin-right:15px;margin-bottom:0;margin-left:15px}}.card-group{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.card-group>.card{margin-bottom:15px}@media (min-width:576px){.card-group{-ms-flex-flow:row wrap;flex-flow:row wrap}.card-group>.card{-ms-flex:1 0 0%;flex:1 0 0%;margin-bottom:0}.card-group>.card+.card{margin-left:0;border-left:0}.card-group>.card:not(:last-child){border-top-right-radius:0;border-bottom-right-radius:0}.card-group>.card:not(:last-child) .card-header,.card-group>.card:not(:last-child) .card-img-top{border-top-right-radius:0}.card-group>.card:not(:last-child) .card-footer,.card-group>.card:not(:last-child) .card-img-bottom{border-bottom-right-radius:0}.card-group>.card:not(:first-child){border-top-left-radius:0;border-bottom-left-radius:0}.card-group>.card:not(:first-child) .card-header,.card-group>.card:not(:first-child) .card-img-top{border-top-left-radius:0}.card-group>.card:not(:first-child) .card-footer,.card-group>.card:not(:first-child) .card-img-bottom{border-bottom-left-radius:0}}.card-columns .card{margin-bottom:.75rem}@media (min-width:576px){.card-columns{-webkit-column-count:3;-moz-column-count:3;column-count:3;-webkit-column-gap:1.25rem;-moz-column-gap:1.25rem;column-gap:1.25rem;orphans:1;widows:1}.card-columns .card{display:inline-block;width:100%}}.accordion>.card{overflow:hidden}.accordion>.card:not(:first-of-type) .card-header:first-child{border-radius:0}.accordion>.card:not(:first-of-type):not(:last-of-type){border-bottom:0;border-radius:0}.accordion>.card:first-of-type{border-bottom:0;border-bottom-right-radius:0;border-bottom-left-radius:0}.accordion>.card:last-of-type{border-top-left-radius:0;border-top-right-radius:0}.accordion>.card .card-header{margin-bottom:-1px}.breadcrumb{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;padding:.75rem 1rem;margin-bottom:1rem;list-style:none;background-color:#e9ecef;border-radius:.25rem}.breadcrumb-item+.breadcrumb-item{padding-left:.5rem}.breadcrumb-item+.breadcrumb-item::before{display:inline-block;padding-right:.5rem;color:#6c757d;content:"/"}.breadcrumb-item+.breadcrumb-item:hover::before{text-decoration:underline}
     </style>
-
 
 
 
@@ -46,49 +44,131 @@
 
             <div class="card">
                 <div class="card-body">
-                    <img class="card-img-top" style="height: 300px;" src="{{ asset('images/articles/'~ a.imageName)  }}">
+                    <div class="card-deck">
+                        <img class="card-img-top" style="height: 300px;" src="{{ asset('images/articles/'~ a.imageName)  }}">
+
+                    </div>
 
                     <h5 class="card-title">{{ a.libele }}</h5>
                     <p class="card-text">{{ a.prix }} DT</p>
-                    <a href="{{ path('panier_ajout' , {'id': a.id,'idf': a.fournisseur.id}) }}"  class="btn btn-primary">Ajouter Panier</a>
-
+                    <button data-toggle="collapse" data-target="#supp{{ a.id }}"   class="btn btn-primary">Suppléments</button>
+                    <div id="supp{{ a.id }}" class="collapse">
+                        <form method="POST" action="{{ path('panier_ajout' , {'id': a.id,'idf': a.fournisseur.id}) }}">
+                        {% for supp in a.supplements %}
+                            <div>
+                                <input type="checkbox"name="{{a.id}}{{supp.id}}" />
+                                <label>{{ supp.libele }} - {{ supp.prix }} Dt</label>
+                            </div>
+                        {% endfor %}
+                        <button type="submit"  class="btn btn-primary">Ajouter au panier</button>
+                        </form>
+                    </div>
                 </div>
 
             </div>
         {% endfor %}
     </div>
-    <div class="collapse navbar-collapse" style="background-color: white">
-       Commentaires
-
-
-      <form>
-          <textarea class="form-control" rows="3" style=" width:100%;background: whitesmoke; color: #0a0a0a" placeholder="Commentaire...">
-
-          </textarea>
-          <form>
-
-              <div class="container">
-
-              <div class="page-header">
-                  <h3>Glyphicon Star RTL</h3>
-              </div>
-
-              <br>
-              <input type="text" class="kv-gly-star rating-loading" value="1.75" dir="rtl" data-size="md" title="">
-              <div class="clearfix"></div>
-              <br>
 
 
 
-</div>
-          </form>
+
+<style>
+    .pb-cmnt-container {
+        font-family: Lato;
+        margin-top: 100px;
+    }
+
+    .pb-cmnt-textarea {
+        resize: none;
+        padding: 20px;
+        height: 130px;
+        width: 100%;
+        border: 1px solid #F2F2F2;
+    }
+</style>
+
+
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3" style="width: 100%;margin-left: 0px;">
+                <div class="panel panel-info">
+                    <div class="panel-body">
+
+        {{ form_widget(form.contenu, {'attr':{'class':'pb-cmnt-textarea','rows':'3','placeholder':'Commentaire','style':'width:100%;background: whitesmoke; color: #0a0a0a'}}) }}
+                  {{ form_widget(form.note, {'attr':{'class':'kv-gly-star rating-loading','value':'1.75','dir':'rtl','data-size':'md'}}) }}
+
+
+{% if app.user %}
 
           <button class="btn btn-block" style="color: #fff; background-color: #28a745;">Commenter</button>
-      </form>
+                        {% else %}
+                        <button class="btn btn-block" style="color: #fff; background-color: #28a745;" disabled>Commenter</button>
+                            <div class="alert alert-danger" role="alert">
+                                Vous devez vous connecter pour commenter !
+                            </div>
+{% endif %}
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+    <div class="container">
+    <div class="row">
+    <div class="col-sm-10 col-sm-offset-1" id="logout">
+    <div class="page-header">
+        <h3 class="reviews">Commentaires</h3>
+
     </div>
+
+{% for commentaire in commentaires %}
+
+
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="comments-logout">
+                            <ul class="media-list">
+
+                                    <div class="media-body">
+                                        <div class="well well-lg">
+                                            <h4 class="media-heading text-uppercase reviews">
+                                                {{ commentaire.client.getNom() }}                {{ commentaire.client.getPrenom() }}
+                                            </h4>
+
+                                            <p class="media-comment">
+                                                {{ commentaire.contenu }}
+                                                <input type="text" class="kv-gly-star rating-loading" disabled value="{{ commentaire.note }}
+" dir="rtl" data-size="md" >
+                                            </p>
+
+                                        </div>
+                                    </div>
+
+
+
+                            </ul>
+                        </div>
+
+
+
+                    </div>
+
+
+
+{% endfor %}
 {% endblock %}
 
 {% block javascripts %}
+    <script src="{{ asset('assets/js/vendor/jquery-1.11.2.min.js') }}"></script>
+
+    <script src="{{ asset('assets/js/vendor/bootstrap.min.js') }}"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src='{{ asset('cssw/b3/star-rating.js') }}'></script>
     <script>
         $(document).on('ready', function () {
             $('.kv-gly-star').rating({
@@ -153,4 +233,10 @@
                 });
         });
     </script>
+
+
+
 {% endblock %}
+
+
+

@@ -1,0 +1,127 @@
+{% extends 'baseres.html.twig' %}
+
+{% block title %}Changer mot de passe{% endblock %}
+{% block stylesheets %}
+    <style>
+        html,body{
+            background: white;
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100%;
+            font-family: 'Numans', sans-serif;
+            background-image: url("https://img.freepik.com/fotos-kostenlos/geschmackvolle-pepperonipizza-auf-einem-schwarzen-konkreten-hintergrund_79782-103.jpg?size=626&ext=jpg")
+
+        }
+
+        .container{
+            height: 100%;
+            align-content: center;
+            margin-top: 70px;
+            margin-right: -100px;
+        }
+
+        .card{
+            height: 250px;
+            margin-top: auto;
+            margin-bottom: 420px;
+            width: 500px;
+            background-color: rgba(0,0,0,0) !important;
+        }
+
+        .social_icon span{
+            font-size: 60px;
+            margin-left: 10px;
+            color: #FFC312;
+        }
+
+        .social_icon span:hover{
+            color: white;
+            cursor: pointer;
+        }
+
+        .card-header h3{
+            color: white;
+        }
+
+        .social_icon{
+            position: absolute;
+            right: 20px;
+            top: -45px;
+        }
+
+        .input-group-prepend span{
+            width: 50px;
+            background-color: #FFC312;
+            color: black;
+            border:0 !important;
+        }
+
+        input:focus{
+            outline: 0 0 0 0  !important;
+            box-shadow: 0 0 0 0 !important;
+
+        }
+
+        .remember{
+            color: white;
+        }
+
+        .remember input
+        {
+            width: 20px;
+            height: 20px;
+            margin-left: 15px;
+            margin-right: 5px;
+        }
+
+        .login_btn{
+            color: black;
+            background-color: #FFC312;
+            width: 100px;
+        }
+
+        .login_btn:hover{
+            color: black;
+            background-color: white;
+        }
+
+        .links{
+            color: white;
+        }
+
+        .links a{
+            margin-left: 4px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+
+
+    <div class="container">
+        <div class="d-flex justify-content-center h-100">
+            <div>
+
+                <categorie>
+
+
+                    <br>
+
+
+
+                    <div class="card-body">
+                        {{ form_start(form) }}
+
+                        {{ form_row(form.oldPassword,{'attr':{'class':'form-control','placeholder':'Ancien mot de passe'}}) }}
+                        {{ form_row(form.newPassword.first,{ 'attr': {'class': 'form-control' , 'placeholder': 'Tapez votre mot de passe'}}) }}
+                        {{ form_row (form.newPassword.second,{ 'attr': {'class': 'form-control' , 'placeholder': 'Confirmez votre mot de passe'}}) }}
+                        <button class="btn btn-success" style="width: 70%; margin-left: 70px; margin-top: 10px;">{{ button_label|default('Modifier') }}</button>
+                        {{ form_end(form) }}
+
+                    </div>        </div>
+    </div>
+    </div>
+
+
+
+
+{% endblock %}

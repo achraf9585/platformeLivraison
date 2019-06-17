@@ -1,0 +1,113 @@
+{% extends 'baseinscri.html.twig' %}
+
+	{% block body %}
+        <main class="app-content">
+
+            <div class="container">
+                <div class="table-wrapper" >
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <br>
+                                <h2 style="color: whitesmoke">Liste des  <b>Commandes</b></h2>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <table id="regions" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+
+                            <th>Id</th>
+
+
+                            <th>Code Confirmation</th>
+
+
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+
+
+                        {% for commande in commandess %}
+
+                                <tr style="background-color: whitesmoke">
+
+                                    <td>{{ commande.id }}</td>
+
+
+                                    <td>{{ commande.codeconfirmlivcli  }} </td>
+
+
+
+
+                                </tr>
+
+                        {% endfor %}
+
+
+
+
+
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+            <!-- Add Modal HTML -->
+
+
+
+
+
+
+        </main>
+
+
+
+    {% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-3.2.1.min.js')}}"></script>
+    <script src="{{ asset('js/popper.min.js') }}"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script>
+        $(function () {
+            $('#regions').DataTable( {
+                "language": {
+                    "lengthMenu": "afficher _MENU_ enregistement par page",
+                    "zeroRecords": "Aucun enregistrement a été trouvé !",
+                    "info": "Page _PAGE_ de _PAGES_ pages",
+                    "infoEmpty": "Aucun enregistrement",
+                    "infoFiltered": "(filtré de  _MAX_ total enregistement)",
+                    "search": "Recherche:",
+                    "paginate": {
+                        "previous": "Precédent",
+                        "next" : "suivant"
+                    }
+                }
+            } );
+        })
+    </script>
+
+    <!-- jQuery 3 -->
+    <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <!-- DataTables -->
+    <script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+    <!-- SlimScroll -->
+    <script src="{{ asset('bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+    <!-- FastClick -->
+    <script src="{{ asset('bower_components/fastclick/lib/fastclick.js')}}"></script>
+
+{% endblock %}

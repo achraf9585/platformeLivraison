@@ -33,7 +33,7 @@ class Region
     /**
      * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\Regex(
-     *        pattern  = "/[^a-z A-Z À-þ 0-9]+/",
+     *        pattern  = "/[^a-z A-Z À-þ]+/",
      *     match=false,
      *
      * )

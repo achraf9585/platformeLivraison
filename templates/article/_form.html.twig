@@ -105,30 +105,30 @@
 
             </h1>
 
-            <div class="card-body">
+            <div class="container" style="margin-left: 10px;">
                 {{ form_start(form) }}
-                <label style="color:#FFFFFF; float: left"> Nom de l' Article </label>
+
                 {{ form_widget(form.libele, {'attr':{'class':'form-control','placeholder':'Nom du nouveau Article...'}}) }}
-                <br>
+<br>
 
-                <label style="color:#FFFFFF ; float: left"> Image de l'Article </label>
-                {% set imageFile = 'images/articles/'~article.imageName %}
                 {{ form_widget (form.imageFile  ,{'attr':  {'class':'form-control'}   }) }}
-
                 <br>
-                <label style="color:#FFFFFF ; float: left"> Catégorie </label>
+
+
+
                 {{ form_widget(form.categorie,{'attr':{'class':'form-control'}}) }}
                 <br>
-                <label style="color:#FFFFFF ; float: left"> Prix de l'article </label>
+
                 {{ form_widget(form.prix , {'attr':{'class':'form-control','placeholder':'Prix du nouveau Article...'}}) }}
                 <br>
-                <label style="color:#FFFFFF ; float: left"> Supplements </label>
-                <br>
+
                 {{ form_widget(form.supplements, {'attr':{'class':'form-control'}}) }}
                 <br>
 
+
                 {{ form_widget(form.etatArticle, {'attr':{'class':'form-control'}}) }}
                 <br>
+
                 <button style="width:210px;" class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
                 {{ form_end(form) }}
             </div>

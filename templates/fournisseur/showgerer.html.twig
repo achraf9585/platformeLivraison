@@ -1,0 +1,157 @@
+{% extends 'baseres.html.twig' %}
+
+{% block title %}Voir Profil{% endblock %}
+{% block stylesheets %}
+    <style>
+        html,body{
+            background: white;
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100%;
+            font-family: 'Numans', sans-serif;
+            background-image: url("https://img.freepik.com/fotos-kostenlos/geschmackvolle-pepperonipizza-auf-einem-schwarzen-konkreten-hintergrund_79782-103.jpg?size=626&ext=jpg")
+
+        }
+
+        .container{
+            height: 100%;
+            align-content: center;
+            margin-top: 70px;
+            margin-right: -100px;
+        }
+
+        .card{
+            height: 250px;
+            margin-top: auto;
+            margin-bottom: 420px;
+            width: 500px;
+            background-color: rgba(0,0,0,0) !important;
+        }
+
+        .social_icon span{
+            font-size: 60px;
+            margin-left: 10px;
+            color: #FFC312;
+        }
+
+        .social_icon span:hover{
+            color: white;
+            cursor: pointer;
+        }
+
+        .card-header h3{
+            color: white;
+        }
+
+        .social_icon{
+            position: absolute;
+            right: 20px;
+            top: -45px;
+        }
+
+        .input-group-prepend span{
+            width: 50px;
+            background-color: #FFC312;
+            color: black;
+            border:0 !important;
+        }
+
+        input:focus{
+            outline: 0 0 0 0  !important;
+            box-shadow: 0 0 0 0 !important;
+
+        }
+
+        .remember{
+            color: white;
+        }
+
+        .remember input
+        {
+            width: 20px;
+            height: 20px;
+            margin-left: 15px;
+            margin-right: 5px;
+        }
+
+        .login_btn{
+            color: black;
+            background-color: #FFC312;
+            width: 100px;
+        }
+
+        .login_btn:hover{
+            color: black;
+            background-color: white;
+        }
+
+        .links{
+            color: white;
+        }
+
+        .links a{
+            margin-left: 4px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+
+
+    <div class="container">
+        <div class="d-flex justify-content-center h-100">
+            <div>
+
+                <categorie>
+
+
+                    <center> <h2 style="color: #FFFFFF"> {{ fournisseur.nomrestaurant }}</h2> <a href="{{ path('four_gerer') }}">Modifier</a><br><a href="{{ path('four_mdp') }}">Modifier Mot de Passe</a> </center>
+                    <br>
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <th></th> <th style="color: #FFFFFF">Id</th>
+                            <td></td><td style="color: #FFFFFF">{{ fournisseur.id }}</td>
+                        </tr>
+                        <tr>
+                            <th></th><th style="color: #FFFFFF">Nom</th>
+                            <td></td><td style="color: #FFFFFF">{{ fournisseur.nom }}</td>
+                        </tr>
+                        <tr>
+                            <th></th><th style="color: #FFFFFF">Prenom</th>
+                            <td></td><td style="color: #FFFFFF">{{ fournisseur.prenom }}</td>
+                        </tr>
+                        <tr>
+                            <th></th><th style="color: #FFFFFF">Email</th>
+                            <td></td><td style="color: #FFFFFF">{{ fournisseur.email }}</td>
+                        </tr>
+                        <tr>
+                            <th></th><th style="color: #FFFFFF">Nom Restaurant</th>
+                            <td></td><td style="color: #FFFFFF">{{ fournisseur.nomrestaurant }}</td>
+                        </tr>
+                        <tr>
+                            <th></th><th style="color: #FFFFFF">Ville</th>
+                            <td></td><td style="color: #FFFFFF">{{ fournisseur.region.getLibele() }}</td>
+                        </tr>
+                        <tr>
+                            <th></th><th style="color: #FFFFFF">Temps Approximatif</th>
+                            <td></td><td style="color: #FFFFFF">{{ fournisseur.tempsapprox }}</td>
+                        </tr>
+                        <tr>
+                            <th></th><th style="color: #FFFFFF">Slogan</th>
+                            <td></td><td style="color: #FFFFFF">{{ fournisseur.slogan }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </categorie>
+                <center>
+
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+{% endblock %}

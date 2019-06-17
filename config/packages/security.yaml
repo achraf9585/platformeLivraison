@@ -88,7 +88,6 @@ security:
 
 
 
-
             # activate different ways to authenticate
 
             # http_basic: true
@@ -106,7 +105,12 @@ security:
         - { path: ^/ville, roles: ROLE_USER }
         - { path: ^/condi, roles: ROLE_USER }
         - { path: ^/affcli, roles: ROLE_USER }
+        - { path: ^/commande, roles: ROLE_USER }
         - { path: ^/fournisseur, roles: ROLE_USER }
+        - { path: ^/livreur, roles: ROLE_USER }
+        - { path: ^/commentaire, roles: ROLE_USER }
+        - { path: ^/formule, roles: ROLE_USER }
+        - { path: ^/statistique, roles: ROLE_USER }
         - { path: ^/categorie, roles: ROLE_FOUR }
         - { path: ^/article, roles: ROLE_FOUR }
         - { path: ^/supplement, roles: ROLE_FOUR }

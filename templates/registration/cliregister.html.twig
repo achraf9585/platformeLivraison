@@ -1,4 +1,4 @@
-{% extends 'base3.html.twig' %}
+{% extends 'baseinscri.html.twig' %}
 
 {% block title %}Inscription Client{% endblock %}
 
@@ -119,7 +119,8 @@
         </div>
         <div class="checkbox icheck" style="margin-left:15px;">
             {{ form_widget(registrationForm.terms) }}
-            J'ai lu et accepté les Termes et conditions  et la Politique de confidentialité
+
+            J'ai lu et accepté les<a href="#" style="color:#f0932b;"  data-toggle="modal" data-target="#inscC"> Termes et conditions  et la Politique de confidentialité</a>
 
         </div>
         <center>        <button class="btn btn btn-aa btn-block btn-flat" style="width:400px;" >Inscription</button>
@@ -129,7 +130,11 @@
 
     {{ form_end(registrationForm) }}
 
+    <div id="inscC" class="modal fade">
 
+                {{ include ('condi/showmodal.html.twig') }}
+
+    </div>
 
 
 {% endblock %}

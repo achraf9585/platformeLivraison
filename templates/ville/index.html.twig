@@ -9,7 +9,7 @@
 
                 <ul class="app-breadcrumb breadcrumb">
                     <li class="breadcrumb-item"><i class="fa fa-building fa-lg"></i></li>
-                    <li class="breadcrumb-item"><a href="#">Région</a></li>
+                    <li class="breadcrumb-item"><a href="#">Ville</a></li>
                 </ul>
             </div>
             <div class="container">
@@ -51,7 +51,6 @@
                             <th>Nom Région</th>
 
 
-                            <th>Statut</th>
                             <th>Etat</th>
                             <th>Action</th>
 
@@ -62,8 +61,8 @@
 
 
                         {% for region in villes %}
-                            {% if region.statut == "Disponible" %}
-                            <tr style="background: green">
+                            {% if region.etatVille == 'Désactivé' %}
+                            <tr style="background: #d64541;">
 {% else %}
                                 <tr>
                             {% endif %}
@@ -73,7 +72,6 @@
                                     <td>{{ region.libele }}</td>
                                     <td>{{ region.region.getLibele() }}</td>
 
-                                    <td>{{ region.statut }}</td>
                                     <td>{{ region.etatVille }}</td>
                                     <td>
 

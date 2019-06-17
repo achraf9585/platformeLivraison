@@ -7,6 +7,8 @@
  */
 
 namespace App\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 
@@ -45,10 +47,16 @@ class Commande_article
     private $qte;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CommandeArticleSupplement", mappedBy="commande_article")
+     */
+    private $commandeArticleSupplements;
+
+    /**
      * Commande_article constructor.
      */
     public function __construct()
     {
+        $this->commandeArticleSupplements = new ArrayCollection();
     }
 
 
@@ -67,6 +75,25 @@ class Commande_article
     {
         $this->commande = $commande;
     }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id)
+    {
+        $this->id = $id;
+    }
+
+
+
 
     /**
      * @return mixed
@@ -98,6 +125,37 @@ class Commande_article
     public function setQte($qte)
     {
         $this->qte = $qte;
+    }
+
+    /**
+     * @return Collection|CommandeArticleSupplement[]
+     */
+    public function getCommandeArticleSupplements(): Collection
+    {
+        return $this->commandeArticleSupplements;
+    }
+
+    public function addCommandeArticleSupplement(CommandeArticleSupplement $commandeArticleSupplement): self
+    {
+        if (!$this->commandeArticleSupplements->contains($commandeArticleSupplement)) {
+            $this->commandeArticleSupplements[] = $commandeArticleSupplement;
+            $commandeArticleSupplement->setCommandeArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommandeArticleSupplement(CommandeArticleSupplement $commandeArticleSupplement): self
+    {
+        if ($this->commandeArticleSupplements->contains($commandeArticleSupplement)) {
+            $this->commandeArticleSupplements->removeElement($commandeArticleSupplement);
+            // set the owning side to null (unless already changed)
+            if ($commandeArticleSupplement->getCommandeArticle() === $this) {
+                $commandeArticleSupplement->setCommandeArticle(null);
+            }
+        }
+
+        return $this;
     }
 
 

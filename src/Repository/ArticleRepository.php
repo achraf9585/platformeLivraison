@@ -48,5 +48,18 @@ class ArticleRepository extends ServiceEntityRepository
     }
     */
 
+    public function getPlatByCategorie($value):array
+    {
+            $conn= $this->getEntityManager()->getConnection();
+            $sql=' SELECT p.* FROM article p , categorie c 
+ WHERE c.fournisseur_id= :val
+
+';
+            $smt= $conn->prepare($sql);
+            $smt->execute(['val' => $value]);
+            return $smt->fetchAll();
+        }
+
+
 
 }

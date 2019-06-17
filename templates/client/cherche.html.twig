@@ -21,11 +21,9 @@
  <br>
 
 
-
     <div class="card-columns">
 
         {% for f in fournisseurs %}
-
 
             <div class="card">
                 <a href="{{ path('lstarticle_show', {'idf': f.id}) }}">
@@ -34,12 +32,19 @@
                     <img class="card-img-top" style="height: 300px;" src="{{ asset('images/articles/'~ f.image_name)  }}">
 
                     <h5 class="card-title">{{ f.nomrestaurant }}</h5>
-                    <p class="card-text">Sanwdich , salades , boissons</p>
+                    <p class="card-text">{{ f.slogan  }}</p>
 
                     <div class="card-footer">
                         <h6 class="text-muted"> <div class="col-md-7"> {{ f.tempsapprox }} minutes</div>
-                            <div class="col-md-17"> <i class="fa  fa-star"> 4.1(120)</i> </div></h6>
-                    </div>
+            {% for c in nbrcomments %}
+
+                {% if c.id==f.id %}
+                            <div class="col-md-17"> <i class="fa  fa-star"> {{ c.note }}( {{ c.com }} )</i> </div></h6>
+
+                                    {% endif %}
+                        {% endfor %}
+
+                                    </div>
 
                 </div>
                 </a>

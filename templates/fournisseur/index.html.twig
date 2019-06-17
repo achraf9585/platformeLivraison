@@ -1,16 +1,20 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+
+{% endblock %}
 
 	{% block body %}
         <main class="app-content">
             <div class="app-title">
 
                 <ul class="app-breadcrumb breadcrumb">
-                    <li class="breadcrumb-item"><i class="fa fa-building fa-lg"></i></li>
-                    <li class="breadcrumb-item"><a href="#">Clients</a></li>
+                    <li class="breadcrumb-item"><i class="fa fa-cutlery fa-lg"></i></li>
+                    <li class="breadcrumb-item"><a href="#">Restaurant</a></li>
                 </ul>
             </div>
             <div class="container">
-                <div class="table-wrapper" style="width:900px;margin-left:100px;">
+                <div class="table-wrapper">
                     <div class="table-title">
                         <div class="row">
                             <div class="col-sm-6">
@@ -21,9 +25,10 @@
                             </div>
                         </div>
                     </div>
+                    <div class="box-body">
 
 
-                    <table id="regions" class="table table-bordered table-striped">
+                    <table id="regions" class="table table-bordered table-striped" >
                         <thead>
                         <tr>
 
@@ -47,9 +52,9 @@
                         {% for fournisseur in fournisseurs %}
 
                             {% if fournisseur.etat=="Activé" %}
-                                <tr style="background: #52BE80;">
+                                <tr >
                             {% else %}
-                                <tr style="background: #D3CBCB;">
+                                <tr style="background: #FA8072;">
                             {% endif %}
 
                                 <td>{{ fournisseur.id }}</td>
@@ -78,7 +83,7 @@
                         </tbody>
                     </table>
 
-
+                    </div>
                 </div>
             </div>
             <!-- Add Modal HTML -->

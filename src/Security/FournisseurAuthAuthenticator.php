@@ -85,7 +85,7 @@ class FournisseurAuthAuthenticator extends AbstractFormLoginAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-   return new RedirectResponse($this->urlGenerator->generate('categorie_index'));
+   return new RedirectResponse($this->urlGenerator->generate('commande_per'));
         throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 

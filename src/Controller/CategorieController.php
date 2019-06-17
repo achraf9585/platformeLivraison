@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Categorie;
 use App\Form\CategorieType;
 use App\Repository\CategorieRepository;
+use App\Repository\CommandeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,10 +21,12 @@ class CategorieController extends AbstractController
     /**
      * @Route("/", name="categorie_index", methods={"GET"})
      */
-    public function index(CategorieRepository $categorieRepository,Request $request,PaginatorInterface $paginator): Response
+    public function index(CategorieRepository $categorieRepository,CommandeRepository $commandeRepository,Request $request,PaginatorInterface $paginator): Response
     {
+        $ds=new \DateTime();
+
+        $etats=$commandeRepository->findBy(array('etat'=>'confirmer'));
         $usr= $this->get('security.token_storage')->getToken()->getUser();
-        $usr->getId();
         $categories=$categorieRepository->findBy(array('fournisseur'=>$usr));
         $properties=$paginator->paginate($categories,
 
@@ -34,6 +37,7 @@ class CategorieController extends AbstractController
         return $this->render('categorie/index.html.twig', [
             'categories' => $categories,
             'properties'=>$properties,
+            'etats'=>$etats,
         ]);
     }
 
@@ -76,7 +80,7 @@ class CategorieController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="categorie_edit", methods={"GET","POST"})
+     * @Route("/edit/{id}", name="categorie_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Categorie $categorie): Response
     {

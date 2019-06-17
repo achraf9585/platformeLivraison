@@ -83,25 +83,23 @@ class Article
      */
     private $updatedAt;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Fournisseur", inversedBy="articles")
-     */
-    private $fournisseur;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $etatArticle;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\CommandeArticleSupplement", mappedBy="article")
-     */
-    private $commandeArticleSupplements;
+
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Commande_article", mappedBy="articles",cascade={"persist","remove"})
      */
     private $commandes;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Fournisseur", inversedBy="articles")
+     */
+    private $fournisseur;
 
 
 
@@ -255,44 +253,7 @@ class Article
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCommandeArticleSupplements()
-    {
-        return $this->commandeArticleSupplements;
-    }
 
-    /**
-     * @param mixed $commandeArticleSupplements
-     */
-    public function setCommandeArticleSupplements($commandeArticleSupplements)
-    {
-        $this->commandeArticleSupplements = $commandeArticleSupplements;
-    }
-
-    public function addCommandeArticleSupplement(CommandeArticleSupplement $commandeArticleSupplement): self
-    {
-        if (!$this->commandeArticleSupplements->contains($commandeArticleSupplement)) {
-            $this->commandeArticleSupplements[] = $commandeArticleSupplement;
-            $commandeArticleSupplement->setArticle($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCommandeArticleSupplement(CommandeArticleSupplement $commandeArticleSupplement): self
-    {
-        if ($this->commandeArticleSupplements->contains($commandeArticleSupplement)) {
-            $this->commandeArticleSupplements->removeElement($commandeArticleSupplement);
-            // set the owning side to null (unless already changed)
-            if ($commandeArticleSupplement->getArticle() === $this) {
-                $commandeArticleSupplement->setArticle(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection|Commande[]

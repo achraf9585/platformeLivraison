@@ -3,13 +3,15 @@
 {% block title %}Plat{% endblock %}
 {% block stylesheets %}
 <style>
-html,body{
-background: white;
-background-size: cover;
-background-repeat: no-repeat;
-height: 100%;
-font-family: 'Numans', sans-serif;
-}
+    html,body{
+        background: white;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100%;
+        font-family: 'Numans', sans-serif;
+        background-image: url("https://img.freepik.com/fotos-kostenlos/geschmackvolle-pepperonipizza-auf-einem-schwarzen-konkreten-hintergrund_79782-103.jpg?size=626&ext=jpg")
+
+    }
 
 .container{
 height: 100%;
@@ -94,39 +96,31 @@ margin-left: 4px;
     
  <a href="{{ path('plat_index')}}" class="btn"> <i class="material-icons">&#xE317;</i></a> 
     
-  <div class="container">
-  <div class="d-flex justify-content-center h-100">
-    <div class="card">
-     
-        <h1 class="h3 mb-3 font-weight-normal" style="color:black">
-          
-          
-        </h1>
+  <div class="container" style="width: 400px;margin-right: 50px;">
+
+
       
-    <div class="card-body">      
-      
-      <h1>Plat n°{{article.id}}</h1>
+
+      <h1 style="color: whitesmoke;">Plat n°{{article.id}}<a href="{{ path('plat_index') }}"><i class="material-icons">&#xE5C4;</i></a></h1>
 
     <table class="table">
-        <tbody>
+        <tbody style="color: whitesmoke;">
             <tr>
-                <th>Id</th>
+                <th style="color: whitesmoke;">Id</th>
                 <td>{{ article.id }}</td>
             </tr>
             <tr>
-                <th>Nom du plat</th>
+                <th style="color: whitesmoke;">Nom du plat</th>
                 <td>{{ article.libele }}</td>
             </tr>
             <tr>
-                <th>Prix du plat</th>
+                <th style="color: whitesmoke;">Prix du plat</th>
                 <td>{{ article.prix }}dt</td>
             </tr>
 
         </tbody>
     </table>
-    </div>
-</div>
-</div>
+
 </div>
 
 {% endblock %}

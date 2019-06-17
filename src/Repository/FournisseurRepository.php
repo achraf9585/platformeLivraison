@@ -56,7 +56,7 @@ class FournisseurRepository extends ServiceEntityRepository
     {
 $conn= $this->getEntityManager()->getConnection();
 $sql=' SELECT f.* FROM fournisseur f , ville v 
- WHERE f.region_id IN (SELECT v.id FROM ville WHERE v.libele= :val)
+ WHERE f.region_id IN (SELECT v.id FROM ville WHERE v.libele= :val) and f.etat="Activé"
 
 ';
 $smt= $conn->prepare($sql);

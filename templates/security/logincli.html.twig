@@ -1,4 +1,4 @@
-{% extends 'base3.html.twig' %}
+{% extends 'baseinscri.html.twig' %}
 
 {% block title %}Log in!{% endblock %}
 
@@ -40,11 +40,7 @@
             <div class= "form-group">
                 <div class="row">
                     <div class="col-xs-8">
-                        <div class="checkbox icheck" style="margin-left:10px;">
-                            <label>
-                                <input type="checkbox" > Remember Me
-                            </label>
-                        </div>
+
                     </div>
                     <!-- /.col -->
                     <div class="col-xs-4" style="margin-left:-10px;">
@@ -62,11 +58,9 @@
 
           -->
                 <br>
+
                 <div class="text-center">
-                    <a class="small" href="forgot-password.html">Mot de passe oublié </a>
-                </div>
-                <div class="text-center">
-                    <a class="small" href="register.html">Créer un compte</a>
+                    <a class="small" href="{{ 'cli_register' }}">Créer un compte</a>
                 </div>
 
             </div>

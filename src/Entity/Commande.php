@@ -71,10 +71,6 @@ class Commande
      */
     private $livreur;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\CommandeArticleSupplement", mappedBy="commande")
-     */
-    private $commandeArticleSupplements;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Commande_article", mappedBy="commandes",cascade={"persist","remove"})
@@ -256,44 +252,7 @@ class Commande
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCommandeArticleSupplements()
-    {
-        return $this->commandeArticleSupplements;
-    }
 
-    /**
-     * @param mixed $commandeArticleSupplements
-     */
-    public function setCommandeArticleSupplements($commandeArticleSupplements)
-    {
-        $this->commandeArticleSupplements = $commandeArticleSupplements;
-    }
-
-    public function addCommandeArticleSupplement(CommandeArticleSupplement $commandeArticleSupplement): self
-    {
-        if (!$this->commandeArticleSupplements->contains($commandeArticleSupplement)) {
-            $this->commandeArticleSupplements[] = $commandeArticleSupplement;
-            $commandeArticleSupplement->setCommande($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCommandeArticleSupplement(CommandeArticleSupplement $commandeArticleSupplement): self
-    {
-        if ($this->commandeArticleSupplements->contains($commandeArticleSupplement)) {
-            $this->commandeArticleSupplements->removeElement($commandeArticleSupplement);
-            // set the owning side to null (unless already changed)
-            if ($commandeArticleSupplement->getCommande() === $this) {
-                $commandeArticleSupplement->setCommande(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection|Article[]

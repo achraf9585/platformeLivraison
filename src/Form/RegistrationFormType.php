@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Livreur;
+use App\Entity\Ville;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -73,13 +75,23 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
+            ->add('ville',EntityType::class,array(
+
+                'class' => Ville::class,
+                'label'    => 'Ville',
+                /*'query_builder'=> function (EntityRepository $er)
+                {
+                    return $er->createQueryBuilder('u')
+                        ->where("u.statut = 'oui' ");
+                },*/
+                'choice_label' =>'libele',
+            ))
 
 
             ->add('terms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => new IsTrue(),
             ])
-            ->add('disponibilite', TextType::class,['label'=>'Disponiblité'])
         ;
     }
 

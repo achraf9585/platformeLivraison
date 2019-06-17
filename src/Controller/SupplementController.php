@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Supplement;
 use App\Form\SupplementType;
+use App\Repository\CommandeRepository;
 use App\Repository\SupplementRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Asset\PackageInterface;
@@ -20,7 +21,7 @@ class SupplementController extends AbstractController
     /**
      * @Route("/", name="supplement_index", methods={"GET"})
      */
-    public function index(SupplementRepository $supplementRepository, Request $request, PaginatorInterface $paginator): Response
+    public function index(SupplementRepository $supplementRepository, CommandeRepository $commandeRepository,Request $request, PaginatorInterface $paginator): Response
     {
         /**
          * @var \App\Entity\Fournisseur $user
@@ -28,6 +29,9 @@ class SupplementController extends AbstractController
         $user = $this->getUser();
         $usr= $this->get('security.token_storage')->getToken()->getUser();
         $usr->getId();
+        $ds=new \DateTime();
+
+        $etats=$commandeRepository->findBy(array('etat'=>'confirmer'));
         $supplements=$supplementRepository->findBy(array('fournisseur'=>$usr));
 
         $properties=$paginator->paginate($supplements,
@@ -37,6 +41,7 @@ class SupplementController extends AbstractController
         return $this->render('supplement/index.html.twig', [
             'supplements'=> $supplements,
             'properties' => $properties ,
+            'etats' => $etats ,
         ]);
     }
 

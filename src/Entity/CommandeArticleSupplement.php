@@ -17,50 +17,28 @@ class CommandeArticleSupplement
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Commande_article", inversedBy="commandeArticleSupplements")
      */
-    private $qte;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Article", inversedBy="commandeArticleSupplements")
-     */
-    private $article;
+    private $commande_article;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Supplement", inversedBy="commandeArticleSupplements")
      */
     private $supplement;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Commande", inversedBy="commandeArticleSupplements")
-     */
-    private $commande;
-
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getQte(): ?int
+    public function getCommandeArticle(): ?Commande_article
     {
-        return $this->qte;
+        return $this->commande_article;
     }
 
-    public function setQte(int $qte): self
+    public function setCommandeArticle(?Commande_article $commande_article): self
     {
-        $this->qte = $qte;
-
-        return $this;
-    }
-
-    public function getArticle(): ?Article
-    {
-        return $this->article;
-    }
-
-    public function setArticle(?Article $article): self
-    {
-        $this->article = $article;
+        $this->commande_article = $commande_article;
 
         return $this;
     }
@@ -73,18 +51,6 @@ class CommandeArticleSupplement
     public function setSupplement(?Supplement $supplement): self
     {
         $this->supplement = $supplement;
-
-        return $this;
-    }
-
-    public function getCommande(): ?Commande
-    {
-        return $this->commande;
-    }
-
-    public function setCommande(?Commande $commande): self
-    {
-        $this->commande = $commande;
 
         return $this;
     }

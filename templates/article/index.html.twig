@@ -1,4 +1,4 @@
-{% extends 'baseres.html.twig' %}
+{% extends 'baseres2.html.twig' %}
 {% block title %}Plats index{% endblock %}
 
 {% block body %}
@@ -20,6 +20,7 @@
 
                 </div>
             </div>
+            <div class="box-body">
 
             <table id="regions" class="table table-bordered table-striped"style="width: 900px;">
                 <thead>
@@ -71,9 +72,9 @@
                     </td>
                     <td>{{ article.etatArticle }}</td>
                     <td>
-                        <a href="{{ path('fournisseur_edit', {'id': article.id}) }}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Modifier">&#xE254;</i></a>
+                        <a href="{{ path('plat_edit', {'id': article.id}) }}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Modifier">&#xE254;</i></a>
 
-                        <a  href="{{ path('fournisseur_show', {'id': article.id}) }}"  ><i title="Voir" class="material-icons">&#xE8F4;</i></a>
+                        <a  href="{{ path('plat_show', {'id': article.id}) }}"  ><i title="Voir" class="material-icons">&#xE8F4;</i></a>
                     </td>
 
 
@@ -86,7 +87,7 @@
 
                 </tbody>
             </table>
-
+            </div>
 
         </div>
     </div>

@@ -129,10 +129,7 @@ class Fournisseur implements UserInterface
      */
     private $region;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="fournisseur")
-     */
-    private $articles;
+
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Supplement", mappedBy="fournisseur")
@@ -149,11 +146,22 @@ class Fournisseur implements UserInterface
      */
     private $slogan;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Commentaire", mappedBy="fournisseur")
+     */
+    private $commentaires;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="fournisseur")
+     */
+    private $articles;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
         $this->supplements = new ArrayCollection();
         $this->categories = new ArrayCollection();
+        $this->commentaires = new ArrayCollection();
     }
 
 
@@ -493,6 +501,37 @@ class Fournisseur implements UserInterface
     public function setSlogan(?string $slogan): self
     {
         $this->slogan = $slogan;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commentaire[]
+     */
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): self
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setFournisseur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        if ($this->commentaires->contains($commentaire)) {
+            $this->commentaires->removeElement($commentaire);
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getFournisseur() === $this) {
+                $commentaire->setFournisseur(null);
+            }
+        }
 
         return $this;
     }

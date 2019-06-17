@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Food and Restorent One page Template</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+        <link href='{{ asset('cssw/b3/c1.css') }}' rel='stylesheet' type='text/css'>
+        <link href='{{ asset('cssw/b3/star-rating.css') }}' rel='stylesheet' type='text/css'>
+        <link href='{{ asset('cssw/b3/krajee-fa/theme.css') }}' media="all" type="text/css">
+        <link href='{{ asset('cssw/b3/krajee-svg/theme.css') }}' media="all" type="text/css">
+        <link href='{{ asset('cssw/b3/krajee-fas/theme.css') }}' media="all" type="text/css">
+        <link href='{{ asset('cssw/b3/krajee-uni/theme.css') }}' media="all" type="text/css">
+        <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
+        <!--        <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">-->
+
+        <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+        <!--For Plugins external css-->
+        <link rel="stylesheet" href="{{ asset('assets/css/animate/animate.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/plugins.css') }}" />
+
+        <!--Theme custom css -->
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/card.css') }}">
+
+        <!--Theme Responsive css-->
+        <link rel="stylesheet" href="assets/css/responsive.css" />
+
+        <script src="{{ asset('assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js') }}"></script>{% endblock %}
+    <style>
+        .btn-panier {
+            color: #fff;
+            background-color: transparent;
+        }
+
+
+
+        .table-responsive {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            -ms-overflow-style: -ms-autohiding-scrollbar;
+        }
+    </style>
+</head>
+
+<body>
+<div class="header_top_menu clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 col-md-offset-3 col-sm-12 text-right">
+                <div class="call_us_text">
+                    <a href=""><i class="fa fa-clock-o"></i> Livraison 7J/7</a>
+                    <a href=""><i class="fa fa-phone"></i>(+216) 22  222 222</a>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-12">
+                <div class="head_top_social text-right">
+                    <a href=""><i class="fa fa-facebook"></i></a>
+                    <a href=""><i class="fa fa-google-plus"></i></a>
+                    <a href=""><i class="fa fa-twitter"></i></a>
+                    <a href=""><i class="fa fa-linkedin"></i></a>
+                    <a href=""><i class="fa fa-pinterest-p"></i></a>
+                    <a href=""><i class="fa fa-youtube"></i></a>
+                    <a href=""><i class="fa fa-phone"></i></a>
+                    <a href=""><i class="fa fa-camera"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- End navbar-collapse-->
+
+<div class="main_menu_bg">
+    <div class="container">
+        <div class="row">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand our_logo" href="{{ path('client') }}"><img src="{{ asset('assets/images/logo.png') }}" alt="" /></a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="{{ path('client') }}" >Accueil</a></li>
+                            <li><a href="#abouts">Â propos de nous</a></li>
+                            <li><a href="#footer_widget">Informations</a></li>
+                            {% if not app.user %}
+                                <li><a href="{{ path('cli_register') }}" style="color:#f0932b;"  >Inscription</a></li>
+
+
+                                <li><a href="{{ path('liv_register') }}" style="color:#f0932b;" >Devenir Livreur</a></li>
+                                <li><a href="{{ path('app_login') }}"   >Se connecter</a></li>
+
+
+                            {% else %}
+
+                                <li><a class="btn btn-panier btn-sm ml-3 treeview menu-open "href="{{ path('panier_show') }}"  onclick="openForm()">
+                                        <i class="fa fa-shopping-cart" style="margin-top:-10px;" ></i> Panier
+                                        <span class="badge badge-light"></span>
+
+                                    </a>
+
+
+
+                                </li>
+                                <li>  <div class="dropdown show" style="margin-top: 10px;">
+                                        <a style="color: white"  class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            {{ app.user.prenom }} {{   app.user.nom}}
+                                        </a>
+
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <center>
+                                                <a class="dropdown-item" href="{{ 'gerercli_show' }}">Profile</a><br>
+                                                <a class="dropdown-item"  href="{{ path('logout') }}" >Se deconnecter</a>
+                                            </center>
+
+                                        </div>
+                                    </div></li>                            {% endif %}
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+        </div>
+    </div>
+</div>
+</header> <!-- End Header Section -->
+
+
+{% block body %}
+
+
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('assets/js/vendor/jquery-1.11.2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/bootstrap.min.js') }}"></script>
+
+    <script src="assets/js/jquery-easing/jquery.easing.1.3.js"></script>
+    <script src="assets/js/wow/wow.min.js"></script>
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/main.js"></script>
+
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script src='{{ asset('cssw/b3/star-rating.js') }}'></script>
+    <script src="../js/themes/krajee-fa/theme.js" type="text/javascript"></script>
+    <script src="../js/themes/krajee-svg/theme.js" type="text/javascript"></script>
+    <script src="../js/themes/krajee-uni/theme.js" type="text/javascript"></script>
+
+{% endblock %}
+</body>
+</html>

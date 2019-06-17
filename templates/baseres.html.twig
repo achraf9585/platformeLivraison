@@ -72,7 +72,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="{{ path('home')}}">{{ app.user.nomrestaurant }} </a>
+    <a class="navbar-brand" href="#">{{ app.user.nomrestaurant }} </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -81,21 +81,21 @@
         <ul class="navbar-nav mr-auto" style="margin-top:4px;">
 
 
-                <a class="nav-link" href="{{ path('categorie_index')}}"> Catégories <span class="sr-only"></span></a>
+                <a class="nav-link" href="{{ path('categorie_index')}}" style="color: whitesmoke;"> Catégories <span class="sr-only"></span></a>
 
 
                 <a class="nav-link"> | </a>
 
 
-                <a class="nav-link" href="{{ path('plat_index')}}"> Plats <span class="sr-only"></span></a>
+                <a class="nav-link" href="{{ path('plat_index')}}"style="color: whitesmoke;"> Plats <span class="sr-only"></span></a>
 
 
                 <a class="nav-link"> | </a>
 
 
-                <a class="nav-link" href=" {{ path ('supplement_index') }}"> Suppléments <span class="sr-only"></span></a>
+                <a class="nav-link" href=" {{ path ('supplement_index') }}"style="color: whitesmoke;"> Suppléments <span class="sr-only"></span></a>
             <a class="nav-link"> | </a>
-                <a class="nav-link" href=" {{ path ('commande_per') }}"> Commandes <span class="sr-only"></span></a>
+                <a class="nav-link" href=" {{ path ('commande_per') }}"style="color: whitesmoke;"> Commandes <span class="sr-only"></span></a>
 
 
 
@@ -118,41 +118,23 @@
                             <a href="#" class="list-group-item list-group-item-action active">
                                 <div class="notification-info">
                                     <div class="notification-list-user-img"><img src="assets/images/avatar-2.jpg" alt="" class="user-avatar-md rounded-circle"></div>
-                                    <div class="notification-list-user-block"><span class="notification-list-user-name">Jeremy Rakestraw</span>accepted your invitation to join the team.
-                                        <div class="notification-date">2 min ago</div>
+                                    <div class="notification-list-user-block"><span class="notification-list-user-name"></span>
+
+
+
+
+
+
+
+
                                     </div>
                                 </div>
                             </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="notification-info">
-                                    <div class="notification-list-user-img"><img src="assets/images/avatar-3.jpg" alt="" class="user-avatar-md rounded-circle"></div>
-                                    <div class="notification-list-user-block"><span class="notification-list-user-name">John Abraham </span>is now following you
-                                        <div class="notification-date">2 days ago</div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="notification-info">
-                                    <div class="notification-list-user-img"><img src="assets/images/settings.jpg" style="width:10px;" alt=""></div>
-                                    <div class="notification-list-user-block"><span class="notification-list-user-name">Monaan Pechi</span> is watching your main repository
-                                        <div class="notification-date">2 min ago</div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="notification-info">
-                                    <div class="notification-list-user-img"><img src="assets/images/avatar-5.jpg" alt="" class="user-avatar-md rounded-circle"></div>
-                                    <div class="notification-list-user-block"><span class="notification-list-user-name">Jessica Caruso</span>accepted your invitation to join the team.
-                                        <div class="notification-date">2 min ago</div>
-                                    </div>
-                                </div>
-                            </a>
+
                         </div>
                     </div>
                 </li>
-                <li>
-                    <div class="list-footer"> <a href="#">View all notifications</a></div>
-                </li>
+
             </ul>
         </li>
 
@@ -163,7 +145,7 @@
                     <h5 class="mb-0 text-white nav-user-name"> {{ app.user.nomrestaurant }}</h5>
                     <span class="status"></span><span class="ml-2">Disponible</span>
                 </div>
-                <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Compte Fournisseur</a>
+                <a class="dropdown-item" href="{{ path('gererfour_show') }}"><i class="fas fa-user mr-2"></i>Compte Fournisseur</a>
 
                 <a class="dropdown-item" href="{{ path('logout')}}"><i class="fas fa-power-off mr-2"></i>Se déconnecter</a>
             </div>

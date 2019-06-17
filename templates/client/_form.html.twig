@@ -1,0 +1,88 @@
+<div class="container" style="width: 500px;height: 500px;">
+    <h1 style="margin-left: 10px;">{% if editMode %}
+
+Modifier        {% else %}
+            <br>
+            Créer un nouveau Restaurant
+        {% endif %}</h1>
+
+    {{ form_start(form) }}
+    <br>
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="input-group">
+
+                {{ form_row(form.nom,{ 'attr': {'class': 'form-control' ,'style': 'width: 200px; ', 'placeholder': ' le nom du Restaurateur'}}) }}
+            </div>
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-6">
+            <div class="input-group">
+
+                {{ form_row(form.prenom,{ 'attr': {'class': 'form-control' , 'style': 'width: 200px; ','placeholder': ' le prenom du Restaurateur'}}) }}
+
+            </div>
+        </div>
+        <!-- /.col -->
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="input-group" >
+                {{ form_row(form.email,{'attr':{'class':'form-control','placeholder':'Adresse email ...'}}) }}
+            </div>
+        </div>
+
+        <div class="col-xs-6" >
+            <div class="input-group" >
+
+
+                {{ form_row(form.datenaissance,{'attr':{'class':'form-control'}}) }}
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="input-group">
+                {{ form_row(form.numtel1,{'attr':{'class':'form-control','placeholder':'Numéro de téléphone 1...'}}) }}
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="input-group">
+
+                {{ form_row(form.numtel2,{ 'attr': {'class': 'form-control' , 'placeholder': 'Numéro de téléphone 2...'}}) }}
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="input-group">
+
+                {{ form_row(form.datenaissance,{ 'attr': {'class': 'form-control' , 'placeholder': 'Prenom'}}) }}
+
+            </div>
+        </div>
+
+        <div class="col-xs-6">
+            <div class="input-group">
+
+                {{ form_row(form.adresse,{ 'attr': {'class': 'form-control' , 'placeholder': 'Adresse '}}) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+
+
+        <button class="btn btn-success" style="width: 70%; margin-left: 70px; margin-top: 10px;">{{ button_label|default('Ajouter') }}</button>
+
+
+        {{ form_end(form) }}
+    </div>
+</div>

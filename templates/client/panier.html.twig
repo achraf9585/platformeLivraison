@@ -16,9 +16,11 @@
 <th scope="col">Qte</th>
 <th scope="col">Prix</th>
 <th scope="col">Prix Total</th>
+<th scope="col">Supplements</th>
 <th scope="col">Action</th>
 </thead>
         <tbody >
+
         {% for key,value in articles %}
         <tr style="background: whitesmoke">
             <td> <img src="{{ asset('images/articles/'~ articles[key].imageName) | imagine_filter('test') }}"/> </td>
@@ -27,11 +29,18 @@
                 <a href="{{ path('panier_plus', {'id': articles[key].id}) }}">+</a> </td>
             <td>{{ articles[key].prix }} DT</td>
             <td>{{ qts[key] * articles[key].prix }} DT</td>
+            <td>
+                {% for index,val in suppse[key] %}
+                       {{ val.libele }} : {{ val.prix }}  <br>
+                {% endfor %}
+            </td>
+
             <td><a href="{{ path('panier_supprimer' , {'id': articles[key].id}) }}" class="btn btn-sm btn-danger"><i  class="fa fa-trash">    </i> </a></td>
         </tr>
 
         {% endfor %}
-        <tr>
+        <tr style="background: whitesmoke">
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -39,15 +48,16 @@
             <td>Total </td>
             <td>{{ total }} DT </td>
         </tr>
-        <tr>
+        <tr style="background: whitesmoke">
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td>Frais livraison </td>
-            <td>6DT </td>
+            <td>{{ formule.frais }}DT </td>
         </tr>
-        <tr>
+        <tr style="background: whitesmoke">
             <td></td>
             <td></td>
             <td></td>
@@ -56,7 +66,7 @@
             {{ form_start(form) }}
             <td> {{ form_row(form.total) }}</td>
 
-            <td>{{ total + 6 }}  DT</td>
+            <td>{{ total + formule.frais }}  DT</td>
         </tr>
         </tbody>
 
@@ -76,27 +86,34 @@
 
 
 
-                <button class="btn btn-block btn-light" href="{{ path('lstarticle_show') }}"> Continuer les achats</button>
+                <button class="btn btn-block btn-light" href="{{ path('home' ) }}"> Continuer les achats</button>
 
                 </div>
                 <div class="col-sm-12 col-md-6 text-right">
 
 
 
+                    {% if  app.user %}
 
 
-
-
-
-
-                    {% if total +6 >=10 %}
+                    {% if total +formule.frais>=formule.seuil %}
 
                     <button class="btn btn-block   text-uppercase" style=" color: #fff; background-color: #28a745;
                     border-color: #28a745;"> Commander</button>
                     {% else %}
                                  <button class="btn btn-block   text-uppercase" disabled style=" color: #fff; background-color: #28a745;
                     border-color: #28a745;"> Commander</button>
+                        <div class="alert alert-danger" role="alert">
+                           Seuil doit être supérieur ou égale à {{ formule.seuil }}DT
+                        </div>
                     {% endif %}
+{% else %}
+    <div class="alert alert-danger" role="alert">
+        Vous devez vous connecter avant de commander !                        </div>
+                    {% endif %}
+
+
+
                     {{ form_end(form) }}
                 </div>
             </div>

@@ -2,25 +2,37 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
+use App\Entity\ChangePassword;
 use App\Entity\Commande;
 use App\Entity\Commande_article;
+use App\Entity\CommandeArticleSupplement;
+use App\Entity\Commentaire;
+use App\Entity\Fournisseur;
 use App\Entity\Region;
 use App\Form\ArticleType;
 use App\Form\CommandeType;
+use App\Form\Commentaire1Type;
+use App\Form\CommentaireType;
 use App\Form\FournisseurType;
 use App\Form\ResetPasswordType;
+use App\Repository\AdminRepo;
 use App\Repository\ArticleRepository;
 use App\Repository\CategorieRepository;
 use App\Repository\ClientRepository;
 use App\Repository\CommandeRepository;
+use App\Repository\CommentaireRepository;
+use App\Repository\FormuleRepository;
 use App\Repository\FournisseurRepository;
 use App\Repository\LivreurRepository;
 use App\Repository\RegionRepository;
+use App\Repository\SupplementRepository;
 use App\Repository\VilleRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManager;
 use Monolog\Logger;
+use PhpParser\Comment;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -30,6 +42,7 @@ use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class AdminController extends Controller
@@ -72,14 +85,17 @@ class AdminController extends Controller
     /**
      * @Route("/",name="home")
      */
-    public function loginAdmin(AuthenticationUtils $authenticationUtils): Response
+    public function loginCli(VilleRepository $villeRepository,RegionRepository $regionRepository): Response
     {
-            // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
+        $villes= $villeRepository->findVilleCli();
+        $regions=$regionRepository->findAll();
 
-        return $this->render('security/loginadmin.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('client/index.html.twig', [
+            'controller_name' => 'AdminController',
+            'villes' => $villes,
+            'nbr'=>$this->panierCount(),
+            'regions' => $regions,
+        ]);
     }
 
 
@@ -87,13 +103,16 @@ class AdminController extends Controller
     /**
      * @Route("/client/cherche",name="cherch")
      */
-public  function  search(FournisseurRepository $fournisseurRepository,Request $request){
+public  function  search(FournisseurRepository $fournisseurRepository,CommentaireRepository $commentaireRepository,Request $request){
+    $idf= $request->query->get('idf');
+$nbrcomments=$commentaireRepository->nbrcomment();
     $m= $request->query->get('m');
      $fournisseurs= $fournisseurRepository->findregion($m);
     return $this->render('client/cherche.html.twig', [
         'fournisseurs' => $fournisseurs,
         'nbr'=>$this->panierCount(),
         'm' => $m,
+        'nbrcomments' => $nbrcomments,
 
     ]);
 }
@@ -103,15 +122,59 @@ public  function  search(FournisseurRepository $fournisseurRepository,Request $r
     /**
      * @Route("/client/recherche", name="lstarticle_show")
      */
-       public function show(ArticleRepository $articleRepository, CategorieRepository $categorieRepository,Request $request): Response
+       public function show(ArticleRepository $articleRepository,CommentaireRepository $commentaireRepository, CategorieRepository $categorieRepository,FournisseurRepository $fournisseurRepository,Request $request): Response
     {
-        $m= $request->query->get('m');
-        $articles= $articleRepository->findAll();
-        $categories=$categorieRepository->findBy(array('fournisseur'=> $usr));
+        $m= $request->query->get('idf');
+        $articles= $articleRepository->findBy(array('fournisseur'=>$m,'etatArticle'=>'Activé'));
+        $categories=$categorieRepository->findBy(array('fournisseur'=>$m,'etat'=>'Activé'));
+
+        $comment= $request->query->get('comment');
+        $note= $request->query->get('note');
+        $idf= $request->query->get('idf');
+
+/*
+        $usr= $this->get('security.token_storage')->getToken()->getUser();
+        $usr->getId();
+        $commentaire= new Commentaire();
+        $forme = $this->createForm(CommentaireType::class, $commentaire );
+        if ($forme->isSubmitted() && $forme->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($commentaire);
+            $commentaire->setClient($usr);
+            $commentaire->setContenu($comment);
+            $commentaire->setNote($note);
+
+            $entityManager->flush();
+        }
+
+*/
+$commentaires=$commentaireRepository->findBy(array('fournisseur'=>$idf));
+
+        $usr= $this->get('security.token_storage')->getToken()->getUser();
+        $fournisseur = new Fournisseur();
+        $fournisseur= $fournisseurRepository->findOneBy(['id' =>$idf]);
+
+
+        $commentaire = new Commentaire();
+        $form = $this->createForm(Commentaire1Type::class, $commentaire);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($commentaire);
+            $commentaire->setClient($usr);
+            $commentaire->setFournisseur($fournisseur);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('lstarticle_show');
+        }
         return $this->render('client/lstplats.html.twig', [
             'articles' => $articles,
             'categories' => $categories,
             'nbr'=>$this->panierCount(),
+            'form' => $form->createView(),
+            'commentaires' => $commentaires,
+            'm' => $m,
         ]);
     }
 
@@ -133,12 +196,14 @@ public  function  search(FournisseurRepository $fournisseurRepository,Request $r
     /**
      * @Route("/client/panier", name="panier_show", methods={"GET","POST"})
      */
-    public function getPanier(ArticleRepository $articleRepository,Request $request){
+    public function getPanier(ArticleRepository $articleRepository,Request $request,SupplementRepository $supplementRepository,FormuleRepository $formuleRepository){
 
 
 
         $articles=[];
         $qts=[];
+        $suppse=[];
+        $formule=$formuleRepository->findOneBy(array('id'=>1));
         $session =  $this->get('session');
         if (!$session->has('panier')) {$session->set('panier',array());}
         $panier = $session->get('panier');
@@ -148,6 +213,17 @@ public  function  search(FournisseurRepository $fournisseurRepository,Request $r
             $article= $articleRepository->findOneBy(['id' =>$id]);
             array_push($articles,$article);
             array_push($qts,$qte);
+            $suppsarticle = $session->get('supplements'.$article->getId());
+            $supps=[];
+            for($i=0;$i<count($suppsarticle);$i++){
+                $supplement=$supplementRepository->findOneBy(array('id'=>$suppsarticle[$i]));
+                $total=$total+($supplement->getPrix()*$qte);
+                array_push($supps,$supplement);
+            }
+            array_push($suppse,$supps);
+
+
+
             $total+=$qte*$article->getPrix();
         }
 
@@ -160,16 +236,15 @@ public  function  search(FournisseurRepository $fournisseurRepository,Request $r
 
         $form->handleRequest($request);
         $usr= $this->get('security.token_storage')->getToken()->getUser();
-        $usr->getId();
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($commande);
             $commande->setClient($usr);
-            $commande->setTotal($total+6);
+            $commande->setTotal(0);
             $entityManager->flush();
 
 // *************//
-
+            $index=0;
             foreach ($panier as $id => $qte){
                 $comart= new Commande_article();
 
@@ -180,7 +255,32 @@ public  function  search(FournisseurRepository $fournisseurRepository,Request $r
                 $comart->setCommande($commande);
                 $comart->setQte($qte);
                 $entityManager->flush();
+
+                for ($i=0;$i<count($suppse[$index]);$i++){
+                    $cas= new CommandeArticleSupplement();
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $entityManager->persist($cas);
+                    $cas->setCommandeArticle($comart);
+                    $cas->setSupplement($suppse[$index][$i]);
+
+                    $entityManager->flush();
+
+                    // $suppse[$index][$i] --> supplement
+                        //$article->getId() -->id article
+                }
+
+                $index=$index+1;
+
+
             }
+            ///////-------------------
+            $entityManager->persist($commande);
+            $commande->setTotal($total+$formule->getFrais());
+            $entityManager->flush();
+            $this->getDoctrine()->getManager()->flush();
+
+
+
             //*****************//
           /*  for($i=0;$i<sizeof($qts);$i++)
             {
@@ -191,8 +291,8 @@ public  function  search(FournisseurRepository $fournisseurRepository,Request $r
                 $comart->setQte($qts[$i]);
                 $entityManager->flush();
             }*/
-
-            return $this->redirectToRoute('cherch');
+            $this->viderPanier();
+            return $this->redirectToRoute('home');
         }
         return $this->render('client/panier.html.twig', [
             'articles' => $articles,
@@ -200,21 +300,38 @@ public  function  search(FournisseurRepository $fournisseurRepository,Request $r
             'nbr'=>$this->panierCount(),
             'qts' => $qts,
             'form' => $form->createView(),
+            'suppse' => $suppse,
+            'formule' => $formule,
 
         ]);
     }
 
+
+
     /**
      * @Route("/client/panier/ajout", name="panier_ajout")
      */
-    public  function ajoutauPanier(Request $request){
+    public  function ajoutauPanier(Request $request,ArticleRepository $articleRepository){
         $id= $request->query->get('id');
         $idf= $request->query->get('idf');
         $session = $this->get('session');
         if (!$session->has('panier')) {$session->set('panier',array());}
         $panier = $session->get('panier');
+        $article= $articleRepository->findOneBy(['id' =>$id]);
+        if (!$session->has("supplements".$article->getId())) {$session->set("supplements".$article->getId(),array());}
         if(array_key_exists($id,$panier)) { $panier[$id]+=1; }
-        else{  $panier[$id]=1; }
+        else{
+            $panier[$id]=1;
+            $supps=[];
+            for($i=0;$i<$article->getSupplements()->count();$i++){
+                $supp=$article->getSupplements()[$i];
+                $bo= $request->get($article->getId().$supp->getId());
+                if($bo){
+                    array_push($supps,$supp->getId());
+                }
+            }
+            $session->set("supplements".$article->getId(),$supps);
+        }
         $session->set('panier',$panier);
      return( $this->redirectToRoute('lstarticle_show',array('idf' => $idf)));
     }
@@ -247,6 +364,11 @@ public  function  search(FournisseurRepository $fournisseurRepository,Request $r
         return( $this->redirectToRoute('panier_show'));
     }
 
+    public  function viderPanier(){
+        $session = $this->get('session');
+        $session->set('panier',array());
+    }
+
 
 
 
@@ -259,38 +381,42 @@ public  function  search(FournisseurRepository $fournisseurRepository,Request $r
     /**
      * @Route("admin/edit", name="account_reset", methods={"GET","POST"})
      */
-    public function editAction(Request $request )
+    public function editAction(Request $request , AdminRepo $adminRepo ,UserPasswordEncoderInterface $encoder)
     {
-        $em = $this->getDoctrine()->getManager();
-        $user = $this->getUser();
-        $form = $this->createForm(ResetPasswordType::class, $user);
+        $usr= $this->get('security.token_storage')->getToken()->getUser();
 
+        $admin=$adminRepo->findOneBy(array('id'=>$usr));
+        $changePasswordModel = new ChangePassword();
+        $form = $this->createForm(ResetPasswordType::class, $changePasswordModel);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
+            $encoded = $encoder->encodePassword($admin,$changePasswordModel->newPassword);
 
-            $passwordEncoder = $this->get('security.password_encoder');
-            $oldPassword = $request->request->get('')['oldPassword'];
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($admin);
 
-            // Si l'ancien mot de passe est bon
-            if ($passwordEncoder->isPasswordValid($user,$oldPassword)) {
-                $newEncodedPassword = $passwordEncoder->encodePassword($user, $user->getPassword());
-                $user->setPassword($newEncodedPassword);
+            $admin->setPassword($encoded);
+                $entityManager->flush();
 
-                $em->persist($user);
-                $em->flush();
-
-                $this->addFlash('notice', 'Votre mot de passe à bien été changé !');
-
-                return $this->redirectToRoute('admin');
-            } else {
-                $form->addError(new FormError('Ancien mot de passe incorrect'));
-            }
+            return $this->redirectToRoute('admin', [
+            ]);
         }
+
+
+
+
+
 
         return $this->render('admin/resetpassword.html.twig', array(
             'form' => $form->createView(),
         ));
     }
+
+
+
+
+
 
     public function  panierCount(){
         $session = $this->get('session');
@@ -300,6 +426,28 @@ public  function  search(FournisseurRepository $fournisseurRepository,Request $r
     }
 
 
+    /**
+
+     * @Route("/statistique", name="stat", methods={"GET","POST"})
+     */
+public function nbrcommande(CommandeRepository $commandeRepository , Request $request){
+    $count=array();
+    $total=array();
+    for($i=1;$i<=12;$i++){
+        $count[$i]= 0;
+        $total[$i]=0; }
+    $commandes=$commandeRepository->findAll();
+    foreach ($commandes  as $cmd ){
+        $count[(int) $cmd->getDatecommande()->format('m')]++;
+        $total[(int) $cmd->getDatecommande()->format('m')]+=$cmd->getTotal();
+    }
+
+    return $this->render('statistique/index.html.twig', array(
+        'count' => $count,
+        'total' => $total
+
+    ));
+}
 
 
 

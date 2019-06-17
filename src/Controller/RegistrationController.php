@@ -6,6 +6,7 @@ use App\Entity\Client;
 use App\Entity\Livreur;
 use App\Form\RegistrationClientFormType;
 use App\Form\RegistrationFormType;
+use App\Repository\CondiRepository;
 use App\Security\LoginFormAuthentificatorAuthenticator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,6 +38,7 @@ class RegistrationController extends AbstractController
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
+            $user->setDisponibilite('oui');
             $entityManager->flush();
 
             // do anything else you need here, like send an email
@@ -61,8 +63,9 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/client/cliregister", name="cli_register")
      */
-    public function cliregister(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthentificatorAuthenticator $authenticator): Response
+    public function cliregister(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthentificatorAuthenticator $authenticator ,CondiRepository $condiRepository): Response
     {
+        $condis= $condiRepository->findOneBy(array('id'=>1));
         $user = new Client();
         $form = $this->createForm(RegistrationClientFormType::class, $user);
         $form->handleRequest($request);
@@ -87,6 +90,7 @@ class RegistrationController extends AbstractController
 
         return $this->render('registration/cliregister.html.twig', [
             'registrationForm' => $form->createView(),
+            'condi' => $condis,
         ]);
     }
 }

@@ -89,9 +89,15 @@ class Client implements UserInterface
      */
     private $commandes;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Commentaire", mappedBy="client")
+     */
+    private $commentaires;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
+        $this->commentaires = new ArrayCollection();
     }
 
 
@@ -270,6 +276,37 @@ class Client implements UserInterface
             // set the owning side to null (unless already changed)
             if ($commande->getClient() === $this) {
                 $commande->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commentaire[]
+     */
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): self
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        if ($this->commentaires->contains($commentaire)) {
+            $this->commentaires->removeElement($commentaire);
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getClient() === $this) {
+                $commentaire->setClient(null);
             }
         }
 

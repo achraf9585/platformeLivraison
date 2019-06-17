@@ -47,5 +47,4 @@ class CommandeArticleSupplementRepository extends ServiceEntityRepository
         ;
     }
     */
-
 }

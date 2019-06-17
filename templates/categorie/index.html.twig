@@ -1,4 +1,4 @@
-{% extends 'baseres.html.twig' %}
+{% extends 'baseres2.html.twig' %}
 {% block title %}Catégorie index{% endblock %}
 
 {% block body %}
@@ -20,6 +20,7 @@
 
                 </div>
             </div>
+            <div class="box-body">
 
             <table id="regions" class="table table-bordered table-striped"style="width: 900px;">
                 <thead>
@@ -53,9 +54,9 @@
                     <td>{{ categorie.etat }}</td>
 
                     <td>
-                        <a href="{{ path('fournisseur_edit', {'id': categorie.id}) }}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Modifier">&#xE254;</i></a>
+                        <a href="{{ path('categorie_edit', {'id': categorie.id}) }}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Modifier">&#xE254;</i></a>
 
-                        <a  href="{{ path('fournisseur_show', {'id': categorie.id}) }}"  ><i title="Voir" class="material-icons">&#xE8F4;</i></a>
+                        <a  href="{{ path('categorie_show', {'id': categorie.id}) }}"  ><i title="Voir" class="material-icons">&#xE8F4;</i></a>
                     </td>
 
 
@@ -69,7 +70,7 @@
                 </tbody>
             </table>
 
-
+            </div>
         </div>
     </div>
     <!-- Add Modal HTML -->

@@ -40,19 +40,22 @@ class Ville
      */
     private $fournisseurs;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $statut;
+
 
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $etatVille;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Livreur", mappedBy="ville")
+     */
+    private $livreurs;
+
     public function __construct()
     {
         $this->fournisseurs = new ArrayCollection();
+        $this->livreurs = new ArrayCollection();
     }
 
 
@@ -116,17 +119,7 @@ class Ville
         return $this;
     }
 
-    public function getStatut(): ?string
-    {
-        return $this->statut;
-    }
 
-    public function setStatut(string $statut): self
-    {
-        $this->statut = $statut;
-
-        return $this;
-    }
 
     public function getEtatVille(): ?string
     {
@@ -136,6 +129,37 @@ class Ville
     public function setEtatVille(string $etatVille): self
     {
         $this->etatVille = $etatVille;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Livreur[]
+     */
+    public function getLivreurs(): Collection
+    {
+        return $this->livreurs;
+    }
+
+    public function addLivreur(Livreur $livreur): self
+    {
+        if (!$this->livreurs->contains($livreur)) {
+            $this->livreurs[] = $livreur;
+            $livreur->setVille($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLivreur(Livreur $livreur): self
+    {
+        if ($this->livreurs->contains($livreur)) {
+            $this->livreurs->removeElement($livreur);
+            // set the owning side to null (unless already changed)
+            if ($livreur->getVille() === $this) {
+                $livreur->setVille(null);
+            }
+        }
 
         return $this;
     }

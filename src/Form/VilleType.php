@@ -21,11 +21,11 @@ class VilleType extends AbstractType
             ->add('region',EntityType::class,array(
                 'class' => Region::class,
 
-                /*'query_builder'=> function (EntityRepository $er)
+                'query_builder'=> function (EntityRepository $er)
                 {
                     return $er->createQueryBuilder('u')
-                        ->where("u.statut = 'oui' ");
-                },*/
+                        ->where("u.etatRegion = 'Activé' ");
+                },
                'choice_label' =>'libele',
             ))
             ->add('etatVille', ChoiceType::class,[

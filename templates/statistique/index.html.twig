@@ -1,0 +1,226 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+
+{% endblock %}
+	{% block body %}
+        <main class="app-content">
+
+
+            <div class="container">
+                <div class="table-wrapper" style="width:800px;margin-left:100px;">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h2>Statistique :  <b> Nombre de commandes par mois</b></h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart">
+                        <canvas id="countChart" style="height:230px"></canvas>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="container">
+                <div class="table-wrapper" style="width:800px;margin-left:100px;">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h2>Statistique :  <b> Total de commandes par mois</b></h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart">
+                        <canvas id="totalChart" style="height:230px"></canvas>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+        </main>
+
+
+
+
+    {% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-3.2.1.min.js')}}"></script>
+    <script src="{{ asset('js/popper.min.js') }}"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script>
+        $(function () {
+            $('#regions').DataTable( {
+                "language": {
+                    "lengthMenu": "afficher _MENU_ enregistement par page",
+                    "zeroRecords": "Aucun enregistrement a été trouvé !",
+                    "info": "Page _PAGE_ de _PAGES_ pages",
+                    "infoEmpty": "Aucun enregistrement",
+                    "infoFiltered": "(filtré de  _MAX_ total enregistement)",
+                    "search": "Recherche:",
+                    "paginate": {
+                        "previous": "Precédent",
+                        "next" : "suivant"
+                    }
+                }
+            } );
+        })
+    </script>
+
+
+
+
+    <script>
+        $(function () {
+
+
+            var countData = {
+                labels  : ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet','Aout', 'Septembre', 'Octobre', 'Novembre ', 'Décembre'],
+                datasets: [
+                    {
+                        label               : 'Nombre',
+                        fillColor           : 'rgba(60,141,188,0.9)',
+                        strokeColor         : 'rgba(60,141,188,0.8)',
+                        pointColor          : '#3b8bba',
+                        pointStrokeColor    : 'rgba(60,141,188,1)',
+                        pointHighlightFill  : '#fff',
+                        pointHighlightStroke: 'rgba(60,141,188,1)',
+                        data                : [{{ count[1] }}, {{ count[2] }}, {{ count[3] }}, {{ count[4] }}, {{ count[5] }}, {{ count[6] }}, {{ count[7] }},{{ count[8] }}, {{ count[9] }}, {{ count[10] }}, {{ count[11] }}, {{ count[12] }}]
+                    }
+                ]
+            }
+
+            var totalData = {
+                labels  : ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet','Aout', 'Septembre', 'Octobre', 'Novembre ', 'Décembre'],
+                datasets: [
+                    {
+                        label               : 'Total',
+                        fillColor           : 'rgba(60,141,188,0.9)',
+                        strokeColor         : 'rgba(60,141,188,0.8)',
+                        pointColor          : '#3b8bba',
+                        pointStrokeColor    : 'rgba(60,141,188,1)',
+                        pointHighlightFill  : '#fff',
+                        pointHighlightStroke: 'rgba(60,141,188,1)',
+                        data                : [{{ total[1] }}, {{ total[2] }}, {{ total[3] }}, {{ total[4] }}, {{ total[5] }}, {{ total[6] }}, {{ total[7] }},{{ total[8] }}, {{ total[9] }}, {{ total[10] }}, {{ total[11] }}, {{ total[12] }}]
+                    }
+                ]
+            }
+
+
+            var barChartCanvas                   = $('#countChart').get(0).getContext('2d')
+            var barChart                         = new Chart(barChartCanvas)
+            var barChartData                     = countData
+            //barChartData.datasets[1].fillColor   = '#00a65a'
+            //barChartData.datasets[1].strokeColor = '#00a65a'
+            //barChartData.datasets[1].pointColor  = '#00a65a'
+            var barChartOptions                  = {
+                //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
+                scaleBeginAtZero        : true,
+                //Boolean - Whether grid lines are shown across the chart
+                scaleShowGridLines      : true,
+                //String - Colour of the grid lines
+                scaleGridLineColor      : 'rgba(0,0,0,.05)',
+                //Number - Width of the grid lines
+                scaleGridLineWidth      : 1,
+                //Boolean - Whether to show horizontal lines (except X axis)
+                scaleShowHorizontalLines: true,
+                //Boolean - Whether to show vertical lines (except Y axis)
+                scaleShowVerticalLines  : true,
+                //Boolean - If there is a stroke on each bar
+                barShowStroke           : true,
+                //Number - Pixel width of the bar stroke
+                barStrokeWidth          : 2,
+                //Number - Spacing between each of the X value sets
+                barValueSpacing         : 5,
+                //Number - Spacing between data sets within X values
+                barDatasetSpacing       : 1,
+                //String - A legend template
+                //Boolean - whether to make the chart responsive
+                responsive              : true,
+                maintainAspectRatio     : true
+            }
+
+            barChartOptions.datasetFill = false
+            barChart.Bar(barChartData, barChartOptions)
+
+            var barChartCanvas1                   = $('#totalChart').get(0).getContext('2d')
+            var barChart1                         = new Chart(barChartCanvas1)
+            var barChartData1                     = totalData
+            //barChartData1.datasets[1].fillColor   = '#00a65a'
+            //barChartData1.datasets[1].strokeColor = '#00a65a'
+            //barChartData1.datasets[1].pointColor  = '#00a65a'
+            var barChartOptions1                  = {
+                //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
+                scaleBeginAtZero        : true,
+                //Boolean - Whether grid lines are shown across the chart
+                scaleShowGridLines      : true,
+                //String - Colour of the grid lines
+                scaleGridLineColor      : 'rgba(0,0,0,.05)',
+                //Number - Width of the grid lines
+                scaleGridLineWidth      : 1,
+                //Boolean - Whether to show horizontal lines (except X axis)
+                scaleShowHorizontalLines: true,
+                //Boolean - Whether to show vertical lines (except Y axis)
+                scaleShowVerticalLines  : true,
+                //Boolean - If there is a stroke on each bar
+                barShowStroke           : true,
+                //Number - Pixel width of the bar stroke
+                barStrokeWidth          : 1,
+                //Number - Spacing between each of the X value sets
+                barValueSpacing         : 5,
+                //Number - Spacing between data sets within X values
+                barDatasetSpacing       : 1,
+                //String - A legend template
+                //Boolean - whether to make the chart responsive
+                responsive              : true,
+                maintainAspectRatio     : true
+            }
+
+            barChartOptions.datasetFill = true
+            barChart1.Bar(barChartData1, barChartOptions1)
+        })
+    </script>
+
+
+
+
+    <!-- jQuery 3 -->
+    <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <!-- DataTables -->
+    <script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+    <!-- SlimScroll -->
+    <script src="{{ asset('bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+    <!-- FastClick -->
+    <script src="{{ asset('bower_components/fastclick/lib/fastclick.js')}}"></script>
+
+    <script src="{{ asset('bower_components/chart.js/Chart.js') }}"></script>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

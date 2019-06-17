@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use App\Repository\CommandeRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Config\Definition\Exception\Exception;
@@ -22,12 +23,15 @@ class ArticleController extends AbstractController
     /**
      * @Route("/", name="plat_index", methods={"GET"})
      */
-    public function index(ArticleRepository $platRepository, Request $request, PaginatorInterface $paginator): Response
+    public function index(ArticleRepository $platRepository,CommandeRepository $commandeRepository ,Request $request, PaginatorInterface $paginator): Response
     {
         /**
          * @var \App\Entity\Fournisseur $user
          */
         $user = $this->getUser();
+        $ds=new \DateTime();
+
+        $etats=$commandeRepository->findBy(array('etat'=>'confirmer'));
         $articles=$platRepository->findBy(array('fournisseur' => $user));
      /*  foreach ($article as $key=>$value){
             $value->setImage(base64_encode(stream_get_contents($value->getImage())));
@@ -40,6 +44,7 @@ class ArticleController extends AbstractController
         return $this->render('article/index.html.twig', [
             'articles' => $articles,
             'properties'=>$properties,
+            'etats'=>$etats,
 
         ]);
     }
@@ -94,7 +99,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="plat_edit", methods={"GET","POST"})
+     * @Route("/edit/{id}", name="plat_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Article $article): Response
     {

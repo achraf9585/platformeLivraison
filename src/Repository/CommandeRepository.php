@@ -61,13 +61,24 @@ class CommandeRepository extends ServiceEntityRepository
 
 
 
+
+
+
     public function findfour($value): array
     {
         $conn= $this->getEntityManager()->getConnection();
-        $sql=' SELECT DISTINCT  commande.id,commande.datecommande,commande.dateconfirmlivcli,
-commande.etat,commande.codeconfirmlivfour,livreur.nom,livreur.prenom FROM commande commande,livreur livreur,article article,commande_article  commande_article
- WHERE  article.id=commande_article.article_id AND article.fournisseur_id = :val
- GROUP BY  commande.id
+        $sql='SELECT
+commande.id,commande.datecommande,commande.dateconfirmlivcli,commande.etat,commande.codeconfirmlivfour,
+commande_article.commande_id,commande_article.article_id,article.fournisseur_id,fournisseur.nomrestaurant,commande.livreur_id,
+livreur.nom, livreur.prenom
+FROM commande 
+JOIN commande_article on commande_article.commande_id = commande.id
+JOIN article on article.id = commande_article.article_id
+LEFT JOIN livreur on livreur.id = commande.livreur_id
+
+LEFT JOIN fournisseur on fournisseur.id = article.fournisseur_id
+WHERE article.fournisseur_id = 3
+GROUP BY commande.id
 
 ';
         $smt= $conn->prepare($sql);
