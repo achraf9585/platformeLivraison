@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+
+{% endblock %}
+
+	{% block body %}
+        <main class="app-content">
+            <div class="app-title">
+
+                <ul class="app-breadcrumb breadcrumb">
+                    <li class="breadcrumb-item"><i class="fa fa-commenting-o"></i></li>
+                    <li class="breadcrumb-item"><a href="#">Commentaire</a></li>
+                </ul>
+            </div>
+            <div class="container">
+                <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h2>Gérer <b>Commentaire</b></h2>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <table id="regions" class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Contenu</th>
+                                <th>Note</th>
+                                <th>Restaurateur</th>
+                                <th>Client</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for commentaire in commentaires %}
+
+                                <tr>
+                                    <region>
+                                        <td>{{ commentaire.id }}</td>
+                                        <td>{{ commentaire.contenu }}</td>
+                                        <td>{{ commentaire.note    }}</td>
+
+                                        <td>{{ commentaire.fournisseur.getNomrestaurant()    }}</td>
+                                        <td>{{ commentaire.client.getNom()    }} {{ commentaire.client.getPrenom()    }}</td>
+                                        <td>
+
+                                            {{ include('commentaire/_delete_form.html.twig') }}
+
+                                        </td>
+
+                                    </region>
+                                </tr>
+                            {% endfor %}
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+        </main>
+
+
+
+    {% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-3.2.1.min.js')}}"></script>
+    <script src="{{ asset('js/popper.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script>
+        $(function () {
+            $('#regions').DataTable( {
+                "language": {
+                    "lengthMenu": "afficher _MENU_ enregistement par page",
+                    "zeroRecords": "Aucun enregistrement a été trouvé !",
+                    "info": "Page _PAGE_ de _PAGES_ pages",
+                    "infoEmpty": "Aucun enregistrement",
+                    "infoFiltered": "(filtré de  _MAX_ total enregistement)",
+                    "search": "Recherche:",
+                    "paginate": {
+                        "previous": "Precédent",
+                        "next" : "suivant",
+                        "aoColumns":"columns" [ { "width": "25px" }, { "width": "25px" }, { "width": "450px" }, { "width": "20px" }, { "width": "20px" }, { "width": "20px" }, { "width": "20px" }, { "width": "20px" } ]
+                    }
+                }
+            } );
+        })
+    </script>
+
+    <!-- jQuery 3 -->
+    <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <!-- DataTables -->
+    <script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+    <!-- SlimScroll -->
+    <script src="{{ asset('bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+    <!-- FastClick -->
+    <script src="{{ asset('bower_components/fastclick/lib/fastclick.js')}}"></script>
+
+{% endblock %}

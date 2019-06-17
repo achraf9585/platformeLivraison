@@ -1,0 +1,10 @@
+{{ form_start(form) }}
+    {{ form_row(form.frais,{'attr':{'class':'form-control','placeholder':'frais de livraison..'}}) }}
+    {{ form_row(form.commission,{'attr':{'class':'form-control','placeholder':'commission du livreur'}}) }}
+    {{ form_row(form.seuil,{'attr':{'class':'form-control','placeholder':'seuil d une commande '}}) }}
+<br>
+<div>
+    <button class="btn btn-success" style="width: 70%; margin-left: 100px; margin-right: 10px; margin-bottom: 10px;">{{ button_label|default('Enregistrer') }}</button>
+
+</div>
+{{ form_end(form) }}
